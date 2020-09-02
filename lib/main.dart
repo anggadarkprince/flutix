@@ -1,7 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
                 child: Text("Sign Up"),
                 onPressed: () async {
                   SignInSignUpResult result = await AuthServices.signUp(
-                      "jennie@blackpink.com",
+                      "jennie2@blackpink.com",
                       "123456",
                       "Jennie",
                       ["Action", "Horror", "Music", "Drama"],
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
                 child: Text("Sign In"),
                 onPressed: () async {
                   SignInSignUpResult result = await AuthServices.signIn(
-                    "jennie@blackpink.com",
+                    "jennie2@blackpink.com",
                     "123456",
                   );
 

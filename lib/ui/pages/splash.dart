@@ -1,3 +1,4 @@
+import 'package:flutix/ui/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 
@@ -55,11 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   color: mainColor,
                   onPressed: () {
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                   }
                 )
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

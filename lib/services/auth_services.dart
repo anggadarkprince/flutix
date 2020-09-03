@@ -28,12 +28,24 @@ class AuthServices {
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password
       );
-print(result.user);
+
       User user = await result.user.fromFireStore();
 
       return SignInSignUpResult(user: user);
     } catch (e) {
-      return SignInSignUpResult(message: e.toString());
+      String error = 'Failed to sign in';
+      switch(e.code) {
+        case 'user-not-found':
+          error = 'Your email is not registered on our system';
+          break;
+        case 'wrong-password':
+          error = 'Wrong email or password, try again';
+          break;
+        case 'too-many-requests':
+          error = 'You attempt login to many, please wait a moment';
+          break;
+      }
+      return SignInSignUpResult(message: error);
     }
   }
 

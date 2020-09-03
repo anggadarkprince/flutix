@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/services/services.dart';
+import 'package:flutix/ui/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -160,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
         message: result.message,
       )..show(context);
     } else {
-      print(result.user);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutix/ui/pages/login.dart';
+import 'package:flutix/ui/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   color: mainColor,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
                   }
                 )
               ),
@@ -71,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   GestureDetector(
                     child: Text("Sign In", style: purpleTextFont),
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                   )
                 ]

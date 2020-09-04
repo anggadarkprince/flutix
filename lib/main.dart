@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyApp(),
-    ); 
+    );
   }
 }
 
@@ -29,20 +29,42 @@ class MyApp extends StatefulWidget {
 }
 
 class _AppWrapperState extends State<MyApp> {
+  bool initApp = false;
   bool isLoggedIn = false;
 
   @override
   Widget build(BuildContext context) {
     AuthServices.isUserLoggedIn()
       .then((result) {
-        if(result != isLoggedIn) {
+        new Future.delayed(const Duration(seconds: 3), () {
           setState(() {
-            isLoggedIn = result;
-          });
-        }
+            initApp = true;
+          });     
+          if(result != isLoggedIn) {
+            setState(() {
+              isLoggedIn = result;
+            });
+          }
+        });
       });
 
-    return isLoggedIn ? HomeScreen() : SplashScreen(); 
+    return initApp 
+      ? (isLoggedIn ? HomeScreen() : SplashScreen())
+      : _buildStartUpView(); 
+  }
+
+  Widget _buildStartUpView() {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Container(
+          height: 140,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/logo.png"))
+          ),
+        ),
+      )
+    );
   }
   
 }

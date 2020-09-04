@@ -18,12 +18,23 @@ class AuthServices {
 
       return SignInSignUpResult(user: user);
     } catch (e) {
-      return SignInSignUpResult(message: e.toString());
+      String error = 'Failed to register';
+      switch(e.code) {
+        case 'email-already-in-use':
+          error = 'Email address already registered';
+          break;
+        case 'weak-password':
+          error = 'Weak password, pick another password';
+          break;
+        case 'invalid-email':
+          error = 'Invalid email address';
+          break;
+      }
+      return SignInSignUpResult(message: error);
     }
   }
 
-  static Future<SignInSignUpResult> signIn(
-      String email, String password) async {
+  static Future<SignInSignUpResult> signIn(String email, String password) async {
     try {
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password

@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/ui/pages/home.dart';
+import 'package:flutix/ui/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
         TextField(
           onChanged: (text) {
             setState(() {
-              isEmailValid = EmailValidator.validate(text);
+              isEmailValid = EmailValidator.validate(text.trim());
             });
           },
           controller: emailController,
@@ -147,7 +148,10 @@ class _LoginScreenState extends State<LoginScreen> {
       isSigningIn = true;
     });
 
-    SignInSignUpResult result = await AuthServices.signIn(emailController.text, passwordController.text);
+    SignInSignUpResult result = await AuthServices.signIn(
+      emailController.text.trim(), 
+      passwordController.text
+    );
     
     setState(() {
       isSigningIn = false;
@@ -176,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
         GestureDetector(
           child: Text('Sign Up', style: purpleTextFont),
           onTap: () {
-
+            Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
           },
         )
       ],

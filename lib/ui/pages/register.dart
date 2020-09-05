@@ -246,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     widget.registrationData.email = emailController.text.trim();
     widget.registrationData.password = passwordController.text;
 
-    if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
+    if (passwordController.text == confirmPasswordController.text) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => PreferenceScreen(widget.registrationData)));
     } else {
       Flushbar(

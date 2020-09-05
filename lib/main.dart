@@ -49,7 +49,7 @@ class _AppWrapperState extends State<MyApp> {
       });
 
     return initApp 
-      ? (isLoggedIn ? HomeScreen() : SplashScreen())
+      ? (isLoggedIn ? HomeScreen(null) : SplashScreen())
       : _buildStartUpView(); 
   }
 

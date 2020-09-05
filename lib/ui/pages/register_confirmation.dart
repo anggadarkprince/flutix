@@ -191,7 +191,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                   message: result.message,
                 )..show(context);
               } else {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(result.user)));
               }
             }
           )

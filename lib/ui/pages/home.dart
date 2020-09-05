@@ -10,6 +10,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
+  final User user;
+
+  HomeScreen(this.user);
+
   @override
   _HomeScreenState createState() {
     return _HomeScreenState();
@@ -19,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int bottomNavBarIndex;
   PageController pageController;
-  User user = new User('', '');
+  User user;
 
   @override
   void initState() {
@@ -27,10 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     bottomNavBarIndex = 0;
     pageController = PageController(initialPage: bottomNavBarIndex);
-    auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
-    UserServices.getUser(_auth.currentUser.uid).then((value) {
-      user = value;
-    });
+    
+    if (widget.user == null) {
+      auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+      UserServices.getUser(_auth.currentUser.uid).then((value) {
+        user = value;
+      });
+    } else {
+      user = widget.user;
+    }
   }
 
   @override

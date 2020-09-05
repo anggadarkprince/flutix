@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/services/services.dart';
+import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +91,6 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
   
   Widget _buildProfileSummary(MediaQueryData mediaQuery) {
     final profile = widget.registrationData;
-    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -162,12 +164,19 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                 isSigningUp = true;
               });
               
+              File profileImage = widget.registrationData.profileImage;
+              String profileUrl = "";
+              if (profileImage != null) {
+                profileUrl = await uploadImage(profileImage);        
+              }
+
               SignInSignUpResult result = await AuthServices.signUp(
                 widget.registrationData.email,
                 widget.registrationData.password,
                 widget.registrationData.name,
                 widget.registrationData.selectedGenres,
-                widget.registrationData.selectedLang
+                widget.registrationData.selectedLang,
+                profilePhoto: profileUrl
               );
               
               if (result.user == null) {

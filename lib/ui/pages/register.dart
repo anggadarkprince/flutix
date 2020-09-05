@@ -1,14 +1,18 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/models/registration.dart';
+import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/ui/pages/login.dart';
 import 'package:flutix/ui/pages/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class RegisterScreen extends StatefulWidget {
+  final Registration registrationData;
+
+  RegisterScreen(this.registrationData);
+
   @override
   _RegisterScreenState createState() {
     return _RegisterScreenState();
@@ -24,7 +28,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isNameValid = false;
   bool isEmailValid = false;
   bool isPasswordValid = false;
-  Registration registrationData = new Registration();
 
   @override
   Widget build(BuildContext context) {
@@ -103,15 +106,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              SizedBox(
+              Container(
                 height: 100,
-                child: Image.asset("assets/user_pic.png"),
+                width: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: (widget.registrationData.profileImage == null)
+                      ? AssetImage("assets/user_pic.png")
+                      : FileImage(widget.registrationData.profileImage),
+                    fit: BoxFit.cover
+                  )
+                ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: GestureDetector(
-                  onTap: () {
-                    print('change photo');
+                  onTap: () async {
+                    if (widget.registrationData.profileImage == null) {
+                      widget.registrationData.profileImage = await getImage();
+                    } else {
+                      widget.registrationData.profileImage = null;
+                    }
+                    setState(() {}); // force trigger update
                   },
                   child: Container(
                     height: 32,
@@ -119,7 +136,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage("assets/btn_add_photo.png")
+                        image: AssetImage(
+                          widget.registrationData.profileImage == null 
+                            ? "assets/btn_add_photo.png" 
+                            : "assets/btn_del_photo.png"
+                        )
                       ),
                     ),
                   ),
@@ -221,12 +242,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   onSubmit() {
-    registrationData.name = nameController.text.trim();
-    registrationData.email = emailController.text.trim();
-    registrationData.password = passwordController.text;
+    widget.registrationData.name = nameController.text.trim();
+    widget.registrationData.email = emailController.text.trim();
+    widget.registrationData.password = passwordController.text;
 
-    if (passwordController.text == confirmPasswordController.text) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => PreferenceScreen(registrationData)));
+    if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => PreferenceScreen(widget.registrationData)));
     } else {
       Flushbar(
         duration: Duration(milliseconds: 1500),

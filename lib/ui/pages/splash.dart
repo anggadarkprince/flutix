@@ -1,3 +1,4 @@
+import 'package:flutix/models/registration.dart';
 import 'package:flutix/ui/pages/login.dart';
 import 'package:flutix/ui/pages/register.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   color: mainColor,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(Registration())));
                   }
                 )
               ),

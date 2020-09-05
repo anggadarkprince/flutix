@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/models/registration.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/pages/register.dart';
@@ -180,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
         GestureDetector(
           child: Text('Sign Up', style: purpleTextFont),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(Registration())));
           },
         )
       ],

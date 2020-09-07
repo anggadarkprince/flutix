@@ -3,6 +3,7 @@ import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/promo.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/movie_card.dart';
 import 'package:flutix/ui/widgets/promo_card.dart';
@@ -138,12 +139,7 @@ class _MovieScreenState extends State<MoviePage> {
                   left: (index == 0) ? defaultMargin : 0,
                   right: (index == nowPlaying.length - 1) ? defaultMargin : 16
                 ),
-                child: MovieCard(nowPlaying[index], onTap: () {
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text(nowPlaying[index].title),
-                    duration: Duration(milliseconds: 1000)
-                  ));
-                }),
+                child: MovieCard(nowPlaying[index], onTap: () => _onMovieTap(nowPlaying[index])),
               )
             )
             : SpinKitFadingCircle(
@@ -209,14 +205,9 @@ class _MovieScreenState extends State<MoviePage> {
                   left: (index == 0) ? defaultMargin : 0,
                   right: (index == comingSoon.length - 1) ? defaultMargin : 16
                 ),
-                child: MovieCard(comingSoon[index], onTap: () {
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text(comingSoon[index].title),
-                    duration: Duration(milliseconds: 1000)
-                  ));
-                }, overlay: [
-                  Colors.black.withOpacity(0.7),
-                  Colors.black.withOpacity(0.7)
+                child: MovieCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index]), overlay: [
+                  Colors.black.withOpacity(0.75),
+                  Colors.black.withOpacity(0.75)
                 ]),
               )
             )
@@ -252,5 +243,9 @@ class _MovieScreenState extends State<MoviePage> {
         ),
       ]
     ); 
+  }
+
+  void _onMovieTap(movie) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailScreen(movie)));
   }
 }

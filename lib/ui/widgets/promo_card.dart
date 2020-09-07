@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class PromoCard extends StatelessWidget {
   final Promo promo;
+  final Function onTap;
 
-  PromoCard(this.promo);
+  PromoCard(this.promo, {this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -115,16 +116,11 @@ class PromoCard extends StatelessWidget {
             ),
           ),
         ),
-        new Positioned.fill(
-          child: new Material(
+        Positioned.fill(
+          child: Material(
             color: Colors.transparent,
-            child: new InkWell(
-              onTap: () {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('Promotion ${promo.title}'),
-                  duration: Duration(milliseconds: 1000)
-                ));
-              },
+            child: InkWell(
+              onTap: onTap,
             )
           )
         )

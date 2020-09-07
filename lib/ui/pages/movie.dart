@@ -138,7 +138,12 @@ class _MovieScreenState extends State<MoviePage> {
                   left: (index == 0) ? defaultMargin : 0,
                   right: (index == nowPlaying.length - 1) ? defaultMargin : 16
                 ),
-                child: MovieCard(nowPlaying[index]),
+                child: MovieCard(nowPlaying[index], onTap: () {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text(nowPlaying[index].title),
+                    duration: Duration(milliseconds: 1000)
+                  ));
+                }),
               )
             )
             : SpinKitFadingCircle(
@@ -166,7 +171,12 @@ class _MovieScreenState extends State<MoviePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(
                   widget.user.selectedGenres.length,
-                  (index) => BrowseButton(widget.user.selectedGenres[index])
+                  (index) => BrowseButton(widget.user.selectedGenres[index], onTap: (genre) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text(genre),
+                      duration: Duration(milliseconds: 1000)
+                    ));
+                  })
                 ),
               ),
             )
@@ -189,7 +199,7 @@ class _MovieScreenState extends State<MoviePage> {
           child: Text("Coming Soon", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
-          height: 160,
+          height: 140,
           child: comingSoon != null 
             ? ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -199,7 +209,12 @@ class _MovieScreenState extends State<MoviePage> {
                   left: (index == 0) ? defaultMargin : 0,
                   right: (index == comingSoon.length - 1) ? defaultMargin : 16
                 ),
-                child: MovieCard(comingSoon[index], overlay: [
+                child: MovieCard(comingSoon[index], onTap: () {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text(comingSoon[index].title),
+                    duration: Duration(milliseconds: 1000)
+                  ));
+                }, overlay: [
                   Colors.black.withOpacity(0.7),
                   Colors.black.withOpacity(0.7)
                 ]),
@@ -226,7 +241,12 @@ class _MovieScreenState extends State<MoviePage> {
           children: dummyPromos.map((promoItem) {
             return Padding(
               padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
-              child: PromoCard(promoItem)
+              child: PromoCard(promoItem, onTap: () {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text('Promotion ${promoItem.title}'),
+                  duration: Duration(milliseconds: 1000)
+                ));
+              })
             );
           }).toList(),
         ),

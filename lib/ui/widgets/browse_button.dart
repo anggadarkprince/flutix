@@ -4,28 +4,41 @@ import 'package:flutter/material.dart';
 
 class BrowseButton extends StatelessWidget {
   final String genre;
+  final Function onTap;
 
-  BrowseButton(this.genre);
+  BrowseButton(this.genre, {this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(bottom: 4),
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(color: Color(0xFFEEF1F8), borderRadius: BorderRadius.circular(8)),
-          child: Center(
-            child: SizedBox(
-              height: 36,
-              child: Image(image: AssetImage(getImageFromGenre(genre)))
+        Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: 4),
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(color: Color(0xFFEEF1F8), borderRadius: BorderRadius.circular(8)),
+              child: Center(
+                child: SizedBox(
+                  height: 36,
+                  child: Image(image: AssetImage(getImageFromGenre(genre)))
+                ),
+              ),
             ),
-          ),
+            SizedBox(height: 4),
+            Text(genre, style: darkTextFont.copyWith(fontSize: 13, fontWeight: FontWeight.w500))
+          ],
         ),
-        SizedBox(height: 4),
-        Text(genre, style: darkTextFont.copyWith(fontSize: 13, fontWeight: FontWeight.w500))
-      ],
+        Positioned.fill(
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => onTap(genre),
+            )
+          )
+        )
+      ]
     );
   }
 

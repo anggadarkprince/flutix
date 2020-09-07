@@ -4,6 +4,7 @@ import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/schedule.dart';
 import 'package:flutix/ui/widgets/credit_card.dart';
 import 'package:flutix/ui/widgets/rating_star.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class MovieDetailScreen extends StatelessWidget {
                       _buildRating(movie),
                       _buildCredit(movie),
                       _buildStoryLine(movie),
-                      _buildButtons(movieDetail),
+                      _buildButtons(movieDetail, context),
                     ],
                   );
                 }
@@ -220,7 +221,7 @@ class MovieDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildButtons(MovieDetail movieDetail) {
+  Widget _buildButtons(MovieDetail movieDetail, context) {
     return Container(
       margin: EdgeInsets.only(bottom: defaultMargin),
       child: Row(
@@ -234,7 +235,7 @@ class MovieDetailScreen extends StatelessWidget {
               color: mainColor,
               child: Text("Continue to Book", style: whiteTextFont.copyWith(fontSize: 16)),
               onPressed: () {
-                
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(movieDetail)));
               }
             )
           ),

@@ -5,6 +5,7 @@ import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
+import 'package:flutix/ui/widgets/coming_soon_dart.dart';
 import 'package:flutix/ui/widgets/movie_card.dart';
 import 'package:flutix/ui/widgets/promo_card.dart';
 import 'package:flutter/material.dart';
@@ -205,10 +206,7 @@ class _MovieScreenState extends State<MoviePage> {
                   left: (index == 0) ? defaultMargin : 0,
                   right: (index == comingSoon.length - 1) ? defaultMargin : 16
                 ),
-                child: MovieCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index]), overlay: [
-                  Colors.black.withOpacity(0.75),
-                  Colors.black.withOpacity(0.75)
-                ]),
+                child: ComingSoonCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index])),
               )
             )
             : SpinKitFadingCircle(

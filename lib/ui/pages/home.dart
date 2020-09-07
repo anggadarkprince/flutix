@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.only(bottom: 35),
             child: FloatingActionButton(
               elevation: 0,
-              backgroundColor: mainColor,
+              backgroundColor: accentColor1,
               child: Icon(MdiIcons.walletPlus, color: Colors.white, size: 28),
               onPressed: () {
                 AuthServices.signOut();

@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/models/models.dart';
 import 'package:flutix/services/services.dart';
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SafeArea(
             child: Container(
-              color: Color(0xFFF6F7F9),
+              color: Color(0xFFE8EBEC),
             )
           ),
           PageView(
@@ -119,7 +118,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 20,
                       child: Image.asset((bottomNavBarIndex == 1)
                         ? "assets/ic_tickets.png"
-                        : "assets/ic_tickets_grey.png"),
+                        : "assets/ic_tickets_grey.png"
+                      ),
                     )
                   )
                 ]

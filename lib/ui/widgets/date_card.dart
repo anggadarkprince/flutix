@@ -9,7 +9,7 @@ class DateCard extends StatelessWidget {
   final DateTime date;
   final Function onTap;
 
-  DateCard(this.date, {this.isSelected = false, this.width = 70, this.height = 90, this.onTap});
+  DateCard(this.date, {this.isSelected = false, this.width = 70, this.height = 80, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class DateCard extends StatelessWidget {
           children: <Widget>[
             Text(
               DateFormat('EEE').format(date).toUpperCase(),
-              style: blackTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
+              style: darkTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 5),
             Text(

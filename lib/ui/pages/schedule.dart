@@ -60,7 +60,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Container _buildTitle() {
     return Container(
       margin: EdgeInsets.only(top: 20, left: defaultMargin),
-      padding: EdgeInsets.all(1),
       child: Stack(
         children: <Widget>[
           Align(
@@ -119,6 +118,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 onTap: () {
                   setState(() {
                     selectedDate = dates[index];
+                    selectedTime = null;
+                    isValid = (selectedTime != null && selectedDate != null);
                   });
                 },
               ),
@@ -165,12 +166,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 width: 90,
                 isSelected: selectedTheater == theater && selectedTime == schedule[index],
                 isEnabled: schedule[index] > DateTime.now().hour || selectedDate.day != DateTime.now().day,
-                onTap: () {
-                  setState(() {
-                    selectedTheater = theater;
-                    selectedTime = schedule[index];
-                    isValid = true;
-                  });
+                onTap: (input) {
+                  if (schedule[index] > DateTime.now().hour || selectedDate.day != DateTime.now().day) {
+                    setState(() {
+                      selectedTheater = theater;
+                      selectedTime = schedule[index];
+                      isValid = (selectedTime != null && selectedDate != null);
+                    });
+                  }
                 },
               ),
             ),
@@ -187,41 +190,41 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   Widget _buildNextButton() {
     return Container(
-          margin: EdgeInsets.only(top: 10, bottom: 40),
-          child: (isNext)
-            ? SpinKitFadingCircle(
-                color: mainColor,
-                size: 45,
-              )
-            : Align(
-              alignment: Alignment.topCenter,
-              child: FloatingActionButton(
-                elevation: 4,
-                backgroundColor: (isValid) ? mainColor : Color(0xFFE4E4E4),
-                child: Icon(
-                  Icons.arrow_forward,
-                  color: isValid ? Colors.white : Color(0xFFBEBEBE),
-                ),
-                onPressed: () {
-                  if (isValid) {
-                    setState(() {
-                      isNext = true;
-                    });
-                    auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
-                    UserServices.getUser(_auth.currentUser.uid).then((user) {
-                      setState(() {
-                        isNext = false;
-                      });
-                      DateTime ticketDate = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, selectedTime);
-                      String bookingCode = randomAlphaNumeric(12).toUpperCase();
-                      Ticket ticket = Ticket(widget.movieDetail, selectedTheater, ticketDate, bookingCode, null, user.name, 0);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SelectSeatScreen(ticket)));
-                    });
-                  }
-                }
-              ),
+      margin: EdgeInsets.only(top: 10, bottom: 40),
+      child: (isNext)
+        ? SpinKitFadingCircle(
+            color: mainColor,
+            size: 45,
+          )
+        : Align(
+          alignment: Alignment.topCenter,
+          child: FloatingActionButton(
+            elevation: 4,
+            backgroundColor: (isValid) ? mainColor : Color(0xFFE4E4E4),
+            child: Icon(
+              Icons.arrow_forward,
+              color: isValid ? Colors.white : Color(0xFFBEBEBE),
             ),
-        );
+            onPressed: () {
+              if (isValid) {
+                setState(() {
+                  isNext = true;
+                });
+                auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+                UserServices.getUser(_auth.currentUser.uid).then((user) {
+                  setState(() {
+                    isNext = false;
+                  });
+                  DateTime ticketDate = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, selectedTime);
+                  String bookingCode = randomAlphaNumeric(12).toUpperCase();
+                  Ticket ticket = Ticket(widget.movieDetail, selectedTheater, ticketDate, bookingCode, null, user.name, 0);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SelectSeatScreen(ticket)));
+                });
+              }
+            }
+          ),
+        ),
+    );
   }
 
 }

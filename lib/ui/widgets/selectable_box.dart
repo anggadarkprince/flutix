@@ -48,7 +48,7 @@ class SelectableBox extends StatelessWidget {
             style: (textStyle ?? blackTextFont).copyWith(
               fontSize: 16, 
               fontWeight: FontWeight.w600, 
-              color: isSelected && isEnabled ? Colors.white : Colors.black
+              color: isEnabled ? Colors.black : Colors.grey
             ),
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/schedule.dart';
 import 'package:flutix/ui/widgets/selectable_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SelectSeatScreen extends StatefulWidget {
   final Ticket ticket;
@@ -38,7 +39,11 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                       padding: EdgeInsets.all(1),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(widget.ticket.movieDetail)));
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          } else {
+                            SystemNavigator.pop();
+                          }
                         },
                         child: Icon(
                           Icons.arrow_back,
@@ -127,8 +132,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
           children: List.generate(
             numberofSeats[i],
             (index) => Padding(
-              padding: EdgeInsets.only(
-                  right: index < numberofSeats[i] - 1 ? 16 : 0, bottom: 16),
+              padding: EdgeInsets.only(right: index < numberofSeats[i] - 1 ? 16 : 0, bottom: 16),
               child: SelectableBox(
                 "${String.fromCharCode(i + 65)}${index + 1}",
                 width: 40,

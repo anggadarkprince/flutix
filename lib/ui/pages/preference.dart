@@ -151,7 +151,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
         genre,
         width: width,
         isSelected: selectedGenres.contains(genre),
-        onTap: () {
+        onTap: (title) {
           onSelectGenre(genre);
         },
       );
@@ -182,7 +182,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
         language,
         width: width,
         isSelected: selectedLanguage == language,
-        onTap: () {
+        onTap: (title) {
           setState(() {
             selectedLanguage = language;
           });

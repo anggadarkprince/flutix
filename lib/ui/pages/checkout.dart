@@ -33,32 +33,29 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         children: <Widget>[
           Container(color: accentColor1),
           SafeArea(child: Container(color: Colors.white)),
-          ListView(
-            children: <Widget>[
-              FutureBuilder(
-                future: UserServices.getUser(auth.FirebaseAuth.instance.currentUser.uid),
-                builder: (_, snapshot) {
-                  if (snapshot.hasData) {
-                    user = snapshot.data;
-                  } else if (snapshot.hasError) {
-                    return Container(
-                      padding: EdgeInsets.all(defaultMargin),
-                      child: Center(child: Text("${snapshot.error}")),
-                    );
-                  }
+          FutureBuilder(
+            future: UserServices.getUser(auth.FirebaseAuth.instance.currentUser.uid),
+            builder: (_, snapshot) {
+              if (snapshot.hasData) {
+                user = snapshot.data;
+              } else if (snapshot.hasError) {
+                return Container(
+                  padding: EdgeInsets.all(defaultMargin),
+                  child: Center(child: Text("${snapshot.error}")),
+                );
+              }
 
-                  return Column(
-                    children: <Widget>[
-                      _buildTitle(),
-                      _buildMovieDescription(widget.ticket.movieDetail),
-                      _buildBookingSummary(widget.ticket, user),
-                      _buildSubmitButton(user),
-                    ],
-                  );
-                }
-              ),
-            ],
-          ),
+              return Column(
+                children: <Widget>[
+                  _buildTitle(),
+                  _buildMovieDescription(widget.ticket.movieDetail),
+                  _buildBookingSummary(widget.ticket, user),
+                  Spacer(),
+                  _buildSubmitButton(user),
+                ],
+              );
+            }
+          )
         ],
       ),
     );
@@ -66,7 +63,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: defaultMargin, right: defaultMargin),
+      margin: EdgeInsets.only(top: 40, left: defaultMargin, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(
@@ -87,27 +84,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Take a Seat",
+                  "Checkout",
                   style: darkTextFont.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w600
                   )
                 ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: NetworkImage(imageBaseURL + 'w154' + widget.ticket.movieDetail.posterPath),
-                  fit: BoxFit.cover
-                )
-              ),
             ),
           ),
         ],
@@ -121,7 +104,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Container(
           width: 90,
           height: 90,
-          margin: EdgeInsets.only(left: defaultMargin, right: 20, top: 10),
+          margin: EdgeInsets.only(left: defaultMargin, right: 20, top: 25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
@@ -337,7 +320,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ? Container(
           width: 250,
           height: 46,
-          margin: EdgeInsets.only(top: 36, bottom: 50),
+          margin: EdgeInsets.only(top: 30, bottom: 30),
           child: RaisedButton(
             elevation: 4,
             color: user.balance >= total ? Color(0xFF3E9D9D) : mainColor,

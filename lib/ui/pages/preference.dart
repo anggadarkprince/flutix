@@ -87,7 +87,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
                     Text(
                       "Movie Preferences",
                       style: darkTextFont.copyWith(
-                        fontSize: 26,
+                        fontSize: 22,
                         fontWeight: FontWeight.w600
                       )
                     ),

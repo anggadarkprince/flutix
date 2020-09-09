@@ -74,7 +74,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                     Text(
                       "Summary",
                       style: darkTextFont.copyWith(
-                        fontSize: 26,
+                        fontSize: 22,
                         fontWeight: FontWeight.w600
                       )
                     ),
@@ -191,6 +191,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                   message: result.message,
                 )..show(context);
               } else {
+                Navigator.of(context).popUntil((route) => route.isFirst);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
               }
             }

@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
         message: result.message,
       )..show(context);
     } else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
     }
   }
 

@@ -64,7 +64,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 40, left: defaultMargin, right: defaultMargin),
+      margin: EdgeInsets.only(top: 45, left: defaultMargin, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(
@@ -87,7 +87,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 Text(
                   "Checkout",
                   style: darkTextFont.copyWith(
-                    fontSize: 24,
+                    fontSize: 22,
                     fontWeight: FontWeight.w600
                   )
                 ),

@@ -67,7 +67,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                 Text(
                   "Take a Seat",
                   style: darkTextFont.copyWith(
-                    fontSize: 24,
+                    fontSize: 22,
                     fontWeight: FontWeight.w600
                   )
                 ),

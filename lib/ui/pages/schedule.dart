@@ -82,7 +82,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 Text(
                   "Select Schedule",
                   style: darkTextFont.copyWith(
-                    fontSize: 24,
+                    fontSize: 22,
                     fontWeight: FontWeight.w600
                   )
                 ),

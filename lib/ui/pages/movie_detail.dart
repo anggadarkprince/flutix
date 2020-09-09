@@ -120,7 +120,7 @@ class MovieDetailScreen extends StatelessWidget {
       child: Text(
         movie.title,
         textAlign: TextAlign.center,
-        style: blackTextFont.copyWith(fontSize: 24),
+        style: blackTextFont.copyWith(fontSize: 22),
       ),
     );
   }

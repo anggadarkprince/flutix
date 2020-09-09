@@ -58,6 +58,7 @@ class CheckoutProcessScreen extends StatelessWidget {
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst);
                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 1)));
                     }
                   ),
@@ -71,7 +72,7 @@ class CheckoutProcessScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                       },
                       child: Text("Back to Home", style: purpleTextFont),
                     )

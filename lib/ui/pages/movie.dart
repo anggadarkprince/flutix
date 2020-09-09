@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 
-class MoviePage extends StatefulWidget {
+class MovieScreen extends StatefulWidget {
   
   final User user;
 
-  MoviePage(this.user);
+  MovieScreen(this.user);
 
   @override
   _MovieScreenState createState() {
@@ -24,7 +24,7 @@ class MoviePage extends StatefulWidget {
   }
 }
 
-class _MovieScreenState extends State<MoviePage> {
+class _MovieScreenState extends State<MovieScreen> {
   List<Movie> movies;
 
   @override

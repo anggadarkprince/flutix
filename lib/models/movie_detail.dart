@@ -21,7 +21,7 @@ class MovieDetail extends Movie {
       s += genre + (genre != genres.last ? ', ' : '');
     }
 
-    return "$s - $language";
+    return "$s - ${language ?? 'English'}";
   }
 
   @override

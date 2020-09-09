@@ -1,4 +1,3 @@
-
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/material.dart';
 

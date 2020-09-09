@@ -5,6 +5,7 @@ import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/splash.dart';
+import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -48,14 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            color: accentColor1,
-          ),
-          SafeArea(
-            child: Container(
-              color: Color(0xFFE8EBEC),
-            )
-          ),
+          Container(color: accentColor1),
+          SafeArea(child: Container(color: Color(0xFFE8EBEC))),
           PageView(
             controller: pageController,
             onPageChanged: (index) {
@@ -64,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
             children: <Widget>[
-              MoviePage(user),
-              Center(child: Text("My Tickets"),)
+              MovieScreen(user),
+              TicketScreen()
             ],
           ),
           createCustomBottomNavBar(),
@@ -136,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 55,
             margin: EdgeInsets.only(bottom: 35),
             child: FloatingActionButton(
-              elevation: 0,
+              elevation: 7,
               backgroundColor: accentColor1,
               child: Icon(MdiIcons.walletPlus, color: Colors.white, size: 28),
               onPressed: () {

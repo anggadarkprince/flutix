@@ -42,8 +42,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: <Widget>[
               _buildTitle(mediaQuery),
               _buildRegistrationForm(),
+              _buildSignInButton(),
               _buildSignUpButton(),
-              _buildSignInButton(),  
             ],
           ),
         ]
@@ -217,6 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             hintText: "Repeat The Password"
           ),
         ),
+        SizedBox(height: 20),
       ],
     );
   }
@@ -227,7 +228,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Container(
         width: 50,
         height: 50,
-        margin: EdgeInsets.only(top: 40, bottom: 45),
+        margin: EdgeInsets.only(top: 30, bottom: 10),
         child: FloatingActionButton(
           elevation: 4,
           backgroundColor: isFormValid ? mainColor : Color(0xFFE4E4E4),

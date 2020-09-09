@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutix/services/services.dart';
+import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutter/material.dart';
-
 import 'ui/pages/splash.dart';
 
 void main() async {
@@ -49,7 +48,7 @@ class _AppWrapperState extends State<MyApp> {
       });
 
     return initApp 
-      ? (isLoggedIn ? HomeScreen(null) : SplashScreen())
+      ? (isLoggedIn ? HomeScreen() : SplashScreen())
       : _buildStartUpView(); 
   }
 

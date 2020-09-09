@@ -33,7 +33,6 @@ class _MovieScreenState extends State<MoviePage> {
 
     MovieServices.getMovies(1)
       .then((value) {
-        print(value[0]);
         setState(() {
           movies = value;
         });

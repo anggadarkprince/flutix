@@ -2,9 +2,10 @@ import 'package:flutix/models/models.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/models/transaction.dart';
-import 'package:flutix/services/services.dart';
+import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/checkout_process.dart';
 import 'package:flutix/ui/widgets/rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +35,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Container(color: accentColor1),
           SafeArea(child: Container(color: Colors.white)),
           FutureBuilder(
-            future: UserServices.getUser(auth.FirebaseAuth.instance.currentUser.uid),
+            future: UserService.getUser(auth.FirebaseAuth.instance.currentUser.uid),
             builder: (_, snapshot) {
               if (snapshot.hasData) {
                 user = snapshot.data;
@@ -236,7 +237,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: <Widget>[
               Text("Price", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
-                NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(ticketPrice) + " x ${totalTicket}",
+                NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(ticketPrice) + " x $totalTicket",
                 style: whiteNumberFont.copyWith(
                   color: darkColor,
                   fontSize: 16,
@@ -254,7 +255,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: <Widget>[
               Text("Fee", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
-                "IDR 1.500 x ${totalTicket}",
+                "IDR 1.500 x $totalTicket",
                 style: whiteNumberFont.copyWith(
                   color: darkColor,
                   fontSize: 16,
@@ -333,14 +334,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               if (user.balance >= total) {
                 Transaction transaction = Transaction(
                   userID: user.id,
+                  type: 'CREDIT',
+                  category: 'TICKET',
                   title: widget.ticket.movieDetail.title,
-                  theater: widget.ticket.theater.name,
+                  subtitle: widget.ticket.theater.name,
                   time: DateTime.now(),
                   amount: -total,
                   picture: widget.ticket.movieDetail.posterPath
                 );
+                Ticket ticket = widget.ticket.copyWith(totalPrice: total);
 
-                // # goto success
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutProcessScreen(user, transaction, ticket)));
               } else {
                 // # Uang tidak cukup
               }

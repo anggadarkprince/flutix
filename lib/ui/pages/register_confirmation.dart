@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/models/registration.dart';
-import 'package:flutix/services/services.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutix/services/auth_services.dart';
 
 class RegisterConfirmationScreen extends StatefulWidget {
   
@@ -30,18 +30,17 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
     var mediaQuery = MediaQuery.of(context);
     
     return Scaffold(
-      body: ListView(
+      body: Container(
         padding: EdgeInsets.all(defaultMargin),
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildTitle(mediaQuery),
-              _buildProfileSummary(mediaQuery),
-              _buildSubmitButton(),
-            ],
-          ),
-        ]
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildTitle(mediaQuery),
+            _buildProfileSummary(mediaQuery),
+            Spacer(),
+            _buildSubmitButton(),
+          ],
+        )
       )
     );
   }
@@ -95,13 +94,13 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: 20),
+        SizedBox(height: 30),
         Text(
           "One step closer\nto explore thousands of movies",
-          style: greyTextFont.copyWith(fontSize: 14),
+          style: greyTextFont.copyWith(fontSize: 16),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 20),
         Container(
           width: 150,
           height: 150,
@@ -142,15 +141,16 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
   }
 
   Widget _buildSubmitButton() {
-    return (isSigningUp)
-      ? SpinKitFadingCircle(
-          color: mainColor,
-          size: 45,
-        )
-      : Container(
-          width: 250,
-          height: 50,
-          child: RaisedButton(
+    return Container(
+      width: 250,
+      height: 50,
+      margin: EdgeInsets.only(bottom: 10),
+      child: (isSigningUp)
+        ? SpinKitFadingCircle(
+            color: mainColor,
+            size: 45,
+          )
+        : RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -191,10 +191,10 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                   message: result.message,
                 )..show(context);
               } else {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(result.user)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
               }
             }
-          )
-        );
+        )
+    );
   }
 }

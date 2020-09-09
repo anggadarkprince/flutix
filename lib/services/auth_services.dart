@@ -1,4 +1,7 @@
-part of 'services.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutix/models/models.dart';
+import 'package:flutix/extensions/extensions.dart';
+import 'package:flutix/services/user_service.dart';
 
 class AuthServices {
   static auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
@@ -15,7 +18,7 @@ class AuthServices {
         selectedLanguage: selectedLanguage
       );
 
-      await UserServices.updateUser(user);
+      await UserService.updateUser(user);
 
       return SignInSignUpResult(user: user);
     } catch (e) {

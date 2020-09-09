@@ -1,6 +1,7 @@
-part of 'services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutix/models/models.dart';
 
-class UserServices {
+class UserService {
   static CollectionReference _userCollection = FirebaseFirestore.instance.collection('users');
 
   static Future<void> updateUser(User user) async {
@@ -11,6 +12,12 @@ class UserServices {
       'selectedGenres': user.selectedGenres,
       'selectedLanguage': user.selectedLanguage,
       'profilePicture': user.profilePicture ?? ""
+    });
+  }
+
+  static Future<void> purchaseTicket(User user, totalPurchase) async {
+    _userCollection.doc(user.id).update({
+      'balance': user.balance - totalPurchase,
     });
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/theater.dart';
 import 'package:flutix/models/ticket.dart';
-import 'package:flutix/services/services.dart';
+import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/select_seat.dart';
 import 'package:flutix/ui/widgets/date_card.dart';
@@ -211,7 +211,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   isNext = true;
                 });
                 auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
-                UserServices.getUser(_auth.currentUser.uid).then((user) {
+                UserService.getUser(_auth.currentUser.uid).then((user) {
                   setState(() {
                     isNext = false;
                   });

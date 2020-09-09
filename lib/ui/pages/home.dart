@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/models/models.dart';
-import 'package:flutix/services/services.dart';
+import 'package:flutix/services/auth_services.dart';
+import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/splash.dart';
@@ -10,8 +11,9 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class HomeScreen extends StatefulWidget {
   final User user;
+  final int tabIndex;
 
-  HomeScreen(this.user);
+  HomeScreen({this.user, this.tabIndex = 0});
 
   @override
   _HomeScreenState createState() {
@@ -28,12 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    bottomNavBarIndex = 0;
+    bottomNavBarIndex = widget.tabIndex;
     pageController = PageController(initialPage: bottomNavBarIndex);
     
     if (widget.user == null) {
       auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
-      UserServices.getUser(_auth.currentUser.uid).then((value) {
+      UserService.getUser(_auth.currentUser.uid).then((value) {
         user = value;
       });
     } else {

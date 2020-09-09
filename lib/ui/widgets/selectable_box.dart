@@ -14,8 +14,8 @@ class SelectableBox extends StatelessWidget {
     this.text,
     {this.isSelected = false,
     this.isEnabled = true,
-    this.width = 144,
-    this.height = 60,
+    this.width = 145,
+    this.height = 50,
     this.onTap,
     this.textStyle}
   );

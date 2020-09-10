@@ -33,7 +33,6 @@ class _TicketScreenState extends State<TicketScreen> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          // note: CONTENT
           Container(
             margin: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: FutureBuilder(
@@ -47,79 +46,98 @@ class _TicketScreenState extends State<TicketScreen> {
                     child: Center(child: Text("${snapshot.error}")),
                   );
                 }
-                
                 return TicketViewer(tickets, isExpiredTickets);
               }
             )
           ),
-          // note: HEADER
-          Container(height: 72, color: accentColor1),
-          SafeArea(
-            child: ClipPath(
-              clipper: HeaderClipper(),
-              child: Container(
-                height: 70,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: 300,
+              height: 55,
+              margin: EdgeInsets.only(bottom: 110),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: accentColor1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Column(
+                boxShadow: [
+                  BoxShadow(color: Color(0x55000000), spreadRadius: 3, blurRadius: 12, offset: Offset(0, 5)),
+                ],
+              ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        setState(() {
+                          isExpiredTickets = !isExpiredTickets;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                          color: !isExpiredTickets ? Color(0xFF1D1347) : Colors.transparent,
+                        ),
+                        height: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isExpiredTickets = !isExpiredTickets;
-                                });
-                              },
-                              child: Text(
-                                "Active",
-                                style: whiteTextFont.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: !isExpiredTickets ? Colors.white : Color(0x55FFFFFF)
-                                ),
+                            Text(
+                              "Active",
+                              style: whiteTextFont.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: !isExpiredTickets ? Colors.white : Color(0x44FFFFFF)
                               ),
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 15),
                             Container(
                               height: 4,
-                              width: MediaQuery.of(context).size.width * 0.5,
+                              width: 80,
                               color: !isExpiredTickets ? accentColor2 : Colors.transparent,
                             )
                           ],
+                        )
+                      ),
+                    )
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        setState(() {
+                          isExpiredTickets = !isExpiredTickets;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
+                          color: isExpiredTickets ? Color(0xFF1D1347) : Colors.transparent,
                         ),
-                        Column(
+                        height: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isExpiredTickets = !isExpiredTickets;
-                                });
-                              },
-                              child: Text(
-                                "Histories",
-                                style: whiteTextFont.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: isExpiredTickets ? Colors.white : Color(0x55FFFFFF)
-                                ),
+                            Text(
+                              "Histories",
+                              style: whiteTextFont.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: isExpiredTickets ? Colors.white : Color(0x44FFFFFF)
                               ),
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 15),
                             Container(
                               height: 4,
-                              width: MediaQuery.of(context).size.width * 0.5,
+                              width: 80,
                               color: isExpiredTickets ? accentColor2 : Colors.transparent,
                             )
                           ],
                         )
-                      ],
+                      )
                     )
-                  ],
-                ),
+                  ),
+                ],
               ),
             )
           )
@@ -157,7 +175,7 @@ class TicketViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (tickets == null) {
-      return SpinKitFadingCircle(
+      return SpinKitPulse(
         color: mainColor,
         size: 50,
       );
@@ -189,65 +207,72 @@ class TicketViewer extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      itemCount: sortedTickets.length,
-      itemBuilder: (_, index) => Stack(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: index == 0 ? 100 : 20, bottom: index == sortedTickets.length - 1 ? 120 : 0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 70,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                      image: NetworkImage(imageBaseURL + 'w500' + sortedTickets[index].movieDetail.posterPath),
-                      fit: BoxFit.cover
-                    )
-                  ),
-                ),
-                SizedBox(width: 15),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 2 * defaultMargin - 70 - 16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        sortedTickets[index].movieDetail.title,
-                        style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
+    return Container(
+      child:ListView.builder(
+        itemCount: sortedTickets.length,
+        itemBuilder: (_, index) => Container(
+          margin: EdgeInsets.only(
+            top: index == 0 ? 20 : 0,
+            bottom: index == sortedTickets.length - 1 ? 200 : 15
+          ),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 70,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image: NetworkImage(imageBaseURL + 'w500' + sortedTickets[index].movieDetail.posterPath),
+                          fit: BoxFit.cover
+                        )
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        sortedTickets[index].movieDetail.genresAndLanguage,
-                        style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        sortedTickets[index].theater.name,
-                        style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(width: 15),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 2 * defaultMargin - 70 - 16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            sortedTickets[index].movieDetail.title,
+                            style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                            maxLines: 2,
+                            overflow: TextOverflow.clip,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            sortedTickets[index].movieDetail.genresAndLanguage,
+                            style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            sortedTickets[index].theater.name,
+                            style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                          )
+                        ],
                       )
-                    ],
+                    )
+                  ],
+                ),
+              ),
+              Positioned.fill(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TicketDetailScreen(sortedTickets[index])));
+                    },
                   )
                 )
-              ],
-            ),
-          ),
-          Positioned.fill(
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TicketDetailScreen(sortedTickets[index])));
-                },
               )
-            )
-          )
-        ]
-      ) 
+            ]
+          ) 
+        )
+      )
     );
   }
 }

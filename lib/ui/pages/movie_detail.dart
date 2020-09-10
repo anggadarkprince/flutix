@@ -133,12 +133,15 @@ class MovieDetailScreen extends StatelessWidget {
             movieDetail.genresAndLanguage,
             style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
           )
-        : SizedBox(
-            height: 50,
-            width: 50,
-            child: SpinKitFadingCircle(
-              color: accentColor3,
-            ),
+        : Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: SizedBox(
+              height: 40,
+              width: 40,
+              child: SpinKitPulse(
+                color: mainColor,
+              ),
+            )
           )
     );
   }

@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/models/models.dart';
-import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie.dart';
-import 'package:flutix/ui/pages/splash.dart';
 import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutter/material.dart';

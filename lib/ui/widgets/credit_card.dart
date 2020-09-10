@@ -17,11 +17,11 @@ class CreditCard extends StatelessWidget {
           width: 70,
           decoration: BoxDecoration(
             color: Colors.blueGrey[100],
-              borderRadius: BorderRadius.circular(8),
-              image: (credit.profilePath == null) ? null : DecorationImage(
-                image: NetworkImage(imageBaseURL + "w185" + credit.profilePath),
-                fit: BoxFit.cover
-              )
+            borderRadius: BorderRadius.circular(8),
+            image: (credit.profilePath == null) ? null : DecorationImage(
+              image: NetworkImage(imageBaseURL + "w185" + credit.profilePath),
+              fit: BoxFit.cover
+            )
           ),
         ),
         Container(

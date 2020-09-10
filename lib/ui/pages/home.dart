@@ -6,6 +6,7 @@ import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/splash.dart';
 import 'package:flutix/ui/pages/ticket.dart';
+import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -135,8 +136,15 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: accentColor1,
               child: Icon(MdiIcons.walletPlus, color: Colors.white, size: 28),
               onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpScreen()));
+                /*
                 AuthServices.signOut();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => SplashScreen()),
+                  (Route<dynamic> route) => false,
+                );
+                */
               }),
           ),
         )

@@ -100,5 +100,8 @@ class CheckoutProcessScreen extends StatelessWidget {
     await TransactionService.saveTransaction(transaction);
   }
 
-  Future<void> processingTopUp() async {}
+  Future<void> processingTopUp() async {
+    await UserService.depositTicket(this.user, transaction.amount);
+    await TransactionService.saveTransaction(transaction);
+  }
 }

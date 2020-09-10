@@ -21,6 +21,12 @@ class UserService {
     });
   }
 
+  static Future<void> depositTicket(User user, totalDeposit) async {
+    _userCollection.doc(user.id).update({
+      'balance': user.balance + totalDeposit,
+    });
+  }
+
   static Future<User> getUser(String id) async {
     DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 

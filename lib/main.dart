@@ -33,19 +33,17 @@ class _AppWrapperState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    AuthServices.isUserLoggedIn()
-      .then((result) {
-        new Future.delayed(const Duration(seconds: 3), () {
-          setState(() {
-            initApp = true;
-          });     
-          if(result != isLoggedIn) {
+    if (!initApp) {
+      AuthServices.isUserLoggedIn()
+        .then((result) {
+          new Future.delayed(const Duration(seconds: 3), () {
             setState(() {
+              initApp = true;
               isLoggedIn = result;
             });
-          }
+          });
         });
-      });
+    }
 
     return initApp 
       ? (isLoggedIn ? HomeScreen() : SplashScreen())

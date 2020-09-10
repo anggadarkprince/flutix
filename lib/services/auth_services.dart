@@ -67,6 +67,10 @@ class AuthServices {
   static Future<void> signOut() async {
     await _auth.signOut();
   }
+  
+  static Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 
   static Future<bool> isUserLoggedIn() async {
     var user = _auth.currentUser;

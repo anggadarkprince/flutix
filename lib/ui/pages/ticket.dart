@@ -158,7 +158,7 @@ class TicketViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     if (tickets == null) {
       return SpinKitFadingCircle(
-        color: accentColor3,
+        color: mainColor,
         size: 50,
       );
     }

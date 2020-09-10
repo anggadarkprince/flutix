@@ -43,7 +43,7 @@ class TicketDetailScreen extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: statusBarHeight),
+        SizedBox(height: statusBarHeight - 5),
         Container(
           child: Stack(
             children: <Widget>[
@@ -57,7 +57,7 @@ class TicketDetailScreen extends StatelessWidget {
                       SystemNavigator.pop();
                     }
                   },
-                  child: Icon(Icons.arrow_back, color: Colors.black),
+                  child: Icon(Icons.arrow_back, color: darkColor),
                 ),
               ),
               Center(
@@ -65,7 +65,7 @@ class TicketDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Summary",
+                      "Ticket Detail",
                       style: darkTextFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w600
@@ -91,8 +91,8 @@ class TicketDetailScreen extends StatelessWidget {
           fit: BoxFit.cover
         ),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15)
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25)
         )
       ),
     );
@@ -143,9 +143,26 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Date & Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text("Date", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
-                  DateFormat('EEE, dd MMM yyyy H:mm').format(ticket.time),
+                  DateFormat('EEE, dd MMM yyyy').format(ticket.time),
+                  textAlign: TextAlign.end,
+                  style: whiteNumberFont.copyWith(
+                    color: darkColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text("Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(
+                  DateFormat('H:mm').format(ticket.time),
                   textAlign: TextAlign.end,
                   style: whiteNumberFont.copyWith(
                     color: darkColor,
@@ -221,7 +238,6 @@ class TicketDetailScreen extends StatelessWidget {
               ],
             ),
             QrImage(
-              version: 6,
               foregroundColor: Colors.black,
               errorCorrectionLevel: QrErrorCorrectLevel.M,
               padding: EdgeInsets.all(0),

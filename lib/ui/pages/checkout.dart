@@ -77,7 +77,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   SystemNavigator.pop();
                 }
               },
-              child: Icon(Icons.arrow_back, color: Colors.black),
+              child: Icon(Icons.arrow_back, color: darkColor),
             ),
           ),
           Center(
@@ -100,47 +100,49 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Widget _buildMovieDescription(MovieDetail movieDetail) {
-    return Row(
-      children: <Widget>[
-        Container(
-          width: 90,
-          height: 90,
-          margin: EdgeInsets.only(left: defaultMargin, right: 20, top: 25),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(
-              image: NetworkImage(imageBaseURL + 'w342' + movieDetail.posterPath),
-              fit: BoxFit.cover
-            )
-          ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 2 * defaultMargin - 70 - 20,
-              child: Text(
-                movieDetail.title,
-                style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
-                maxLines: 2,
-                overflow: TextOverflow.clip,
+    return Container(
+      margin: EdgeInsets.only(left: defaultMargin, top: 20, right: defaultMargin),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            width: 90,
+            height: 90,
+            margin: EdgeInsets.only(right: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: NetworkImage(imageBaseURL + 'w342' + movieDetail.posterPath),
+                fit: BoxFit.cover
               )
             ),
-            Container(
-              width: MediaQuery.of(context).size.width - 2 * defaultMargin - 70 - 20,
-              margin: EdgeInsets.symmetric(vertical: 6),
-              child: Text(
-                movieDetail.genresAndLanguage,
-                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-              ),
-            ),
-            RatingStars(
-              voteAverage: movieDetail.voteAverage,
-              color: accentColor3,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  movieDetail.title,
+                  style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  movieDetail.genresAndLanguage,
+                  maxLines: 2,
+                  style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                ),
+                SizedBox(height: 5),
+                RatingStars(
+                  voteAverage: movieDetail.voteAverage,
+                  color: accentColor3,
+                )
+              ],
             )
-          ],
-        )
-      ],
+          )
+        ],
+      )
     );
   }
 
@@ -198,9 +200,27 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Date & Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text("Date", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
-                DateFormat('EEE, dd MMM yyyy H:mm').format(ticket.time).toUpperCase(),
+                DateFormat('EEE, dd MMM yyyy').format(ticket.time).toUpperCase(),
+                style: whiteNumberFont.copyWith(
+                  color: darkColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(height: 10),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(
+                DateFormat('H:mm').format(ticket.time).toUpperCase(),
                 style: whiteNumberFont.copyWith(
                   color: darkColor,
                   fontSize: 16,
@@ -320,11 +340,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return (user != null)
       ? Container(
           width: 250,
-          height: 46,
+          height: 50,
           margin: EdgeInsets.only(top: 30, bottom: 30),
           child: RaisedButton(
             elevation: 4,
-            color: user.balance >= total ? Color(0xFF3E9D9D) : mainColor,
+            color: user.balance >= total ? mainColor : Colors.red,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             child: Text(
               user.balance >= total ? "Checkout Now" : "Top Up My Wallet",

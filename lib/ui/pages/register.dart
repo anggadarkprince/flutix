@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SystemNavigator.pop();
                     }
                   },
-                  child: Icon(Icons.arrow_back, color: Colors.black),
+                  child: Icon(Icons.arrow_back, color: darkColor),
                 ),
               ),
               Center(

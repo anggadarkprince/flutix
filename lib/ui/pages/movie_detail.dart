@@ -126,18 +126,21 @@ class MovieDetailScreen extends StatelessWidget {
   }
 
   Widget _buildGenre(MovieDetail movieDetail) {
-    return (movieDetail != null)
-      ? Text(
-          movieDetail.genresAndLanguage,
-          style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-        )
-      : SizedBox(
-          height: 50,
-          width: 50,
-          child: SpinKitFadingCircle(
-            color: accentColor3,
-          ),
-        );
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+      child: (movieDetail != null)
+        ? Text(
+            movieDetail.genresAndLanguage,
+            style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+          )
+        : SizedBox(
+            height: 50,
+            width: 50,
+            child: SpinKitFadingCircle(
+              color: accentColor3,
+            ),
+          )
+    );
   }
 
   Widget _buildRating(Movie movie) {

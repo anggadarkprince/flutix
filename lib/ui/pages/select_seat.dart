@@ -57,7 +57,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                   SystemNavigator.pop();
                 }
               },
-              child: Icon(Icons.arrow_back, color: Colors.black),
+              child: Icon(Icons.arrow_back, color: darkColor),
             ),
           ),
           Center(

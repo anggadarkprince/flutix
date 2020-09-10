@@ -4,6 +4,7 @@ import 'package:flutix/models/promo.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
+import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
@@ -66,32 +67,37 @@ class _MovieScreenState extends State<MovieScreen> {
       padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 22),
       child: Row(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(left: 5, right: 5),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Color(0xFF5F558B), width: 1)
-            ),
-            child: Stack(
-              children: <Widget>[
-                SpinKitFadingCircle(
-                  color: accentColor2,
-                  size: 50,
-                ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: (widget.user == null || widget.user.profilePicture == "" || widget.user.profilePicture == null) 
-                        ? AssetImage("assets/user_pic.png") 
-                        : NetworkImage(widget.user.profilePicture),
-                      fit: BoxFit.cover
-                    )
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(widget.user)));
+            },
+            child: Container(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Color(0xFF5F558B), width: 1)
+              ),
+              child: Stack(
+                children: <Widget>[
+                  SpinKitFadingCircle(
+                    color: accentColor2,
+                    size: 50,
                   ),
-                )
-              ],
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: (widget.user == null || widget.user.profilePicture == "" || widget.user.profilePicture == null) 
+                          ? AssetImage("assets/user_pic.png") 
+                          : NetworkImage(widget.user.profilePicture),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -100,14 +106,19 @@ class _MovieScreenState extends State<MovieScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 2 * defaultMargin - 78,
-                child: Text(
-                  (widget.user != null ? widget.user.name : 'User'),
-                  style: whiteTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
-                ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(widget.user)));
+                },
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width - 2 * defaultMargin - 78,
+                  child: Text(
+                    (widget.user != null ? widget.user.name : 'User'),
+                    style: whiteTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                    maxLines: 1,
+                    overflow: TextOverflow.clip,
+                  ),
+                )
               ),
               GestureDetector(
                 onTap: () {

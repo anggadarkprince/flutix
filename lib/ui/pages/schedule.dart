@@ -72,7 +72,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   SystemNavigator.pop();
                 }
               },
-              child: Icon(Icons.arrow_back, color: Colors.black),
+              child: Icon(Icons.arrow_back, color: darkColor),
             ),
           ),
           Center(
@@ -216,7 +216,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     isNext = false;
                   });
                   DateTime ticketDate = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, selectedTime);
-                  String bookingCode = randomAlphaNumeric(12).toUpperCase();
+                  String bookingCode = 'TRX-' + DateTime.now().year.toString() + randomAlphaNumeric(8).toUpperCase();
                   Ticket ticket = Ticket(widget.movieDetail, selectedTheater, ticketDate, bookingCode, null, user.name, 0);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => SelectSeatScreen(ticket)));
                 });

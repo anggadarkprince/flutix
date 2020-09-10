@@ -18,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  
+
   bool isEmailValid = false;
   bool isPasswordValid = false;
   bool isSigningIn = false;
@@ -26,10 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    
+
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.all(defaultMargin),
+        padding: EdgeInsets.all(defaultMargin), 
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               _buildTitle(mediaQuery),
               _buildEmailPassword(),
-              _buildSignInButton(),              
+              _buildSignInButton(),
               _buildSignUpButton(),
             ],
           ),
@@ -46,7 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  
   Widget _buildTitle(MediaQueryData mediaQuery) {
     final double statusBarHeight = mediaQuery.padding.top;
 
@@ -59,18 +58,16 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Image.asset("assets/logo.png"),
         ),
         SizedBox(height: 50),
-        Text(
-          "Welcome Back,\nExplorer!",
+        Text("Welcome Back,\nExplorer!",
           style: blackTextFont.copyWith(
-            fontSize: 26,
-            fontWeight: FontWeight.w600
+            fontSize: 26, fontWeight: FontWeight.w600
           )
         ),
         SizedBox(height: 50),
       ],
     );
   }
-  
+
   Widget _buildEmailPassword() {
     return Column(
       children: <Widget>[
@@ -111,11 +108,15 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             Text(
               "Forgot Password? ",
-              style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+              style: greyTextFont.copyWith(
+                fontSize: 12, fontWeight: FontWeight.w400
+              ),
             ),
             Text(
               "Tap Here",
-              style: purpleTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w600),
+              style: purpleTextFont.copyWith(
+                fontSize: 12, fontWeight: FontWeight.w600
+              ),
             )
           ],
         ),
@@ -133,10 +134,15 @@ class _LoginScreenState extends State<LoginScreen> {
           ? SpinKitFadingCircle(color: mainColor)
           : FloatingActionButton(
               elevation: 4,
-              backgroundColor: isEmailValid && isPasswordValid ? mainColor : Color(0xFFE4E4E4),
+              backgroundColor: isEmailValid && isPasswordValid
+                ? mainColor
+                : Color(0xFFE4E4E4
+              ),
               child: Icon(
-                Icons.arrow_forward, 
-                color: isEmailValid && isPasswordValid ? Colors.white : Color(0xFFBEBEBE)
+                Icons.arrow_forward,
+                color: isEmailValid && isPasswordValid
+                  ? Colors.white
+                  : Color(0xFFBEBEBE)
               ),
               onPressed: isEmailValid && isPasswordValid ? onSignIn : null
             ),
@@ -150,10 +156,9 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     SignInSignUpResult result = await AuthServices.signIn(
-      emailController.text.trim(), 
-      passwordController.text
+      emailController.text.trim(), passwordController.text
     );
-    
+
     setState(() {
       isSigningIn = false;
     });
@@ -166,7 +171,12 @@ class _LoginScreenState extends State<LoginScreen> {
         message: result.message,
       )..show(context);
     } else {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(user: result.user)
+        )
+      );
     }
   }
 
@@ -175,13 +185,26 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Start fresh now? ", 
-          style: greyTextFont.copyWith(fontWeight: FontWeight.w400)
+          "Start fresh now? ",
+          style: greyTextFont.copyWith(
+            fontWeight: FontWeight.w400,
+            fontSize: 14
+          )
         ),
         GestureDetector(
-          child: Text('Sign Up', style: purpleTextFont),
+          child: Text('Sign Up',
+            style: purpleTextFont.copyWith(
+              fontWeight: FontWeight.w600,
+              fontSize: 14
+            )
+          ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(Registration())));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegisterScreen(Registration())
+              )
+            );
           },
         )
       ],

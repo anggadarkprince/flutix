@@ -59,7 +59,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   Container _buildTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: defaultMargin),
+      margin: EdgeInsets.only(top: 25, left: defaultMargin, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(

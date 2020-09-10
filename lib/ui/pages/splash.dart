@@ -49,6 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 width: 250,
                 height: 50,
                 child: RaisedButton(
+                  elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -71,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: greyTextFont.copyWith(fontWeight: FontWeight.w400)
                   ),
                   GestureDetector(
-                    child: Text("Sign In", style: purpleTextFont),
+                    child: Text("Sign In", style: purpleTextFont.copyWith(fontWeight: FontWeight.w600)),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },

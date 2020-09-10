@@ -51,7 +51,7 @@ class CheckoutProcessScreen extends StatelessWidget {
                   width: 250,
                   margin: EdgeInsets.only(top: 70, bottom: 20),
                   child: RaisedButton(
-                    elevation: 0,
+                    elevation: 4,
                     color: mainColor,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Text(
@@ -59,11 +59,11 @@ class CheckoutProcessScreen extends StatelessWidget {
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () {
-                      Navigator.of(context).popUntil((route) => route.isFirst);
+                      //Navigator.of(context).popUntil((route) => route.isFirst);
                       if (ticket == null) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WalletScreen()));
                       } else {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 1)));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 1)));
                       }
                     }
                   ),
@@ -86,7 +86,7 @@ class CheckoutProcessScreen extends StatelessWidget {
               ],
             )
           : Center(
-              child: SpinKitFadingCircle(
+              child: SpinKitPulse(
                 color: mainColor,
                 size: 50,
               ),

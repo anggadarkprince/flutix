@@ -35,7 +35,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildTitle(mediaQuery),
+            _buildTitle(),
             _buildProfileSummary(mediaQuery),
             Spacer(),
             _buildSubmitButton(),
@@ -45,12 +45,10 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
     );
   }
 
-  Widget _buildTitle(MediaQueryData mediaQuery) {
-    final double statusBarHeight = mediaQuery.padding.top;
-
+  Widget _buildTitle() {
     return Column(
       children: [
-        SizedBox(height: statusBarHeight),
+        SizedBox(height: 25),
         Container(
           child: Stack(
             children: <Widget>[
@@ -151,6 +149,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
             size: 45,
           )
         : RaisedButton(
+            elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

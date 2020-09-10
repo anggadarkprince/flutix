@@ -23,9 +23,9 @@ class MovieDetailScreen extends StatelessWidget {
     return Scaffold(
         body: Stack(
         children: <Widget>[
-          Container(color: accentColor1),
           SafeArea(child: Container(color: Colors.white)),
           ListView(
+            padding: EdgeInsets.only(top: 0),
             children: <Widget>[
               FutureBuilder(
                 future: MovieServices.getDetails(movie),
@@ -90,7 +90,7 @@ class MovieDetailScreen extends StatelessWidget {
           ],
         ),
         Container(
-          margin: EdgeInsets.only(top: 20, left: defaultMargin),
+          margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 20, left: defaultMargin),
           padding: EdgeInsets.all(1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -120,7 +120,7 @@ class MovieDetailScreen extends StatelessWidget {
       child: Text(
         movie.title,
         textAlign: TextAlign.center,
-        style: blackTextFont.copyWith(fontSize: 22),
+        style: blackTextFont.copyWith(fontSize: 22, fontWeight: FontWeight.w600)
       ),
     );
   }
@@ -167,7 +167,7 @@ class MovieDetailScreen extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: Container(
             margin: EdgeInsets.only(left: defaultMargin, bottom: 15),
-            child: Text("Cast & Crew", style: darkTextFont.copyWith(fontSize: 14))
+            child: Text("Cast & Crew", style: darkTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w600))
           ),
         ),
         FutureBuilder(
@@ -212,7 +212,7 @@ class MovieDetailScreen extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               "Storyline",
-              style: darkTextFont,
+              style: darkTextFont.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -229,14 +229,14 @@ class MovieDetailScreen extends StatelessWidget {
 
   Widget _buildButtons(MovieDetail movieDetail, context) {
     return Container(
-      margin: EdgeInsets.only(bottom: defaultMargin),
+      margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            width: 250,
-            height: 45,
+          Expanded(child: Container(
+            height: 50,
             child: RaisedButton(
+              elevation: 4,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: mainColor,
               child: Text("Continue to Book", style: whiteTextFont.copyWith(fontSize: 16)),
@@ -244,12 +244,14 @@ class MovieDetailScreen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(movieDetail)));
               }
             )
-          ),
+          ))
+          ,
           SizedBox(width: 5),
           Container(
             width: 55,
-            height: 45,
+            height: 50,
             child: RaisedButton(
+              elevation: 4,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: mainColor,
               child: Icon(

@@ -47,7 +47,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTitle(mediaQuery),
+              _buildTitle(),
               _buildPreferableContent(mediaQuery),
               _buildSubmitButton(),
               SizedBox(height: 20),
@@ -58,12 +58,10 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
     );
   }
 
-  Widget _buildTitle(MediaQueryData mediaQuery) {
-    final double statusBarHeight = mediaQuery.padding.top;
-
+  Widget _buildTitle() {
     return Column(
       children: [
-        SizedBox(height: statusBarHeight),
+        SizedBox(height: 25),
         Container(
           child: Stack(
             children: <Widget>[
@@ -105,14 +103,14 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20),
+        SizedBox(height: 30),
         Text(
           "Hi ${this.widget.registrationData.name},",
           style: greyTextFont.copyWith(fontSize: 14), 
         ),
         SizedBox(height: 10),
         Text(
-          'Select Your Favorite Genre',
+          'Your Favorite Genre',
           style: purpleTextFont.copyWith(
             fontSize: 22, fontWeight: FontWeight.w600
           )
@@ -126,7 +124,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
         ),
         SizedBox(height: 30),
         Text(
-          'Movie Language You Prefer',
+          'Language You Prefer',
           style: purpleTextFont.copyWith(
             fontSize: 22, fontWeight: FontWeight.w600
           )
@@ -138,7 +136,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
           runSpacing: defaultMargin / 2,
           children: generateLangWidgets(mediaQuery),
         ),
-        SizedBox(height: 30),
+        SizedBox(height: 40),
       ]
     );
   }
@@ -202,7 +200,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
           if (selectedGenres.length != 4) {
             Flushbar(
               duration: Duration(milliseconds: 1500),
-              flushbarPosition: FlushbarPosition.TOP,
+              flushbarPosition: FlushbarPosition.BOTTOM,
               backgroundColor: Color(0xFFFF5C83),
               message: "Please select 4 genres",
             )..show(context);

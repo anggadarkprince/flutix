@@ -30,9 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isPasswordValid = false;
 
   @override
-  Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    
+  Widget build(BuildContext context) {    
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.all(defaultMargin),
@@ -40,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _buildTitle(mediaQuery),
+              _buildTitle(),
               _buildRegistrationForm(),
               _buildSignInButton(),
               _buildSignUpButton(),
@@ -52,12 +50,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   
-  Widget _buildTitle(MediaQueryData mediaQuery) {
-    final double statusBarHeight = mediaQuery.padding.top;
-
+  Widget _buildTitle() {
     return Column(
       children: [
-        SizedBox(height: statusBarHeight),
+        SizedBox(height: 25),
         Container(
           child: Stack(
             children: <Widget>[
@@ -80,12 +76,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     Text(
                       "Sign Up",
-                      style: blackTextFont.copyWith(
-                        fontSize: 26,
+                      style: darkTextFont.copyWith(
+                        fontSize: 22,
                         fontWeight: FontWeight.w600
                       )
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: 25),
                     Text(
                       "Explore thousands movies",
                       style: greyTextFont.copyWith(
@@ -169,10 +165,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: "Full Name",
-            hintText: "Your Name"
+            hintText: "Your Name",
+            contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
-        ),
-        SizedBox(height: 15),
+        ),        
+        SizedBox(height: 20),
         TextField(
           onChanged: (text) {
             setState(() {
@@ -185,10 +182,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: "Email Address",
-            hintText: "Valid Email Address"
+            hintText: "Valid Email Address",
+            contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 20),
         TextField(
           onChanged: (text) {
             setState(() {
@@ -202,10 +200,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: "Password",
-            hintText: "Secret Password"
+            hintText: "Secret Password",
+            contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 20),
         TextField(
           controller: confirmPasswordController,
           obscureText: true,
@@ -214,7 +213,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: "Confirm Password",
-            hintText: "Repeat The Password"
+            hintText: "Repeat The Password",
+            contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
         SizedBox(height: 20),
@@ -228,7 +228,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Container(
         width: 50,
         height: 50,
-        margin: EdgeInsets.only(top: 30, bottom: 10),
+        margin: EdgeInsets.only(top: 40, bottom: 15),
         child: FloatingActionButton(
           elevation: 4,
           backgroundColor: isFormValid ? mainColor : Color(0xFFE4E4E4),
@@ -265,10 +265,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: <Widget>[
         Text(
           "Already have an account? ", 
-          style: greyTextFont.copyWith(fontWeight: FontWeight.w400)
+          style: greyTextFont.copyWith(
+            fontWeight: FontWeight.w400,
+            fontSize: 14
+          )
         ),
         GestureDetector(
-          child: Text('Sign In', style: purpleTextFont),
+          child: Text(
+            'Sign In', 
+            style: purpleTextFont.copyWith(
+              fontWeight: FontWeight.w600,
+              fontSize: 14
+            )
+          ),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
           },

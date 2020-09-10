@@ -6,6 +6,7 @@ import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/checkout_process.dart';
+import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutix/ui/widgets/rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -64,7 +65,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 45, left: defaultMargin, right: defaultMargin),
+      margin: EdgeInsets.only(top: 50, left: defaultMargin, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(
@@ -81,19 +82,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Checkout",
-                  style: darkTextFont.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600
-                  )
-                ),
-              ],
-            ),
-          ),
+            child: Text(
+              "Checkout",
+              style: darkTextFont.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w600
+              )
+            )
+          )
         ],
       ),
     );
@@ -101,7 +97,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildMovieDescription(MovieDetail movieDetail) {
     return Container(
-      margin: EdgeInsets.only(left: defaultMargin, top: 20, right: defaultMargin),
+      margin: EdgeInsets.only(left: defaultMargin, top: 30, right: defaultMargin),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -123,7 +119,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               children: <Widget>[
                 Text(
                   movieDetail.title,
-                  style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -162,6 +158,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text("Order ID", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
@@ -179,7 +176,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text("Cinema", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
@@ -198,6 +195,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text("Date", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
@@ -216,6 +214,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text("Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
@@ -234,7 +233,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text("Seat Numbers", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
@@ -304,21 +303,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+          margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 15),
           child: Divider(color: Color(0xFFE4E4E4), thickness: 1)
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text("Your Wallet", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               (user != null) 
                 ? Text(NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(user.balance),
                     style: whiteNumberFont.copyWith(
-                      color: user.balance >= total ? Color(0xFF3E9D9D) : Color(0xFFFF5C83),
-                      fontSize: 16,
+                      color: user.balance >= total ? Colors.green : Color(0xFFFF5C83),
+                      fontSize: 18,
                       fontWeight: FontWeight.w600
                     )
                   )
@@ -366,7 +365,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
                 Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutProcessScreen(user, transaction, ticket)));
               } else {
-                // # Uang tidak cukup
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpScreen()));
               }
             }
           ),

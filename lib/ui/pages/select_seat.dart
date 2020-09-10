@@ -44,7 +44,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
 
   Widget _buildTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: defaultMargin, right: defaultMargin),
+      margin: EdgeInsets.only(top: 25, left: defaultMargin, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(
@@ -61,24 +61,19 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Take a Seat",
-                  style: darkTextFont.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600
-                  )
-                ),
-              ],
+            child: Text(
+              "Take a Seat",
+              style: darkTextFont.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w600
+              )
             ),
           ),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: 40,
-              height: 40,
+              width: 35,
+              height: 35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(

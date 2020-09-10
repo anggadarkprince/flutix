@@ -73,53 +73,53 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Align(
           alignment: Alignment.bottomCenter,
-          child: ClipPath(
-            clipper: BottomNavBarClipper(),
-            child: Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20)
-                )
+          child: Container(
+            height: 70,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20)
               ),
-              child: BottomNavigationBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                selectedItemColor: mainColor,
-                unselectedItemColor: Color(0xFFD1D1E1),
-                currentIndex: bottomNavBarIndex,
-                onTap: (index) {
-                  setState(() {
-                    bottomNavBarIndex = index;
-                    pageController.jumpToPage(index);
-                  });
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    title: Text("New Movies", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
-                    icon: Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 20,
-                      child: Image.asset((bottomNavBarIndex == 0)
-                        ? "assets/ic_movie.png"
-                        : "assets/ic_movie_grey.png"),
-                    )
-                  ),
-                  BottomNavigationBarItem(
-                    title: Text("My Tickets", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
-                    icon: Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 20,
-                      child: Image.asset((bottomNavBarIndex == 1)
-                        ? "assets/ic_tickets.png"
-                        : "assets/ic_tickets_grey.png"
-                      ),
-                    )
+              boxShadow: [
+                BoxShadow(color: Color(0x11000000), spreadRadius: 0, blurRadius: 20, offset: Offset(0, -5)),
+              ],
+            ),
+            child: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              selectedItemColor: mainColor,
+              unselectedItemColor: Color(0xFFD1D1E1),
+              currentIndex: bottomNavBarIndex,
+              onTap: (index) {
+                setState(() {
+                  bottomNavBarIndex = index;
+                  pageController.jumpToPage(index);
+                });
+              },
+              items: [
+                BottomNavigationBarItem(
+                  title: Text("New Movies", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
+                  icon: Container(
+                    margin: EdgeInsets.only(bottom: 6),
+                    height: 20,
+                    child: Image.asset((bottomNavBarIndex == 0)
+                      ? "assets/ic_movie.png"
+                      : "assets/ic_movie_grey.png"),
                   )
-                ]
-              ),
+                ),
+                BottomNavigationBarItem(
+                  title: Text("My Tickets", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
+                  icon: Container(
+                    margin: EdgeInsets.only(bottom: 6),
+                    height: 20,
+                    child: Image.asset((bottomNavBarIndex == 1)
+                      ? "assets/ic_tickets.png"
+                      : "assets/ic_tickets_grey.png"
+                    ),
+                  )
+                )
+              ]
             ),
           ),
         ),
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 55,
             margin: EdgeInsets.only(bottom: 35),
             child: FloatingActionButton(
-              elevation: 7,
+              elevation: 10,
               backgroundColor: accentColor1,
               child: Icon(MdiIcons.walletPlus, color: Colors.white, size: 28),
               onPressed: () {

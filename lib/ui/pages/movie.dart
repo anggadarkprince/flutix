@@ -62,9 +62,12 @@ class _MovieScreenState extends State<MovieScreen> {
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25),
           bottomRight: Radius.circular(25)
-        )
+        ),
+        boxShadow: [
+          BoxShadow(color: Color(0x44000000), spreadRadius: 3, blurRadius: 12, offset: Offset(0, 5)),
+        ],
       ),
-      padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 22),
+      padding: EdgeInsets.fromLTRB(defaultMargin, 10, defaultMargin, 15),
       child: Row(
         children: <Widget>[
           GestureDetector(
@@ -100,9 +103,7 @@ class _MovieScreenState extends State<MovieScreen> {
               ),
             ),
           ),
-          SizedBox(
-            width: 15,
-          ),
+          SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -111,15 +112,15 @@ class _MovieScreenState extends State<MovieScreen> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(widget.user)));
                 },
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width - 2 * defaultMargin - 78,
                   child: Text(
                     (widget.user != null ? widget.user.name : 'User'),
                     style: whiteTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
                     maxLines: 1,
-                    overflow: TextOverflow.clip,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 )
               ),
+              SizedBox(height: 5),
               GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
@@ -142,11 +143,11 @@ class _MovieScreenState extends State<MovieScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 15),
+          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 10),
           child: Text("Now Playing", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
-          height: 140,
+          height: 160,
           child: nowPlaying != null 
             ? ListView.builder(
               scrollDirection: Axis.horizontal,

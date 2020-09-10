@@ -162,7 +162,13 @@ class TicketViewer extends StatelessWidget {
         size: 50,
       );
     }
-    else if (tickets.length == 0) {
+    
+    var sortedTickets = isExpiredTickets
+        ? tickets.where((ticket) => ticket.time.isBefore(DateTime.now())).toList()
+        : tickets.where((ticket) => !ticket.time.isBefore(DateTime.now())).toList();
+    sortedTickets.sort((ticket1, ticket2) => ticket1.time.compareTo(ticket2.time));
+
+    if (sortedTickets.length == 0) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -182,11 +188,6 @@ class TicketViewer extends StatelessWidget {
         ),
       );
     }
-    
-    var sortedTickets = isExpiredTickets
-        ? tickets.where((ticket) => ticket.time.isBefore(DateTime.now())).toList()
-        : tickets.where((ticket) => !ticket.time.isBefore(DateTime.now())).toList();
-    sortedTickets.sort((ticket1, ticket2) => ticket1.time.compareTo(ticket2.time));
 
     return ListView.builder(
       itemCount: sortedTickets.length,

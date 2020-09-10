@@ -6,6 +6,7 @@ import 'package:flutix/services/transaction_service.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/home.dart';
+import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -58,8 +59,12 @@ class CheckoutProcessScreen extends StatelessWidget {
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () {
-                        Navigator.of(context).popUntil((route) => route.isFirst);
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                      if (ticket == null) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                      } else {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 1)));
+                      }
                     }
                   ),
                 ),

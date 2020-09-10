@@ -4,6 +4,7 @@ import 'package:flutix/models/promo.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
+import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
 import 'package:flutix/ui/widgets/movie_card.dart';
@@ -108,9 +109,14 @@ class _MovieScreenState extends State<MovieScreen> {
                   overflow: TextOverflow.clip,
                 ),
               ),
-              Text(
-                NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: "IDR ").format((widget.user != null ? widget.user.balance : 0)),
-                style: yellowNumberFont.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                },
+                child: Text(
+                  NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: "IDR ").format((widget.user != null ? widget.user.balance : 0)),
+                  style: yellowNumberFont.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+                )
               )
             ],
           )

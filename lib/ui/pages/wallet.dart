@@ -1,5 +1,5 @@
-import 'package:flutix/models/models.dart';
 import 'package:flutix/models/transaction.dart';
+import 'package:flutix/models/user.dart';
 import 'package:flutix/services/transaction_service.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';

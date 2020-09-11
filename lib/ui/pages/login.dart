@@ -3,6 +3,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/pages/register.dart';
+import 'package:flutix/ui/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -112,12 +113,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontSize: 12, fontWeight: FontWeight.w400
               ),
             ),
-            Text(
-              "Tap Here",
-              style: purpleTextFont.copyWith(
-                fontSize: 12, fontWeight: FontWeight.w600
+            GestureDetector(
+              child: Text(
+                "Reset Here",
+                style: purpleTextFont.copyWith(
+                  fontSize: 12, fontWeight: FontWeight.w600
+                ),
               ),
-            )
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResetPasswordScreen()
+                  )
+                );
+              },
+            ),
           ],
         ),
       ],

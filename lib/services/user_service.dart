@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutix/models/models.dart';
+import 'package:flutix/models/user.dart';
 
 class UserService {
   static CollectionReference _userCollection = FirebaseFirestore.instance.collection('users');

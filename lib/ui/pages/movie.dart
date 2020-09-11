@@ -1,6 +1,6 @@
-import 'package:flutix/models/models.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/promo.dart';
+import 'package:flutix/models/user.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';

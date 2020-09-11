@@ -1,7 +1,7 @@
-import 'package:flutix/models/models.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/models/transaction.dart';
+import 'package:flutix/models/user.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';

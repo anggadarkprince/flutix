@@ -1,6 +1,9 @@
+import 'package:flushbar/flushbar.dart';
+import 'package:flutix/models/Favorite.dart';
 import 'package:flutix/models/credit.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/movie_detail.dart';
+import 'package:flutix/services/favorite_service.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -10,16 +13,41 @@ import 'package:flutix/ui/widgets/rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-class MovieDetailScreen extends StatelessWidget {
+class MovieDetailScreen extends StatefulWidget {
   final Movie movie;
 
   MovieDetailScreen(this.movie);
 
   @override
-  Widget build(BuildContext context) {
-    MovieDetail movieDetail;
+  State<StatefulWidget> createState() {
+    return _MovieDetailScreenState();
+  }
+}
 
+class _MovieDetailScreenState extends State<MovieDetailScreen> {
+  Movie movie;
+  MovieDetail movieDetail;
+  Favorite favorite;
+  bool isSubmitting = true;
+  
+  @override
+  void initState() {
+    super.initState();
+    movie = widget.movie;
+    FavoriteService.getFavoriteByUserMovie(auth.FirebaseAuth.instance.currentUser.uid, movie)
+      .then((value) {
+        setState(() {
+          favorite = value;
+          isSubmitting = false;
+        });
+        print('res');
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
         children: <Widget>[
@@ -48,6 +76,7 @@ class MovieDetailScreen extends StatelessWidget {
                       _buildCredit(movie),
                       _buildStoryLine(movie),
                       _buildButtons(movieDetail, context),
+                      SizedBox(height: 25),
                     ],
                   );
                 }
@@ -233,36 +262,73 @@ class MovieDetailScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: Container(
-            height: 50,
-            child: RaisedButton(
-              elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              color: mainColor,
-              child: Text("Continue to Book", style: whiteTextFont.copyWith(fontSize: 16)),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(movieDetail)));
-              }
-            )
-          ))
-          ,
-          SizedBox(width: 5),
-          Container(
-            width: 55,
-            height: 50,
-            child: RaisedButton(
-              elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              color: mainColor,
-              child: Icon(
-                Icons.favorite,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                
-              }
+          Expanded(
+            child: Container(
+              height: 50,
+              child: RaisedButton(
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                color: mainColor,
+                child: Text("Continue to Book", style: whiteTextFont.copyWith(fontSize: 16)),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(movieDetail)));
+                }
+              )
             )
           ),
+          SizedBox(width: 5),
+          isSubmitting 
+            ? SizedBox(
+                width: 55,
+                height: 50,
+                child: SpinKitFadingCircle(
+                  size: 50,
+                  color: accentColor1,
+                ),
+              )
+            : Container(
+                width: 55,
+                height: 50,
+                child: RaisedButton(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  color: mainColor,
+                  child: Icon(
+                    Icons.favorite,
+                    color: favorite != null ? Colors.red[600] : Colors.white,
+                  ),
+                  onPressed: isSubmitting ? null : () async {
+                    setState(() {
+                      isSubmitting = true;
+                    });
+
+                    var result;
+                    if (favorite != null) {
+                      await FavoriteService.deleteMovie(favorite.id);
+                      result = null;
+                      Flushbar(
+                        duration: Duration(milliseconds: 1500),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        backgroundColor: Color(0xFFFF5C83),
+                        message: movie.title + ' removed from your favorite list',
+                      )..show(context);
+                    } else {
+                      result = await FavoriteService.saveMovie(auth.FirebaseAuth.instance.currentUser.uid, movie);
+                      Flushbar(
+                        duration: Duration(milliseconds: 1500),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        backgroundColor: Colors.green[400],
+                        message: movie.title + ' added to your favorite list',
+                      )..show(context);
+                    }
+                    
+                    setState(() {
+                      favorite = result;
+                      isSubmitting = false;
+                    });
+                  }
+                )
+              )
         ],
       ),
     );

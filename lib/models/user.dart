@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
   final String id;

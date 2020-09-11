@@ -16,6 +16,7 @@ class ComingSoonCard extends StatelessWidget {
           height: 160,
           width: 120,
           decoration: BoxDecoration(
+            color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(15),
             image: DecorationImage(
               image: NetworkImage(imageBaseURL + "w500" + movie.posterPath),

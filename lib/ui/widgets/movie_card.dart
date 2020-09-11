@@ -27,6 +27,10 @@ class MovieCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+              image: NetworkImage(imageBaseURL + "w780" + movie.backdropPath),
+              fit: BoxFit.cover
+            ),
             boxShadow: [
               BoxShadow(color: Color(0x44000000), spreadRadius: 0, blurRadius: 10, offset: Offset(0, 0)),
             ],
@@ -37,10 +41,6 @@ class MovieCard extends StatelessWidget {
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: NetworkImage(imageBaseURL + "w780" + movie.backdropPath),
-                fit: BoxFit.cover
-              ),
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,

@@ -59,7 +59,7 @@ class _TicketScreenState extends State<TicketScreen> {
               margin: EdgeInsets.only(bottom: 110),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: accentColor1,
+                color: mainColor,
                 boxShadow: [
                   BoxShadow(color: Color(0x55000000), spreadRadius: 3, blurRadius: 12, offset: Offset(0, 5)),
                 ],
@@ -77,7 +77,7 @@ class _TicketScreenState extends State<TicketScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                          color: !isExpiredTickets ? Color(0xFF1D1347) : Colors.transparent,
+                          color: !isExpiredTickets ? accentColor1 : Colors.transparent,
                         ),
                         height: double.infinity,
                         child: Column(
@@ -113,7 +113,7 @@ class _TicketScreenState extends State<TicketScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
-                          color: isExpiredTickets ? Color(0xFF1D1347) : Colors.transparent,
+                          color: isExpiredTickets ? accentColor1 : Colors.transparent,
                         ),
                         height: double.infinity,
                         child: Column(

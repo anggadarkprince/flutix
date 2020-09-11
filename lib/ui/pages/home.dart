@@ -8,7 +8,6 @@ import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -159,9 +158,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 55,
-            width: 55,
-            margin: EdgeInsets.only(bottom: 35),
+            height: 60,
+            width: 60,
+            margin: EdgeInsets.only(bottom: 25),
             child: FloatingActionButton(
               elevation: 10,
               backgroundColor: mainColor,

@@ -142,7 +142,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
   
   Widget _buildTitle(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: defaultMargin, bottom: 25),
+      margin: EdgeInsets.only(top: 20, left: defaultMargin, bottom: 25, right: defaultMargin),
       child: Stack(
         children: <Widget>[
           Align(

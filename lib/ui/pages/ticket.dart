@@ -6,6 +6,7 @@ import 'package:flutix/ui/pages/ticket_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
 
 class TicketScreen extends StatefulWidget {
   final bool isExpiredTicket;
@@ -239,19 +240,27 @@ class TicketViewer extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             sortedTickets[index].movieDetail.title,
-                            style: blackTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                            style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
                             maxLines: 2,
                             overflow: TextOverflow.clip,
                           ),
                           SizedBox(height: 5),
                           Text(
                             sortedTickets[index].movieDetail.genresAndLanguage,
-                            style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                            style: darkTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
-                          Text(
-                            sortedTickets[index].theater.name,
-                            style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                sortedTickets[index].theater.name,
+                                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                DateFormat('EEE, dd MMM yyyy').format(sortedTickets[index].time),
+                                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                              ),                              
+                            ],
                           )
                         ],
                       )

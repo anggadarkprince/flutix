@@ -1,5 +1,5 @@
 import 'package:flushbar/flushbar.dart';
-import 'package:flutix/models/Favorite.dart';
+import 'package:flutix/models/favorite.dart';
 import 'package:flutix/models/credit.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/movie_detail.dart';
@@ -36,14 +36,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   void initState() {
     super.initState();
     movie = widget.movie;
-    FavoriteService.getFavoriteByUserMovie(auth.FirebaseAuth.instance.currentUser.uid, movie)
-      .then((value) {
-        setState(() {
-          favorite = value;
-          isSubmitting = false;
-        });
-        print('res');
-      });
   }
 
   @override
@@ -60,6 +52,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 builder: (_, snapshot) {
                   if (snapshot.hasData) {
                     movieDetail = snapshot.data;
+                    FavoriteService.getFavoriteByUserMovie(auth.FirebaseAuth.instance.currentUser.uid, movieDetail)
+                      .then((value) {
+                        setState(() {
+                          favorite = value;
+                          isSubmitting = false;
+                        });
+                      });
                   } else if (snapshot.hasError) {
                     return Container(
                       padding: EdgeInsets.all(defaultMargin),
@@ -307,15 +306,15 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       await FavoriteService.deleteMovie(favorite.id);
                       result = null;
                       Flushbar(
-                        duration: Duration(milliseconds: 1500),
+                        duration: Duration(milliseconds: 1000),
                         flushbarPosition: FlushbarPosition.TOP,
                         backgroundColor: Color(0xFFFF5C83),
                         message: movie.title + ' removed from your favorite list',
                       )..show(context);
                     } else {
-                      result = await FavoriteService.saveMovie(auth.FirebaseAuth.instance.currentUser.uid, movie);
+                      result = await FavoriteService.saveMovie(auth.FirebaseAuth.instance.currentUser.uid, movieDetail);
                       Flushbar(
-                        duration: Duration(milliseconds: 1500),
+                        duration: Duration(milliseconds: 1000),
                         flushbarPosition: FlushbarPosition.TOP,
                         backgroundColor: Colors.green[400],
                         message: movie.title + ' added to your favorite list',

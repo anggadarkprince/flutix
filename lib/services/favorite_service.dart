@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutix/models/Favorite.dart';
+import 'package:flutix/models/favorite.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/services/movie_service.dart';
@@ -52,19 +52,21 @@ class FavoriteService {
       favorites.add(
         Favorite(
           document.id,
-          Movie(
+          movieDetail,
+          document.data()['userID'],
+          DateTime.fromMillisecondsSinceEpoch(document.data()['time']),
+          movie: Movie(
             id: movieDetail.id, 
             title: movieDetail.title, 
             voteAverage: movieDetail.voteAverage, 
             overview: movieDetail.overview, 
             posterPath: movieDetail.posterPath, 
             backdropPath: movieDetail.backdropPath
-          ),
-          document.data()['userID'],
-          DateTime.fromMillisecondsSinceEpoch(document.data()['time'])
+          )
         )
       );
     }
+    favorites.sort((favorite1, favorite2) => favorite2.time.compareTo(favorite1.time));
 
     return favorites;
   }

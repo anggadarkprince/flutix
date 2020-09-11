@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/favorite.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutix/ui/pages/topup.dart';
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             children: <Widget>[
               MovieScreen(user),
-              Text('favorite'),
+              FavoriteScreen(),
               TicketScreen(),
               Text('account'),
             ],
@@ -114,25 +115,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 BottomNavigationBarItem(
                   title: Container(
-                    margin: EdgeInsets.only(right: 45),
+                    margin: EdgeInsets.only(right: 40),
                     child: Text("Favorites", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6, right: 45),
+                    margin: EdgeInsets.only(bottom: 6, right: 40),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 1)
-                      ? "assets/ic_tickets.png"
+                      ? "assets/rate.png"
                       : "assets/ic_tickets_grey.png"
                     ),
                   )
                 ),
                 BottomNavigationBarItem(
                   title: Container(
-                    margin: EdgeInsets.only(left: 45),
+                    margin: EdgeInsets.only(left: 40),
                     child: Text("Tickets", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6, left: 45),
+                    margin: EdgeInsets.only(bottom: 6, left: 40),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 2)
                       ? "assets/ic_tickets.png"

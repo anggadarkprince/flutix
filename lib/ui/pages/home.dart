@@ -116,14 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   title: Container(
                     margin: EdgeInsets.only(right: 40),
-                    child: Text("Favorites", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
+                    child: Text("Likes", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6, right: 40),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 1)
-                      ? "assets/rate.png"
-                      : "assets/ic_tickets_grey.png"
+                      ? "assets/ic_rate.png"
+                      : "assets/ic_rate_grey.png"
                     ),
                   )
                 ),
@@ -147,8 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 3)
-                      ? "assets/ic_drama.png"
-                      : "assets/ic_tickets_grey.png"
+                      ? "assets/ic_profile.png"
+                      : "assets/ic_profile_grey.png"
                     ),
                   )
                 ),
@@ -164,8 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.only(bottom: 35),
             child: FloatingActionButton(
               elevation: 10,
-              backgroundColor: accentColor1,
-              child: Icon(MdiIcons.walletPlus, color: Colors.white, size: 28),
+              backgroundColor: mainColor,
+              child: Image.asset("assets/ic_wallet_grey.png", width: 28),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpScreen()));
                 /*

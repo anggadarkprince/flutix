@@ -143,7 +143,7 @@ class _MovieScreenState extends State<MovieScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 10),
+          margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 10),
           child: Text("Now Playing", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
@@ -174,7 +174,7 @@ class _MovieScreenState extends State<MovieScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 15),
+          margin: EdgeInsets.fromLTRB(defaultMargin, 10, defaultMargin, 15),
           child: Text("Browse Movie", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         (
@@ -209,7 +209,7 @@ class _MovieScreenState extends State<MovieScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 15),
+          margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 15),
           child: Text("Coming Soon", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
@@ -240,7 +240,7 @@ class _MovieScreenState extends State<MovieScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
+          margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 20),
           child: Text("Get Lucky Day", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         Column(

@@ -159,6 +159,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       child: (movieDetail != null)
         ? Text(
             movieDetail.genresAndLanguage,
+            textAlign: TextAlign.center,
             style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
           )
         : Padding(

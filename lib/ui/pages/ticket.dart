@@ -226,6 +226,7 @@ class TicketViewer extends StatelessWidget {
                       height: 90,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
+                        color: Colors.blueGrey[100],
                         image: DecorationImage(
                           image: NetworkImage(imageBaseURL + 'w500' + sortedTickets[index].movieDetail.posterPath),
                           fit: BoxFit.cover

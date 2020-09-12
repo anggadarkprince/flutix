@@ -6,7 +6,6 @@ import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
-import 'package:flutix/ui/pages/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -229,33 +228,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
             SizedBox(height: 30),
-            SizedBox(
-              width: 250,
-              height: 50,
-              child: RaisedButton(
-                elevation: 4,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                child: Text(
-                  "Sign Out",
-                  style: whiteTextFont.copyWith(
-                    fontSize: 16,
-                    color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white
-                  ),
-                ),
-                disabledColor: Color(0xFFE4E4E4),
-                color: Colors.red[400],
-                onPressed: (isUpdating)
-                  ? null
-                  : () async {
-                    AuthServices.signOut();
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => SplashScreen()),
-                      (Route<dynamic> route) => false,
-                    );
-                    }
-              ),
-            ),
           ],
         ),
       )

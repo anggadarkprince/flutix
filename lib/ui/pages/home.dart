@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/account.dart';
 import 'package:flutix/ui/pages/favorite.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/ticket.dart';
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               MovieScreen(user),
               FavoriteScreen(),
               TicketScreen(),
-              Text('account'),
+              AccountScreen(user),
             ],
           ),
           createCustomBottomNavBar(),

@@ -117,6 +117,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         height: 90,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
+                          color: Colors.blueGrey[100],
                           image: DecorationImage(
                             image: NetworkImage(imageBaseURL + 'w500' + favorites[index].movieDetail.posterPath),
                             fit: BoxFit.cover

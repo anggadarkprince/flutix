@@ -51,7 +51,7 @@ class WalletScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 270,
+              height: 150,
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -59,6 +59,7 @@ class WalletScreen extends StatelessWidget {
                   end: Alignment(0, 0),
                   colors: [
                     Colors.white,
+                    Colors.white.withOpacity(0.3),
                     Colors.white.withOpacity(0)
                   ]
                 )

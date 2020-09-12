@@ -281,7 +281,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             ? SizedBox(
                 width: 55,
                 height: 50,
-                child: SpinKitFadingCircle(
+                child: SpinKitPulse(
                   size: 50,
                   color: accentColor1,
                 ),

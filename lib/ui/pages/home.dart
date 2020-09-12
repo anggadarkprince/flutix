@@ -5,7 +5,7 @@ import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/favorite.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/ticket.dart';
-import 'package:flutix/ui/pages/topup.dart';
+import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: mainColor,
               child: Image.asset("assets/ic_wallet_grey.png", width: 28),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
                 /*
                 AuthServices.signOut();
                 Navigator.pushAndRemoveUntil(

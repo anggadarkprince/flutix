@@ -48,7 +48,23 @@ class WalletScreen extends StatelessWidget {
               ],
             ),
           ),
-          // note: BUTTON
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 270,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(0, 1),
+                  end: Alignment(0, 0),
+                  colors: [
+                    Colors.white,
+                    Colors.white.withOpacity(0)
+                  ]
+                )
+              ),
+            )
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(

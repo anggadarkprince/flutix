@@ -3,7 +3,9 @@ import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/legal.dart';
 import 'package:flutix/ui/pages/profile.dart';
+import 'package:flutix/ui/pages/promo_code.dart';
 import 'package:flutix/ui/pages/splash.dart';
+import 'package:flutix/ui/pages/voucher.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -55,15 +57,19 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       {
         "type": "menu",
-        "title": "Promo Code",
+        "title": "Enter Promo Code",
         "icon": Image.asset("assets/bg_topup.png"),
-        "onTap": (BuildContext context, User user) {}
+        "onTap": (BuildContext context, User user) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => PromoCodeScreen(user)));
+        }
       },
       {
         "type": "menu",
         "title": "My Voucher",
         "icon": Image.asset("assets/ic_tickets.png"),
-        "onTap": (BuildContext context, User user) {}
+        "onTap": (BuildContext context, User user) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => VoucherScreen(user)));
+        }
       },
       {
         "type": "menu",

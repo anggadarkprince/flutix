@@ -7,7 +7,6 @@ import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -25,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isDataEdited = false;
   File profileImageFile;
   bool isUpdating = false;
+  User updatedUser;
 
   @override
   void initState() {
@@ -35,6 +35,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return new WillPopScope(
+      onWillPop: () async {
+        print(updatedUser);
+        
+        Navigator.pop(context, updatedUser);
+        return false;
+      },
+      child: _buildFormEditAccount()
+    );
+  }
+
+  Widget _buildFormEditAccount() {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
@@ -44,11 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () {
-            if (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            } else {
-              SystemNavigator.pop();
-            }
+            Navigator.pop(context, updatedUser);
           },
         ),
         actions: [],
@@ -210,7 +218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             profilePath = await uploadImage(profileImageFile);
                           }
 
-                          User updatedUser = widget.user.copyWith(name: nameController.text.trim(), profilePicture: profilePath);
+                          updatedUser = widget.user.copyWith(name: nameController.text.trim(), profilePicture: profilePath);
                           await UserService.updateUser(updatedUser);
 
                           Flushbar(

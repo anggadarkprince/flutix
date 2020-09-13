@@ -1,5 +1,5 @@
 name: flutix
-description: A new Flutter project.
+description: A movie database platform.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -42,6 +42,8 @@ dependencies:
   http: ^0.12.2
   random_string: ^2.1.0
   qr_flutter: ^3.2.0
+  url_launcher: ^5.5.3
+  webview_flutter: ^0.3.22+1
 
 dev_dependencies:
   flutter_test:

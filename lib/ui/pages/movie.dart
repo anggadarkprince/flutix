@@ -44,7 +44,6 @@ class _MovieScreenState extends State<MovieScreen> {
 
     PromoService.getPromotions()
       .then((value) {
-        print(value);
         setState(() {
           promotions = value;
         });

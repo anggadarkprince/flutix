@@ -16,6 +16,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   List<Favorite> favorites;
+  Set<String> favoriteIsDeleting = new Set();
 
   @override
   Widget build(BuildContext context) {
@@ -148,10 +149,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           ],
                         )
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10), 
-                        child: Icon(Icons.delete_outline, color: Colors.grey[400])
-                      )
+                      favoriteIsDeleting.contains(favorites[index].id)
+                        ? SpinKitPulse(
+                            color: mainColor,
+                            size: 20,
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(left: 10), 
+                            child: Icon(Icons.delete_outline, color: Colors.grey[400])
+                          )
                     ],
                   ),
                 ),
@@ -174,6 +180,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     height: 40,
                     child: InkWell(
                       onTap: () async {
+                        setState(() {
+                          favoriteIsDeleting.add(favorites[index].id);
+                        });
                         await FavoriteService.deleteMovie(favorites[index].id);
                         Flushbar(
                           duration: Duration(milliseconds: 1000),
@@ -181,7 +190,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           backgroundColor: Color(0xFFFF5C83),
                           message: favorites[index].movie.title + ' removed from your favorite list',
                         )..show(context);
-                        setState(() => favorites.removeWhere((data) => data.id == favorites[index].id));
+                        setState(() {
+                          favorites.removeWhere((data) => data.id == favorites[index].id);
+                          favoriteIsDeleting.remove(favorites[index].id);
+                        });
                       },
                     ),
                   )

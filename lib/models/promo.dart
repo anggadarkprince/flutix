@@ -1,19 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 class Promo extends Equatable {
   final String title;
-  final String subtitle;
+  final String description;
   final int discount;
+  final Timestamp effectiveDate;
+  final Timestamp expiredDate;
 
-  Promo({@required this.title, @required this.discount, @required this.subtitle});
+  Promo({@required this.title, @required this.description, @required this.discount, this.effectiveDate, this.expiredDate});
 
   @override
-  List<Object> get props => [title, subtitle, discount];
+  List<Object> get props => [title, description, discount];
 }
-
-List<Promo> dummyPromos = [
-  Promo(title: "Student Holiday", discount: 50, subtitle: "Maximal only for two people"),
-  Promo(title: "Family Club", discount: 70, subtitle: "Minimal for three members"),
-  Promo(title: "Subscription Promo", discount: 40, subtitle: "Min. one year")
-];

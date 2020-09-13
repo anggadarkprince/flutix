@@ -3,6 +3,7 @@ import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/splash.dart';
+import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -33,7 +34,9 @@ class _AccountScreenState extends State<AccountScreen> {
       "type": "menu",
       "title": "Transaction Histories",
       "icon": Image.asset("assets/my_wallet.png"),
-      "onTap": (BuildContext context, User user) {}
+      "onTap": (BuildContext context, User user) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+      }
     },
     {
       "type": "menu",
@@ -138,6 +141,78 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
+  Widget _buildSignOut(context) {
+    AlertDialog confirmSignOut = AlertDialog(
+      title: Text("Sign Out"),
+      content: Container(
+        margin: EdgeInsets.zero,
+        padding: EdgeInsets.zero,
+        height: 35,
+        child: Stack(
+          children: [
+            Text("Are you sure want to sign out?"),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text("Your personal preferences will be kept.", style: greyTextFont.copyWith(fontSize: 12)),
+            )            
+          ]
+        )
+      ),
+      actions: [
+        FlatButton(
+          child: Text("SIGN OUT", style: TextStyle(color: Colors.red[500])),
+          onPressed: () {
+            AuthServices.signOut();
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => SplashScreen()),
+              (Route<dynamic> route) => false,
+            );
+          },
+        ),
+        FlatButton(
+          child: Text("CANCEL"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+      margin: EdgeInsets.only(bottom: 100),
+      child: SizedBox(
+        height: 40,
+        child: OutlineButton(
+          borderSide: BorderSide(
+            color: Colors.red[500],
+            width: 1,
+            style: BorderStyle.solid
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25)
+          ),
+          child: Text(
+            "Sign Out",
+            style: whiteTextFont.copyWith(
+              fontSize: 16,
+              color: Colors.red[500]
+            ),
+          ),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return confirmSignOut;
+              },
+            );
+          }
+        )
+      )
+    );
+  }
+
   Widget _buildListMenu(context) {
     return Container(
       child: ListView.separated(
@@ -154,34 +229,7 @@ class _AccountScreenState extends State<AccountScreen> {
               return _buildProfile(context);
           }
           if (index == menu.length + 1) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
-              margin: EdgeInsets.only(bottom: 100),
-              child: SizedBox(
-                height: 50,
-                child: RaisedButton(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                  child: Text(
-                    "Sign Out",
-                    style: whiteTextFont.copyWith(
-                      fontSize: 16,
-                      color: Colors.white
-                    ),
-                  ),
-                  disabledColor: Color(0xFFE4E4E4),
-                  color: Colors.red[500],
-                  onPressed: () async {
-                    AuthServices.signOut();
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => SplashScreen()),
-                      (Route<dynamic> route) => false,
-                    );
-                  }
-                )
-              )
-            );
+            return _buildSignOut(context);
           }
           index -= 1;
 
@@ -197,6 +245,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         Container(
                           margin: EdgeInsets.only(right: 16),
                           width: 25,
+                          height: 25,
                           child: menu[index]["icon"],
                         ),
                         Text(

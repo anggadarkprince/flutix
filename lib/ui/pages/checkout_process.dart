@@ -59,11 +59,18 @@ class CheckoutProcessScreen extends StatelessWidget {
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () {
-                      //Navigator.of(context).popUntil((route) => route.isFirst);
                       if (ticket == null) {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => WalletScreen()),
+                          (Route<dynamic> route) => false,
+                        );
                       } else {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 1)));
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 2)),
+                          (Route<dynamic> route) => false,
+                        );
                       }
                     }
                   ),

@@ -35,7 +35,7 @@ class WalletScreen extends StatelessWidget {
                         } else {
                           return Container(
                             margin: EdgeInsets.only(top: 70),
-                            child: SpinKitFadingCircle(
+                            child: SpinKitPulse(
                               size: 50,
                               color: mainColor,
                             )
@@ -51,7 +51,7 @@ class WalletScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 150,
+              height: 100,
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -59,7 +59,8 @@ class WalletScreen extends StatelessWidget {
                   end: Alignment(0, 0),
                   colors: [
                     Colors.white,
-                    Colors.white.withOpacity(0.3),
+                    Colors.white.withOpacity(0.9),
+                    Colors.white.withOpacity(0.5),
                     Colors.white.withOpacity(0)
                   ]
                 )
@@ -252,7 +253,7 @@ class WalletScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return _buildTransactionList(snapshot.data, MediaQuery.of(context).size.width - 2 * defaultMargin);
             } else {
-              return SpinKitFadingCircle(
+              return SpinKitPulse(
                 size: 50,
                 color: mainColor,
               );

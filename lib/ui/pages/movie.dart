@@ -2,6 +2,7 @@ import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/promo.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/movie_service.dart';
+import 'package:flutix/services/promo_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/pages/profile.dart';
@@ -28,6 +29,7 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreen> {
   List<Movie> movies;
+  List<Promo> promotions;
 
   @override
   void initState() {
@@ -37,6 +39,14 @@ class _MovieScreenState extends State<MovieScreen> {
       .then((value) {
         setState(() {
           movies = value;
+        });
+      });
+
+    PromoService.getPromotions()
+      .then((value) {
+        print(value);
+        setState(() {
+          promotions = value;
         });
       });
   }
@@ -216,20 +226,20 @@ class _MovieScreenState extends State<MovieScreen> {
           height: 140,
           child: comingSoon != null 
             ? ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: comingSoon.length,
-              itemBuilder: (_, index) => Container(
-                margin: EdgeInsets.only(
-                  left: (index == 0) ? defaultMargin : 0,
-                  right: (index == comingSoon.length - 1) ? defaultMargin : 16
-                ),
-                child: ComingSoonCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index])),
+                scrollDirection: Axis.horizontal,
+                itemCount: comingSoon.length,
+                itemBuilder: (_, index) => Container(
+                  margin: EdgeInsets.only(
+                    left: (index == 0) ? defaultMargin : 0,
+                    right: (index == comingSoon.length - 1) ? defaultMargin : 16
+                  ),
+                  child: ComingSoonCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index])),
+                )
               )
-            )
             : SpinKitFadingCircle(
-              color: mainColor,
-              size: 50,
-            )
+                color: mainColor,
+                size: 50,
+              )
         )
       ]
     );
@@ -241,10 +251,15 @@ class _MovieScreenState extends State<MovieScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 20),
-          child: Text("Get Lucky Day", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text("Promotion", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
-        Column(
-          children: dummyPromos.map((promoItem) {
+        promotions == null
+          ? SpinKitPulse(
+            color: mainColor,
+            size: 50,
+          )
+          : Column(
+          children: promotions.map((promoItem) {
             return Padding(
               padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
               child: PromoCard(promoItem, onTap: () {

@@ -37,7 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
     if (widget.user == null) {
       auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
       UserService.getUser(_auth.currentUser.uid).then((value) {
-        user = value;
+        if (this.mounted) {
+          setState(() {
+            user = value;
+          });
+        } else {
+          user = value;
+        }
       });
     } else {
       user = widget.user;
@@ -168,14 +174,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.asset("assets/ic_wallet_grey.png", width: 28),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
-                /*
-                AuthServices.signOut();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => SplashScreen()),
-                  (Route<dynamic> route) => false,
-                );
-                */
               }),
           ),
         )

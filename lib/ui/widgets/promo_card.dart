@@ -29,7 +29,7 @@ class PromoCard extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    promo.subtitle,
+                    promo.description,
                     style: whiteTextFont.copyWith(fontSize: 11, fontWeight: FontWeight.w300),
                   )
                 ],

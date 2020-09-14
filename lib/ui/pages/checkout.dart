@@ -374,7 +374,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           height: 50,
           width: 50,
           child: SpinKitFadingCircle(
-            color: accentColor3,
+            color: accentColor1,
           ),
         );
   }

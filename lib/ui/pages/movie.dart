@@ -164,20 +164,20 @@ class _MovieScreenState extends State<MovieScreen> {
           height: 160,
           child: nowPlaying != null 
             ? ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: nowPlaying.length,
-              itemBuilder: (_, index) => Container(
-                margin: EdgeInsets.only(
-                  left: (index == 0) ? defaultMargin : 0,
-                  right: (index == nowPlaying.length - 1) ? defaultMargin : 16
-                ),
-                child: MovieCard(nowPlaying[index], onTap: () => _onMovieTap(nowPlaying[index])),
+                scrollDirection: Axis.horizontal,
+                itemCount: nowPlaying.length,
+                itemBuilder: (_, index) => Container(
+                  margin: EdgeInsets.only(
+                    left: (index == 0) ? defaultMargin : 0,
+                    right: (index == nowPlaying.length - 1) ? defaultMargin : 16
+                  ),
+                  child: MovieCard(nowPlaying[index], onTap: () => _onMovieTap(nowPlaying[index])),
+                )
               )
-            )
-            : SpinKitFadingCircle(
-              color: mainColor,
-              size: 50,
-            )
+            : SpinKitPulse(
+                color: mainColor,
+                size: 50,
+              )
         )
       ],
     );
@@ -194,24 +194,24 @@ class _MovieScreenState extends State<MovieScreen> {
         (
           widget.user != null
             ? Container(
-              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  widget.user.selectedGenres.length,
-                  (index) => BrowseButton(widget.user.selectedGenres[index], onTap: (genre) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text(genre),
-                      duration: Duration(milliseconds: 1000)
-                    ));
-                  })
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    widget.user.selectedGenres.length,
+                    (index) => BrowseButton(widget.user.selectedGenres[index], onTap: (genre) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text(genre),
+                        duration: Duration(milliseconds: 1000)
+                      ));
+                    })
+                  ),
                 ),
-              ),
-            )
-            : SpinKitFadingCircle(
-              color: mainColor,
-              size: 50,
-            )
+              )
+            : SpinKitPulse(
+                color: mainColor,
+                size: 50,
+              )
         )
       ],
     );
@@ -240,7 +240,7 @@ class _MovieScreenState extends State<MovieScreen> {
                   child: ComingSoonCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index])),
                 )
               )
-            : SpinKitFadingCircle(
+            : SpinKitPulse(
                 color: mainColor,
                 size: 50,
               )

@@ -7,9 +7,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LegalScreen extends StatefulWidget {
+  final String title;
   final String html;
 
-  LegalScreen(this.html);
+  LegalScreen(this.title, this.html);
 
   @override
   _LegalScreenState createState() {
@@ -25,7 +26,7 @@ class _LegalScreenState extends State<LegalScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: mainColor,
-        title: const Text('Privacy Policy'),
+        title: Text(widget.title),
         actions: <Widget>[
           PopupMenuButton<String>(
             onSelected: (String value) async {
@@ -58,17 +59,38 @@ class _LegalScreenState extends State<LegalScreen> {
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'Further Information',
-                child: Text('Further Information'),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.info_outline, color: darkColor),
+                    SizedBox(width: 5),
+                    Text('Further Information'),
+                  ],
+                ),
               ),
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'Movie Database',
-                child: Text('Movie Database'),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.video_label, color: darkColor),
+                    SizedBox(width: 5),
+                    Text('Movie Database'),
+                  ],
+                ),
               ),
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'Close',
-                child: Text('Close'),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.close, color: darkColor),
+                    SizedBox(width: 5),
+                    Text('Close Page'),
+                  ],
+                ),
               ),
             ],
           )

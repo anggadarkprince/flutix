@@ -86,7 +86,7 @@ class _AccountScreenState extends State<AccountScreen> {
         "title": "Privacy Policy",
         "icon": Image.asset("assets/help_centre.png"),
         "onTap": (BuildContext context, User user) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("assets/static/privacy.html")));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("Privacy", "assets/static/privacy.html")));
         }
       },
       {
@@ -94,7 +94,7 @@ class _AccountScreenState extends State<AccountScreen> {
         "title": "Terms of Service",
         "icon": Image.asset("assets/ic_movie.png"),
         "onTap": (BuildContext context, User user) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("assets/static/term.html")));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("Terms of Service", "assets/static/term.html")));
         }
       },
       {

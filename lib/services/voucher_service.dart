@@ -31,6 +31,13 @@ class VoucherService {
     await voucherCollection.doc(id).delete();
   }
 
+  static Future<bool> isAcquired(String userId, String couponCode) async {
+    QuerySnapshot snapshot = await voucherCollection.get();
+    var document = snapshot.docs.where((document) => document.data()['userID'] == userId && document.data()['couponCode'] == couponCode);
+
+    return document != null && document.length > 0;
+  }
+
   static Future<List<Voucher>> getVouchers(String userId) async {
     QuerySnapshot snapshot = await voucherCollection.get();
     var documents = snapshot.docs.where((document) => document.data()['userID'] == userId);

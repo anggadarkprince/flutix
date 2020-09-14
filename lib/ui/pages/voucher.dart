@@ -4,6 +4,8 @@ import 'package:flutix/services/voucher_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class VoucherScreen extends StatefulWidget {
   final User user;
@@ -46,7 +48,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
                     SizedBox(
                       height: 85,
                       width: 85,
-                      child: Image(image: AssetImage('assets/bg_topup.png'))
+                      child: Image(image: AssetImage('assets/ic_tickets_grey.png'))
                     ),
                     SizedBox(height: 5),
                     Text(
@@ -80,64 +82,67 @@ class _VoucherScreenState extends State<VoucherScreen> {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: ListView.builder(
         itemCount: vouchers.length,
-        itemBuilder: (_, index) => Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 10),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    height: 90,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.blueGrey[100],
-                      image: DecorationImage(
-                        image: AssetImage('assets/bg_topup.png'),
-                        fit: BoxFit.cover
+        itemBuilder: (_, index) {
+          String expiredFormat = DateFormat('dd MMM yyyy H:mm').format(vouchers[index].expiredDate.toDate());
+          return Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 10),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      height: 90,
+                      width: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.blueGrey[100],
+                        image: DecorationImage(
+                          image: AssetImage('assets/bg_topup.png'),
+                          fit: BoxFit.cover
+                        )
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            vouchers[index].couponCode.toUpperCase() + " - Disc ${vouchers[index].discount}%",
+                            style: GoogleFonts.openSans().copyWith(color: darkColor, fontWeight: FontWeight.w600, fontSize: 22),
+                            maxLines: 2,
+                            overflow: TextOverflow.clip,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "Expired at $expiredFormat",
+                            style: darkTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            vouchers[index].title,
+                            style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       )
                     ),
-                  ),
-                  SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          vouchers[index].couponCode.toUpperCase(),
-                          style: darkTextFont.copyWith(fontSize: 22, fontWeight: FontWeight.w600),
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "Dicount ${vouchers[index].discount}",
-                          style: darkTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          vouchers[index].title,
-                          style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    )
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Positioned.fill(
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  onTap: () {
-                    
-                  },
+              Positioned.fill(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      
+                    },
+                  )
                 )
-              )
-            ),
-          ]
-        )
+              ),
+            ]
+          );
+        }
       )
     );
   }

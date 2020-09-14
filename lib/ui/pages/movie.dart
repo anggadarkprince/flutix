@@ -254,22 +254,22 @@ class _MovieScreenState extends State<MovieScreen> {
         ),
         promotions == null
           ? SpinKitPulse(
-            color: mainColor,
-            size: 50,
-          )
+              color: mainColor,
+              size: 50,
+            )
           : Column(
-          children: promotions.map((promoItem) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
-              child: PromoCard(promoItem, onTap: () {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('Promotion ${promoItem.title}'),
-                  duration: Duration(milliseconds: 1000)
-                ));
-              })
-            );
-          }).toList(),
-        ),
+              children: promotions.map((promoItem) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+                  child: PromoCard(promoItem, onTap: () {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Promotion ${promoItem.title}'),
+                      duration: Duration(milliseconds: 1000)
+                    ));
+                  })
+                );
+              }).toList(),
+            ),
       ]
     ); 
   }

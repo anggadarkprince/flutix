@@ -37,16 +37,20 @@ class _MovieScreenState extends State<MovieScreen> {
 
     MovieServices.getMovies(1)
       .then((value) {
-        setState(() {
-          movies = value;
-        });
+        if(this.mounted) {
+          setState(() {
+            movies = value;
+          });
+        }
       });
 
     PromoService.getPromotions()
       .then((value) {
-        setState(() {
-          promotions = value;
-        });
+        if(this.mounted) {
+          setState(() {
+            promotions = value;
+          });
+        }
       });
   }
 

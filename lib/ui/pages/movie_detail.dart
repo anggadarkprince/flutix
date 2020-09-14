@@ -54,10 +54,12 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     movieDetail = snapshot.data;
                     FavoriteService.getFavoriteByUserMovie(auth.FirebaseAuth.instance.currentUser.uid, movieDetail)
                       .then((value) {
-                        setState(() {
-                          favorite = value;
-                          isSubmitting = false;
-                        });
+                        if (this.mounted) {
+                          setState(() {
+                            favorite = value;
+                            isSubmitting = false;
+                          });
+                        }
                       });
                   } else if (snapshot.hasError) {
                     return Container(

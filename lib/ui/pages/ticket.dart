@@ -3,6 +3,7 @@ import 'package:flutix/services/ticket_service.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/ticket_detail.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -35,19 +36,23 @@ class _TicketScreenState extends State<TicketScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: FutureBuilder(
               future: TicketService.getTickets(auth.FirebaseAuth.instance.currentUser.uid),
               builder: (_, snapshot) {
                 if (snapshot.hasData) {
                   tickets = snapshot.data;
+                  return TicketViewer(tickets, isExpiredTickets);
                 } else if (snapshot.hasError) {
                   return Container(
                     padding: EdgeInsets.all(defaultMargin),
                     child: Center(child: Text("${snapshot.error}")),
                   );
+                } else {
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+                    child: ShimmerList(ShimmerListTemplate.Ticket)
+                  );
                 }
-                return TicketViewer(tickets, isExpiredTickets);
               }
             )
           ),
@@ -148,25 +153,6 @@ class _TicketScreenState extends State<TicketScreen> {
   }
 }
 
-class HeaderClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-
-    path.lineTo(0, size.height - 20);
-    path.quadraticBezierTo(0, size.height, 20, size.height);
-    path.lineTo(size.width - 20, size.height);
-    path.quadraticBezierTo(size.width, size.height, size.width, size.height - 20);
-    path.lineTo(size.width, 0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
 class TicketViewer extends StatelessWidget {
   final List<Ticket> tickets;
   final bool isExpiredTickets;
@@ -214,8 +200,9 @@ class TicketViewer extends StatelessWidget {
         itemBuilder: (_, index) => Container(
           margin: EdgeInsets.only(
             top: index == 0 ? 20 : 0,
-            bottom: index == sortedTickets.length - 1 ? 200 : 15
+            bottom: index == sortedTickets.length - 1 ? 200 : 0
           ),
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
           child: Stack(
             children: <Widget>[
               Container(

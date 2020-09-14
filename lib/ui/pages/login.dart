@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
         height: 50,
         margin: EdgeInsets.only(top: 40, bottom: 45),
         child: isSigningIn
-          ? SpinKitFadingCircle(color: mainColor)
+          ? SpinKitPulse(color: mainColor)
           : FloatingActionButton(
               elevation: 4,
               backgroundColor: isEmailValid && isPasswordValid

@@ -5,6 +5,7 @@ import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/widgets/rating_star.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -55,9 +56,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 child: Center(child: Text("${snapshot.error}")),
               );
             } else {
-              return SpinKitPulse(
-                color: mainColor,
-                size: 50,
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+                child: ShimmerList(ShimmerListTemplate.Movie)
               );
             }
           }

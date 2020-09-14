@@ -11,6 +11,7 @@ import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
 import 'package:flutix/ui/widgets/movie_card.dart';
 import 'package:flutix/ui/widgets/promo_card.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
@@ -257,9 +258,9 @@ class _MovieScreenState extends State<MovieScreen> {
           child: Text("Promotion", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         promotions == null
-          ? SpinKitPulse(
-              color: mainColor,
-              size: 50,
+          ? Container(
+              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: ShimmerList(ShimmerListTemplate.Promo, itemCount: 3)
             )
           : Column(
               children: promotions.map((promoItem) {

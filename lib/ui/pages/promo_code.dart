@@ -6,6 +6,7 @@ import 'package:flutix/services/promo_service.dart';
 import 'package:flutix/services/voucher_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/widgets/promo_card.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -85,7 +86,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                       "Get Voucher",
                       style: whiteTextFont.copyWith(
                         fontSize: 16,
-                        color: Colors.white
+                        color: isDataEdited ? Colors.white : Colors.grey[500]
                       ),
                     ),
                     disabledColor: Color(0xFFE4E4E4),
@@ -164,10 +165,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                     }).toList(),
                   );
                 } else {
-                  return SpinKitPulse(
-                    color: mainColor,
-                    size: 50,
-                  );
+                  return ShimmerList(ShimmerListTemplate.Promo);
                 }
               }
             )

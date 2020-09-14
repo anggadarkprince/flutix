@@ -71,6 +71,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Container(
       child: ListView.builder(
         itemCount: favorites.length,
+        physics: BouncingScrollPhysics(),
         itemBuilder: (_, index) => Container(
           margin: EdgeInsets.only(
             top: index == 0 ? 20 : 0,

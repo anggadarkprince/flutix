@@ -2,8 +2,8 @@ import 'package:flutix/models/user.dart';
 import 'package:flutix/models/voucher.dart';
 import 'package:flutix/services/voucher_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -67,9 +67,9 @@ class _VoucherScreenState extends State<VoucherScreen> {
               child: Center(child: Text("${snapshot.error}")),
             );
           } else {
-            return SpinKitPulse(
-              color: mainColor,
-              size: 50,
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+              child: ShimmerList(ShimmerListTemplate.Ticket)
             );
           }
         }
@@ -79,7 +79,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
 
   Widget _buildVoucherList(List<Voucher> vouchers, context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 15),
       child: ListView.builder(
         itemCount: vouchers.length,
         itemBuilder: (_, index) {

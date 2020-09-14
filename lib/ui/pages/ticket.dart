@@ -196,6 +196,7 @@ class TicketViewer extends StatelessWidget {
 
     return Container(
       child:ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemCount: sortedTickets.length,
         itemBuilder: (_, index) => Container(
           margin: EdgeInsets.only(

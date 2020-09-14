@@ -4,10 +4,10 @@ import 'package:flutix/services/transaction_service.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/topup.dart';
+import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutix/ui/widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
@@ -35,10 +35,7 @@ class WalletScreen extends StatelessWidget {
                         } else {
                           return Container(
                             margin: EdgeInsets.only(top: 70),
-                            child: SpinKitPulse(
-                              size: 50,
-                              color: mainColor,
-                            )
+                            child: ShimmerList(ShimmerListTemplate.Wallet, itemCount: 1)
                           );
                         }
                       }
@@ -253,10 +250,7 @@ class WalletScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return _buildTransactionList(snapshot.data, MediaQuery.of(context).size.width - 2 * defaultMargin);
             } else {
-              return SpinKitPulse(
-                size: 50,
-                color: mainColor,
-              );
+              return ShimmerList(ShimmerListTemplate.Ticket, itemCount: 3);
             }
           }
         ),

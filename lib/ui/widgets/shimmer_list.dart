@@ -1,3 +1,4 @@
+import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/widgets/rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -7,13 +8,15 @@ enum ShimmerListTemplate {
    Ticket,
    Promo,
    Wallet,
+   MovieCard,
+   MovieCardPortrait,
 }
 
 class ShimmerList extends StatelessWidget {
   final template;
   final int itemCount;
 
-  ShimmerList(this.template, {this.itemCount: 6});
+  ShimmerList(this.template, {this.itemCount: 7});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,7 @@ class ShimmerList extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height,
         child: ListView.builder(
+          scrollDirection: [ShimmerListTemplate.MovieCard, ShimmerListTemplate.MovieCardPortrait].contains(template) ? Axis.horizontal : Axis.vertical,
           physics: const NeverScrollableScrollPhysics(),
           primary: false,
           itemCount: itemCount,
@@ -34,7 +38,7 @@ class ShimmerList extends StatelessWidget {
             return Shimmer.fromColors(
               highlightColor: Colors.white,
               baseColor: Colors.blueGrey[100],
-              child: ShimmerLayout(template),
+              child: ShimmerLayout(template, index, itemCount),
               period: Duration(milliseconds: time),
             );
           },
@@ -46,8 +50,10 @@ class ShimmerList extends StatelessWidget {
 
 class ShimmerLayout extends StatelessWidget {
   final template;
+  final int index;
+  final int itemCount;
 
-  ShimmerLayout(this.template);
+  ShimmerLayout(this.template, this.index, this.itemCount);
 
   @override
   Widget build(BuildContext context) {
@@ -76,20 +82,29 @@ class ShimmerLayout extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       height: 17,
-                      color: Colors.blueGrey[100],
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: Colors.blueGrey[100],
+                      ),
                     ),
                     SizedBox(height: 7),
                     Container(
                       height: 15,
                       width: 230,
-                      color: Colors.blueGrey[50],
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: Colors.blueGrey[50],
+                      ),
                     ),
                     SizedBox(height: 7),
                     template == ShimmerListTemplate.Ticket
                       ? Container(
                           height: 15,
                           width: 200,
-                          color: Colors.blueGrey[50],
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            color: Colors.blueGrey[50],
+                          ),
                         )
                       : RatingStars(
                           voteAverage: 5,
@@ -118,6 +133,37 @@ class ShimmerLayout extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             color: Colors.blueGrey[100],
           ),
+        );
+      case ShimmerListTemplate.MovieCard:
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          child: Container(
+            margin: EdgeInsets.only(
+              left: (index == 0) ? defaultMargin : 0,
+              right: (index == itemCount - 1) ? defaultMargin : 15
+            ),
+            height: 140,
+            width: 210,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.blueGrey[100],
+            ),
+          )
+        );
+      case ShimmerListTemplate.MovieCardPortrait:
+        return Container(
+          child: Container(
+            margin: EdgeInsets.only(
+              left: (index == 0) ? defaultMargin : 0,
+              right: (index == itemCount - 1) ? defaultMargin : 15
+            ),
+            height: 160,
+            width: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.blueGrey[100],
+            ),
+          )
         );
       default:
         return Container(

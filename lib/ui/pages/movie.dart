@@ -16,8 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 
-class MovieScreen extends StatefulWidget {
-  
+class MovieScreen extends StatefulWidget {  
   final User user;
 
   MovieScreen(this.user);
@@ -169,15 +168,12 @@ class _MovieScreenState extends State<MovieScreen> {
                 itemBuilder: (_, index) => Container(
                   margin: EdgeInsets.only(
                     left: (index == 0) ? defaultMargin : 0,
-                    right: (index == nowPlaying.length - 1) ? defaultMargin : 16
+                    right: (index == nowPlaying.length - 1) ? defaultMargin : 15
                   ),
                   child: MovieCard(nowPlaying[index], onTap: () => _onMovieTap(nowPlaying[index])),
                 )
               )
-            : SpinKitPulse(
-                color: mainColor,
-                size: 50,
-              )
+            : ShimmerList(ShimmerListTemplate.MovieCard, itemCount: 5)
         )
       ],
     );
@@ -240,10 +236,7 @@ class _MovieScreenState extends State<MovieScreen> {
                   child: ComingSoonCard(comingSoon[index], onTap: () => _onMovieTap(comingSoon[index])),
                 )
               )
-            : SpinKitPulse(
-                color: mainColor,
-                size: 50,
-              )
+            : ShimmerList(ShimmerListTemplate.MovieCardPortrait, itemCount: 5)
         )
       ]
     );

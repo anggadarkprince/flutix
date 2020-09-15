@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:shimmer/shimmer.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final Movie movie;
@@ -72,8 +73,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     children: <Widget>[
                       _buildBackDrop(movie, context),
                       _buildTitle(movie),
-                      _buildGenre(movieDetail),
-                      _buildRating(movie),
+                      _buildGenreRating(movieDetail),
                       _buildCredit(movie),
                       _buildStoryLine(movie),
                       _buildButtons(movieDetail, context),
@@ -155,39 +155,50 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     );
   }
 
-  Widget _buildGenre(MovieDetail movieDetail) {
+  Widget _buildGenreRating(MovieDetail movieDetail) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: defaultMargin),
       child: (movieDetail != null)
-        ? Text(
-            movieDetail.genresAndLanguage,
-            textAlign: TextAlign.center,
-            style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-          )
-        : Padding(
-            padding: EdgeInsets.only(top: 5),
-            child: SizedBox(
-              height: 40,
-              width: 40,
-              child: SpinKitPulse(
-                color: accentColor1,
+        ? Column(
+            children: <Widget>[
+              Text(
+                movieDetail.genresAndLanguage,
+                textAlign: TextAlign.center,
+                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
               ),
-            )
+              SizedBox(height: 5),
+              RatingStars(
+                voteAverage: movie.voteAverage,
+                color: accentColor3,
+                alignment: MainAxisAlignment.center,
+              ),
+              SizedBox(height: 25),
+            ],
           )
-    );
-  }
-
-  Widget _buildRating(Movie movie) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 5),
-        RatingStars(
-          voteAverage: movie.voteAverage,
-          color: accentColor3,
-          alignment: MainAxisAlignment.center,
-        ),
-        SizedBox(height: 25),
-      ],
+        : Shimmer.fromColors(
+            highlightColor: Colors.white,
+            baseColor: Colors.blueGrey[100],
+            period: Duration(milliseconds: 1000),
+            child: Column(
+              children: [
+                Container(
+                  height: 15,
+                  width: 230,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3),
+                    color: Colors.blueGrey[50],
+                  ),
+                ),
+                SizedBox(height: 5),
+                RatingStars(
+                  voteAverage: 5,
+                  color: Colors.blueGrey[50],
+                  alignment: MainAxisAlignment.center,
+                ),
+                SizedBox(height: 25),
+              ]
+            ),
+          )
     );
   }
 
@@ -221,10 +232,43 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 ),
               );
             } else {
-              return SizedBox(
-                height: 50,
-                child: SpinKitPulse(
-                  color: accentColor1,
+              return Shimmer.fromColors(
+                highlightColor: Colors.white,
+                baseColor: Colors.blueGrey[50],
+                period: Duration(milliseconds: 1000),
+                child: SizedBox(
+                  height: 115,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (_, index) => Container(
+                      margin: EdgeInsets.only(
+                        left: (index == 0) ? defaultMargin : 0,
+                        right: (index == 5 - 1) ? defaultMargin : 16
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: 80,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.blueGrey[100],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 5),
+                            height: 15,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.blueGrey[50],
+                            ),
+                          ),
+                        ]
+                      )
+                    ),
+                  )
                 )
               );
             }

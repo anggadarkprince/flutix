@@ -25,7 +25,7 @@ class CreditCard extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 6),
+          margin: EdgeInsets.only(top: 5),
           width: 70,
           child: Text(
             credit.name,

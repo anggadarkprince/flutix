@@ -1,7 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutix/locale/my_localization.dart';
+import 'package:flutix/locale/my_localization_delegate.dart';
+import 'package:flutix/provider_localization.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/ui/pages/home.dart';
+import 'package:flutix/ui/widgets/preference_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'ui/pages/splash.dart';
 
 void main() async {
@@ -11,11 +17,30 @@ void main() async {
 }
 
 class App extends StatelessWidget {
+  final MyLocalizationDelegate _myLocalizationDelegate = MyLocalizationDelegate(Locale('en', 'US'));
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyApp(),
+    return ChangeNotifierProvider(
+      create: (context) => ProviderLocalization(),
+      child: Consumer<ProviderLocalization>(
+        builder: (context, localization, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              _myLocalizationDelegate,
+            ],
+            supportedLocales: [
+              const Locale('en', 'US'),
+              const Locale('id', 'ID'),
+            ],
+            home: MyApp(),
+          );
+        },
+      ),
     );
   }
 }
@@ -34,6 +59,11 @@ class _AppWrapperState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     if (!initApp) {
+      Future.wait([SharedPreferencesBuilder.getData('language', 'en'), SharedPreferencesBuilder.getData('countryCode', 'US')]).then((value) {
+        String lang = value[0] ?? 'en';
+        String code = value[1] ?? 'US';
+        MyLocalization.load(Locale(lang, code));
+      });
       AuthServices.isUserLoggedIn()
         .then((result) {
           new Future.delayed(const Duration(seconds: 3), () {

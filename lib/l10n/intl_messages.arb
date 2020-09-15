@@ -1,0 +1,30 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2020-09-15T14:19:21.167432",
+  "helloWorld": "Hello World",
+  "@helloWorld": {
+    "description": "Kata Hello World",
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMovies": "Movies",
+  "@menuMovies": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLikes": "Likes",
+  "@menuLikes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTickets": "Tickets",
+  "@menuTickets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuAccount": "Account",
+  "@menuAccount": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

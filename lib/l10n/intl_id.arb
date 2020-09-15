@@ -1,0 +1,30 @@
+{
+  "@@locale": "id",
+  "@@last_modified": "2020-09-15T13:36:11.717725",
+  "helloWorld": "Halo Dunia",
+  "@helloWorld": {
+    "description": "Halo dunia",
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMovies": "Film",
+  "@menuMovies": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLikes": "Suka",
+  "@menuLikes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTickets": "Tiket",
+  "@menuTickets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuAccount": "Akun",
+  "@menuAccount": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

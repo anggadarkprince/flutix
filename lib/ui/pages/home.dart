@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               items: [
                 BottomNavigationBarItem(
-                  title: Text("Movies", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
+                  title: Text(MyLocalization.of(context).menuMovies, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6),
                     height: 20,
@@ -122,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   title: Container(
                     margin: EdgeInsets.only(right: 40),
-                    child: Text("Likes", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
+                    child: Text(MyLocalization.of(context).menuLikes, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6, right: 40),
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   title: Container(
                     margin: EdgeInsets.only(left: 40),
-                    child: Text("Tickets", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
+                    child: Text(MyLocalization.of(context).menuTickets, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6, left: 40),
@@ -148,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ),
                 BottomNavigationBarItem(
-                  title: Text("Account", style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
+                  title: Text(MyLocalization.of(context).menuAccount, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600)),
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6),
                     height: 20,

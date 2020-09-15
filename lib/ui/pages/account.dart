@@ -1,6 +1,7 @@
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/language.dart';
 import 'package:flutix/ui/pages/legal.dart';
 import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/promo_code.dart';
@@ -75,7 +76,9 @@ class _AccountScreenState extends State<AccountScreen> {
         "type": "menu",
         "title": "Change Language",
         "icon": Image.asset("assets/language.png"),
-        "onTap": (BuildContext context, User user) {}
+        "onTap": (BuildContext context, User user) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LanguageScreen()));
+        }
       },
       {
         "type": "title",

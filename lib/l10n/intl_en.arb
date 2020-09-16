@@ -1,9 +1,29 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2020-09-15T13:36:11.717725",
+  "@@last_modified": "2020-09-16T10:39:40.059035",
   "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "Hello World",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOut": "Sign Out",
+  "@signOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -24,6 +44,486 @@
   },
   "menuAccount": "Account",
   "@menuAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuGeneral": "General",
+  "@menuGeneral": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuEditAccount": "Edit Account",
+  "@menuEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTransactionHistories": "Transaction Histories",
+  "@menuTransactionHistories": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuEnterPromoCode": "Enter Promo Code",
+  "@menuEnterPromoCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyVoucher": "My Voucher",
+  "@menuMyVoucher": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuChangeLanguage": "Change Language",
+  "@menuChangeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuPrivacyPolicy": "Privacy Policy",
+  "@menuPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTermsOfService": "Terms Of Service",
+  "@menuTermsOfService": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuRateApp": "Rate App",
+  "@menuRateApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getStarted": "Get Started",
+  "@getStarted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alreadyHaveAnAccount": "Already have an account? ",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newExperience": "New Experience",
+  "@newExperience": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchNewMovie": "Watch a new movie much\neasier than any before",
+  "@watchNewMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFreshNow": "Start fresh now? ",
+  "@startFreshNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetHere": "Reset Here",
+  "@resetHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Forgot Password? ",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeBackExplorer": "Welcome Back,\nExplorer!",
+  "@welcomeBackExplorer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberPassword": "Remember Password? ",
+  "@rememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetLinkMessage": "The link to change your password has been sent to your email.",
+  "@resetLinkMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetYourPassword": "Reset Your Password",
+  "@resetYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weWillSendYouRecoveryEmail": "We will send you recovery email",
+  "@weWillSendYouRecoveryEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "exploreThousandsMovies": "Explore thousands movies",
+  "@exploreThousandsMovies": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPasswordMismatch": "Confirm password mismatch",
+  "@confirmPasswordMismatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "summary": "Summary",
+  "@summary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmRegistration": "Confirm Registration",
+  "@confirmRegistration": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneStepCloserRegistration": "One step closer\nto explore thousands of movies",
+  "@oneStepCloserRegistration": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moviePreferences": "Movie Preferences",
+  "@moviePreferences": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourFavoriteGenre": "Your Favorite Genre",
+  "@yourFavoriteGenre": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "languageYourPrefer": "Language You Prefer",
+  "@languageYourPrefer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectGenreMessage": "Please select 4 genres",
+  "@selectGenreMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registeredEmail": "Registered Email",
+  "@registeredEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iAgree": "I Agree",
+  "@iAgree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closePage": "Close Page",
+  "@closePage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "movieDatabase": "Movie Database",
+  "@movieDatabase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "furtherInformation": "Further Information",
+  "@furtherInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "happyWatching": "Happy Watching!",
+  "@happyWatching": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "readyToExplore": "Ready To Explore",
+  "@readyToExplore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successTopUpMessage": "You have successfully\ntop up the wallet",
+  "@successTopUpMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successBoughtTicketMessage": "You have successfully\nbought the ticket",
+  "@successBoughtTicketMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myWallet": "My Wallet",
+  "@myWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myTickets": "My Tickets",
+  "@myTickets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverNewMovie": "Discover new movie? ",
+  "@discoverNewMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backToHome": "Back to Home",
+  "@backToHome": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seatNumbers": "Seat Numbers",
+  "@seatNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkout": "Checkout",
+  "@checkout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "orderId": "Order ID",
+  "@orderId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cinema": "Cinema",
+  "@cinema": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "Date",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "Time",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "price": "Price",
+  "@price": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "Fee",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "total": "Total",
+  "@total": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourWallet": "Your Wallet",
+  "@yourWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkoutNow": "Checkout Now",
+  "@checkoutNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "topUpMyWallet": "Top Up My Wallet",
+  "@topUpMyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theater": "Theater",
+  "@theater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseDate": "Choose Date",
+  "@chooseDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectSchedule": "Select Schedule",
+  "@selectSchedule": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "takeSeat": "Take a Seat",
+  "@takeSeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "Name",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paid": "Paid",
+  "@paid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ticketDetail": "Ticket Detail",
+  "@ticketDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTicketMessage": "No ticket available",
+  "@noTicketMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "active": "Active",
+  "@active": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "history": "History",
+  "@history": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "Amount",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseByTemplate": "Choose by Template",
+  "@chooseByTemplate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "topUp": "Top Up",
+  "@topUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardHolder": "Card Holder",
+  "@cardHolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardId": "Card ID",
+  "@cardId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentTransaction": "Recent Transaction",
+  "@recentTransaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "promoCode": "Promo Code",
+  "@promoCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getVoucher": "Get Voucher",
+  "@getVoucher": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voucherNotFoundMessage": "Voucher not found, try another",
+  "@voucherNotFoundMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voucherCode": "Voucher code",
+  "@voucherCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isAlreadyAcquired": "is already acquired",
+  "@isAlreadyAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successfullyAcquired": "successfully acquired",
+  "@successfullyAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expiredAcquired": "is expired to be acquired",
+  "@expiredAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activePromo": "Active Promo",
+  "@activePromo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOutConfirmMessage": "Are you sure want to sign out?",
+  "@signOutConfirmMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOutSubtitleMessage": "Your personal preferences will be kept.",
+  "@signOutSubtitleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Remove",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFavoriteMessage": "removed from your favorite list",
+  "@removeFavoriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFavoriteMessage": "No favorite available",
+  "@noFavoriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nowPlaying": "Now Playing",
+  "@nowPlaying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "browseMovie": "Browse Movie",
+  "@browseMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "comingSoon": "Coming Soon",
+  "@comingSoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "promotion": "Promotion",
+  "@promotion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userId": "User ID",
+  "@userId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "updateMyProfile": "Update My Profile",
+  "@updateMyProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "updateProfileMessage": "Profile successfully updated",
+  "@updateProfileMessage": {
     "type": "text",
     "placeholders": {}
   }

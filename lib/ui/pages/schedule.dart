@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/theater.dart';
 import 'package:flutix/models/ticket.dart';
@@ -80,7 +81,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Select Schedule",
+                  MyLocalization.of(context).selectSchedule,
                   style: darkTextFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w600
@@ -99,7 +100,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
-          child: Text("Choose Date", style: blackTextFont.copyWith(fontSize: 20)),
+          child: Text(MyLocalization.of(context).chooseDate, style: blackTextFont.copyWith(fontSize: 20)),
         ),
         Container(
           margin: EdgeInsets.only(bottom: 24),
@@ -138,7 +139,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       widgets.add(
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 5),
-          child: Text('Theater', style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w300))
+          child: Text(MyLocalization.of(context).theater, style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w300))
         )
       );
       widgets.add(

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +67,7 @@ class _LegalScreenState extends State<LegalScreen> {
                   children: <Widget>[
                     Icon(Icons.info_outline, color: darkColor),
                     SizedBox(width: 5),
-                    Text('Further Information'),
+                    Text(MyLocalization.of(context).furtherInformation),
                   ],
                 ),
               ),
@@ -77,7 +78,7 @@ class _LegalScreenState extends State<LegalScreen> {
                   children: <Widget>[
                     Icon(Icons.video_label, color: darkColor),
                     SizedBox(width: 5),
-                    Text('Movie Database'),
+                    Text(MyLocalization.of(context).movieDatabase),
                   ],
                 ),
               ),
@@ -88,7 +89,7 @@ class _LegalScreenState extends State<LegalScreen> {
                   children: <Widget>[
                     Icon(Icons.close, color: darkColor),
                     SizedBox(width: 5),
-                    Text('Close Page'),
+                    Text(MyLocalization.of(context).closePage),
                   ],
                 ),
               ),
@@ -110,7 +111,7 @@ class _LegalScreenState extends State<LegalScreen> {
           color: mainColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Text(
-            "I AGREE",
+            MyLocalization.of(context).iAgree.toUpperCase(),
             style: whiteTextFont.copyWith(fontSize: 16),
           ),
           onPressed: () {

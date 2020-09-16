@@ -1,9 +1,29 @@
 {
   "@@locale": "id",
-  "@@last_modified": "2020-09-15T13:36:11.717725",
+  "@@last_modified": "2020-09-16T10:39:40.059035",
   "helloWorld": "Halo Dunia",
   "@helloWorld": {
     "description": "Halo dunia",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Daftar",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "Masuk",
+  "@signIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOut": "Keluar",
+  "@signOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Batal",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -24,6 +44,486 @@
   },
   "menuAccount": "Akun",
   "@menuAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuGeneral": "Umum",
+  "@menuGeneral": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuEditAccount": "Ubah Akun",
+  "@menuEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTransactionHistories": "Riwayat Transaksi",
+  "@menuTransactionHistories": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuEnterPromoCode": "Masukkan Kode Promo",
+  "@menuEnterPromoCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyVoucher": "Voucherku",
+  "@menuMyVoucher": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuChangeLanguage": "Ganti Bahasa",
+  "@menuChangeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuPrivacyPolicy": "Kebijakan Privacy",
+  "@menuPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTermsOfService": "Persyaratan Layanan",
+  "@menuTermsOfService": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuRateApp": "Beri Rating App",
+  "@menuRateApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getStarted": "Mulai",
+  "@getStarted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alreadyHaveAnAccount": "Sudah memiliki sebuah akun? ",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newExperience": "Pengalaman Baru",
+  "@newExperience": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchNewMovie": "Nonton film baru tidak pernah\nsemudah ini sebelumnya",
+  "@watchNewMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFreshNow": "Mulai baru sekarang? ",
+  "@startFreshNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetHere": "Atur Ulang Disini",
+  "@resetHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Lupa Sandi? ",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeBackExplorer": "Selamat Datang Kembali,\nPenjelajah!",
+  "@welcomeBackExplorer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberPassword": "Ingan Sandi? ",
+  "@rememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetLinkMessage": "Tautan untuk merubah sandi telah dikirim ke email kamu.",
+  "@resetLinkMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetYourPassword": "Atur Ulang Sandimu",
+  "@resetYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weWillSendYouRecoveryEmail": "Kami akan mengirimimu email untuk mengatur ulang sandi",
+  "@weWillSendYouRecoveryEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "exploreThousandsMovies": "Jelajahi ribuan berbagai film",
+  "@exploreThousandsMovies": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPasswordMismatch": "Konfirmasi sandi tidak sama",
+  "@confirmPasswordMismatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "summary": "Rangkuman",
+  "@summary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmRegistration": "Konfirmasi Pendaftaran",
+  "@confirmRegistration": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneStepCloserRegistration": "Satu langkah lagi\nuntuk menjelajahi ribuan film",
+  "@oneStepCloserRegistration": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moviePreferences": "Film Pilihan",
+  "@moviePreferences": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourFavoriteGenre": "Jenis Film Kesukaanmu",
+  "@yourFavoriteGenre": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "languageYourPrefer": "Bahasa Yang Kamu Pilih",
+  "@languageYourPrefer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectGenreMessage": "Tolong pilih 4 jenis",
+  "@selectGenreMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailAddress": "Alamat Email",
+  "@emailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registeredEmail": "Email Yang Terdaftar",
+  "@registeredEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Kata Sandi",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "Konfirmasi Kata Sandi",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fullName": "Nama Lengkap",
+  "@fullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iAgree": "Saya Setuju",
+  "@iAgree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closePage": "Tutup Halaman",
+  "@closePage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "movieDatabase": "Database Film",
+  "@movieDatabase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "furtherInformation": "Informasi Lanjut",
+  "@furtherInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "happyWatching": "Selamat Menonton!",
+  "@happyWatching": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "readyToExplore": "Siap Untuk Menjelajahi",
+  "@readyToExplore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successTopUpMessage": "Kamu telah berhasil\nmengisi dompet",
+  "@successTopUpMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successBoughtTicketMessage": "Kamu telah berhasil\nmembeli tiket",
+  "@successBoughtTicketMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myWallet": "Dompetku",
+  "@myWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myTickets": "Tiketku",
+  "@myTickets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverNewMovie": "Temukan film baru? ",
+  "@discoverNewMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backToHome": "Kembali Ke Depan",
+  "@backToHome": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seatNumbers": "Tempat Duduk",
+  "@seatNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkout": "Pesan",
+  "@checkout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "orderId": "ID Pesanan",
+  "@orderId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cinema": "Sinema",
+  "@cinema": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "Tanggal",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "Jam",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "price": "Harga",
+  "@price": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "Biaya",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "total": "Jumlah",
+  "@total": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourWallet": "Dompetmu",
+  "@yourWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkoutNow": "Pesan Sekarang",
+  "@checkoutNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "topUpMyWallet": "Isi Dompetku",
+  "@topUpMyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theater": "Teater",
+  "@theater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseDate": "Pilih Tanggal",
+  "@chooseDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectSchedule": "Pilih Jadwal",
+  "@selectSchedule": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "takeSeat": "Pilh Tempat Duduk",
+  "@takeSeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "Nama",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paid": "Terbayar",
+  "@paid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ticketDetail": "Detil Tiket",
+  "@ticketDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTicketMessage": "Tidak ada tiket",
+  "@noTicketMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "active": "Aktif",
+  "@active": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "history": "Riwayat",
+  "@history": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "Jumlah",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseByTemplate": "Pilih Dari Contoh",
+  "@chooseByTemplate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "topUp": "Isi Ulang",
+  "@topUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardHolder": "Pemegang Kartu",
+  "@cardHolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardId": "ID Kartu",
+  "@cardId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentTransaction": "Transaksi Terakhir",
+  "@recentTransaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "promoCode": "Kode Promo",
+  "@promoCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getVoucher": "Dapatkan Voucher",
+  "@getVoucher": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voucherNotFoundMessage": "Voucher tidak ditemukan, coba lagi",
+  "@voucherNotFoundMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voucherCode": "Kode Voucher",
+  "@voucherCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isAlreadyAcquired": "telah sudah diambil sebelumnya",
+  "@isAlreadyAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successfullyAcquired": "telah sukses diambil",
+  "@successfullyAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expiredAcquired": "telah kadaluarsa untuk diambil",
+  "@expiredAcquired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activePromo": "Promo Aktif",
+  "@activePromo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOutConfirmMessage": "Apa kamu mau keluar?",
+  "@signOutConfirmMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOutSubtitleMessage": "Pengaturan personalmu akan tetap disimpan.",
+  "@signOutSubtitleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Hapus",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFavoriteMessage": "hapus dari daftar kesukaan",
+  "@removeFavoriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFavoriteMessage": "Tidak ada kesukaan",
+  "@noFavoriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nowPlaying": "Main Sekarang",
+  "@nowPlaying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "browseMovie": "Jelajahi Film",
+  "@browseMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "comingSoon": "Akan Datang",
+  "@comingSoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "promotion": "Promosi",
+  "@promotion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userId": "ID Pengguna",
+  "@userId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Ganti Sandi",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "updateMyProfile": "Perbarui Profilku",
+  "@updateMyProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "updateProfileMessage": "Profil berhasil diperbarui",
+  "@updateProfileMessage": {
     "type": "text",
     "placeholders": {}
   }

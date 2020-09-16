@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -27,8 +28,8 @@ class TicketDetailScreen extends StatelessWidget {
               children: <Widget>[
                 _buildTitle(mediaQuery, context),
                 _buildMovieCover(ticket),
-                _buildTicketSummary(mediaQuery, ticket),
-                _buildTicketBarcode(ticket),
+                _buildTicketSummary(mediaQuery, context, ticket),
+                _buildTicketBarcode(context, ticket),
                 SizedBox(height: 40)
               ],
             )
@@ -65,7 +66,7 @@ class TicketDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Ticket Detail",
+                      MyLocalization.of(context).ticketDetail,
                       style: darkTextFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w600
@@ -98,7 +99,7 @@ class TicketDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTicketSummary(MediaQueryData mediaQuery, Ticket ticket) {
+  Widget _buildTicketSummary(MediaQueryData mediaQuery, BuildContext context, Ticket ticket) {
     return ClipPath(
       clipper: TicketTopClipper(),
       child: Container(
@@ -126,7 +127,7 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Cinema", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(MyLocalization.of(context).cinema, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   ticket.theater.name,
                   textAlign: TextAlign.end,
@@ -143,7 +144,7 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Date", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(MyLocalization.of(context).date, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   DateFormat('EEE, dd MMM yyyy').format(ticket.time),
                   textAlign: TextAlign.end,
@@ -160,7 +161,7 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(MyLocalization.of(context).time, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   DateFormat('H:mm').format(ticket.time),
                   textAlign: TextAlign.end,
@@ -177,7 +178,7 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Seat Numbers", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(MyLocalization.of(context).seatNumbers, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   ticket.seatsInString,
                   textAlign: TextAlign.end,
@@ -194,7 +195,7 @@ class TicketDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Order ID", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text(MyLocalization.of(context).orderId, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   ticket.bookingCode,
                   textAlign: TextAlign.end,
@@ -214,7 +215,7 @@ class TicketDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTicketBarcode(Ticket ticket) {
+  Widget _buildTicketBarcode(BuildContext context, Ticket ticket) {
     return ClipPath(
       clipper: TicketBottomClipper(),
       child: Container(
@@ -227,10 +228,10 @@ class TicketDetailScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Name: ", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text("${MyLocalization.of(context).name}: ", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(ticket.name, style: whiteNumberFont.copyWith(color: darkColor, fontSize: 16, fontWeight: FontWeight.w400)),
                 SizedBox(height: 10),
-                Text("Paid: ", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                Text("${MyLocalization.of(context).paid}: ", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
                 Text(
                   NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: "IDR ").format(ticket.totalPrice),
                   style: whiteNumberFont.copyWith(color: darkColor, fontSize: 16, fontWeight: FontWeight.w400),

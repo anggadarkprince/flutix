@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/models/transaction.dart';
 import 'package:flutix/models/user.dart';
@@ -37,12 +38,12 @@ class CheckoutProcessScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  (ticket == null) ? "Emmm Yummy!" : "Happy Watching!",
+                  (ticket == null) ? MyLocalization.of(context).readyToExplore : MyLocalization.of(context).happyWatching,
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
                 SizedBox(height: 16),
                 Text(
-                  (ticket == null) ? "You have successfully\ntop up the wallet" : "You have successfully\nbought the ticket",
+                  (ticket == null) ? MyLocalization.of(context).successTopUpMessage : MyLocalization.of(context).successBoughtTicketMessage,
                   textAlign: TextAlign.center,
                   style: blackTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w300),
                 ),
@@ -55,7 +56,7 @@ class CheckoutProcessScreen extends StatelessWidget {
                     color: mainColor,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      (ticket == null) ? "My Wallet" : "My Tickets",
+                      (ticket == null) ? MyLocalization.of(context).myWallet : MyLocalization.of(context).myTickets,
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () {
@@ -79,14 +80,18 @@ class CheckoutProcessScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Discover new movie? ",
+                      MyLocalization.of(context).discoverNewMovie,
                       style: greyTextFont.copyWith( fontWeight: FontWeight.w400),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (Route<dynamic> route) => false,
+                        );
                       },
-                      child: Text("Back to Home", style: purpleTextFont),
+                      child: Text(MyLocalization.of(context).backToHome, style: purpleTextFont),
                     )
                   ],
                 )

@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter/services.dart';
@@ -54,14 +55,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
         SizedBox(height: 20),
         Text(
-          "Reset Your Password",
+          MyLocalization.of(context).resetYourPassword,
           style: darkTextFont.copyWith(
             fontSize: 26, fontWeight: FontWeight.w600
           )
         ),
         SizedBox(height: 10),
         Text(
-          "We will send you recovery email",
+          MyLocalization.of(context).weWillSendYouRecoveryEmail,
           style: greyTextFont.copyWith(
             fontSize: 16, fontWeight: FontWeight.w400
           )
@@ -85,22 +86,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Email Address",
-            hintText: "Registered Email"
+            labelText: MyLocalization.of(context).emailAddress,
+            hintText: MyLocalization.of(context).registeredEmail
           ),
         ),
         SizedBox(height: 15),
         Row(
           children: <Widget>[
             Text(
-              "Remember Password? ",
+              MyLocalization.of(context).rememberPassword,
               style: greyTextFont.copyWith(
                 fontSize: 12, fontWeight: FontWeight.w400
               ),
             ),
             GestureDetector(
               child: Text(
-                "Sign In",
+                MyLocalization.of(context).signIn,
                 style: purpleTextFont.copyWith(
                   fontSize: 12, fontWeight: FontWeight.w600
                 ),
@@ -156,7 +157,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       duration: Duration(milliseconds: 2000),
       flushbarPosition: FlushbarPosition.BOTTOM,
       backgroundColor: Color(0xFFFF5C83),
-      message: "The reset link of your password has been sent.",
+      message: MyLocalization.of(context).resetLinkMessage,
     )..show(context);
 
     setState(() {

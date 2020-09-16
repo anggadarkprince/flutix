@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
@@ -70,7 +71,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Summary",
+                      MyLocalization.of(context).summary,
                       style: darkTextFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w600
@@ -94,7 +95,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
       children: [
         SizedBox(height: 30),
         Text(
-          "One step closer\nto explore thousands of movies",
+          MyLocalization.of(context).oneStepCloserRegistration,
           style: greyTextFont.copyWith(fontSize: 16),
           textAlign: TextAlign.center,
         ),
@@ -154,7 +155,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
-              "Confirm Registration",
+              MyLocalization.of(context).confirmRegistration,
               style: whiteTextFont.copyWith(fontSize: 16),
             ),
             color: mainColor,

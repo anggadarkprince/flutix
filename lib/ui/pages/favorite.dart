@@ -1,4 +1,5 @@
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
 import 'package:flutix/services/favorite_service.dart';
 import 'package:flutix/shared/prefs.dart';
@@ -41,7 +42,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'No favorite available', 
+                        MyLocalization.of(context).noFavoriteMessage, 
                         style: greyTextFont.copyWith(fontSize: 16)
                       )
                     ]
@@ -89,7 +90,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        "REMOVE",
+                        MyLocalization.of(context).remove.toUpperCase(),
                         style: whiteTextFont.copyWith(fontWeight: FontWeight.w600),
                         textAlign: TextAlign.end
                       ),
@@ -105,7 +106,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 duration: Duration(milliseconds: 1000),
                 flushbarPosition: FlushbarPosition.TOP,
                 backgroundColor: Color(0xFFFF5C83),
-                message: favorites[index].movie.title + ' removed from your favorite list',
+                message: favorites[index].movie.title + ' ' + MyLocalization.of(context).removeFavoriteMessage,
               )..show(context);
             },
             child: Stack(
@@ -190,7 +191,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           duration: Duration(milliseconds: 1000),
                           flushbarPosition: FlushbarPosition.TOP,
                           backgroundColor: Color(0xFFFF5C83),
-                          message: favorites[index].movie.title + ' removed from your favorite list',
+                          message: favorites[index].movie.title + ' ' + MyLocalization.of(context).removeFavoriteMessage,
                         )..show(context);
                         setState(() {
                           favorites.removeWhere((data) => data.id == favorites[index].id);

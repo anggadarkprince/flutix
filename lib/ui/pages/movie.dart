@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/models/promo.dart';
 import 'package:flutix/models/user.dart';
@@ -157,7 +158,7 @@ class _MovieScreenState extends State<MovieScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 10),
-          child: Text("Now Playing", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text(MyLocalization.of(context).nowPlaying, style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: 160,
@@ -185,7 +186,7 @@ class _MovieScreenState extends State<MovieScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 10, defaultMargin, 15),
-          child: Text("Browse Movie", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text(MyLocalization.of(context).browseMovie, style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         (
           widget.user != null
@@ -220,7 +221,7 @@ class _MovieScreenState extends State<MovieScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 15),
-          child: Text("Coming Soon", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text(MyLocalization.of(context).comingSoon, style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: 140,
@@ -248,7 +249,7 @@ class _MovieScreenState extends State<MovieScreen> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 20),
-          child: Text("Promotion", style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text(MyLocalization.of(context).promotion, style: darkTextFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         promotions == null
           ? Container(
@@ -261,7 +262,7 @@ class _MovieScreenState extends State<MovieScreen> {
                   padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
                   child: PromoCard(promoItem, onTap: () {
                     Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Promotion ${promoItem.title}'),
+                      content: Text('${MyLocalization.of(context).promotion} ${promoItem.title}'),
                       duration: Duration(milliseconds: 1000)
                     ));
                   })

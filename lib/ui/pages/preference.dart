@@ -1,4 +1,5 @@
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/register_confirmation.dart';
@@ -83,7 +84,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Movie Preferences",
+                      MyLocalization.of(context).moviePreferences,
                       style: darkTextFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w600
@@ -110,7 +111,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
         ),
         SizedBox(height: 10),
         Text(
-          'Your Favorite Genre',
+          MyLocalization.of(context).yourFavoriteGenre,
           style: purpleTextFont.copyWith(
             fontSize: 22, fontWeight: FontWeight.w600
           )
@@ -124,7 +125,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
         ),
         SizedBox(height: 30),
         Text(
-          'Language You Prefer',
+          MyLocalization.of(context).languageYourPrefer,
           style: purpleTextFont.copyWith(
             fontSize: 22, fontWeight: FontWeight.w600
           )
@@ -202,7 +203,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
               duration: Duration(milliseconds: 1500),
               flushbarPosition: FlushbarPosition.BOTTOM,
               backgroundColor: Color(0xFFFF5C83),
-              message: "Please select 4 genres",
+              message: MyLocalization.of(context).selectGenreMessage,
             )..show(context);
           } else {
             widget.registrationData.selectedGenres = selectedGenres;

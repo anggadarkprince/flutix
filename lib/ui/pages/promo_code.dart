@@ -1,4 +1,5 @@
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/promo.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/models/voucher.dart';
@@ -35,7 +36,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
-        title: Text('Enter Promo Code'),
+        title: Text(MyLocalization.of(context).menuEnterPromoCode),
         backgroundColor: mainColor,
         centerTitle: true,
         leading: new IconButton(
@@ -61,8 +62,8 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                labelText: "Promo Code",
-                hintText: "Enter promo code"
+                labelText: MyLocalization.of(context).promoCode,
+                hintText: MyLocalization.of(context).menuEnterPromoCode
               ),
             ),
             SizedBox(height: 15),
@@ -83,7 +84,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                     elevation: 4,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "Get Voucher",
+                      MyLocalization.of(context).getVoucher,
                       style: whiteTextFont.copyWith(
                         fontSize: 16,
                         color: isDataEdited ? Colors.white : Colors.grey[500]
@@ -103,7 +104,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               duration: Duration(milliseconds: 2000),
                               flushbarPosition: FlushbarPosition.BOTTOM,
                               backgroundColor: Colors.red,
-                              message: "Voucher not found, try another",
+                              message: MyLocalization.of(context).voucherNotFoundMessage,
                             )..show(context);
                           } else {
                             var expires = promotion.expiredDate.toDate().toUtc();
@@ -115,7 +116,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   duration: Duration(milliseconds: 2000),
                                   flushbarPosition: FlushbarPosition.BOTTOM,
                                   backgroundColor: Colors.orange,
-                                  message: "Voucher code ${promotion.couponCode} is already acquired",
+                                  message: "${MyLocalization.of(context).voucherCode} ${promotion.couponCode} ${MyLocalization.of(context).isAlreadyAcquired}",
                                 )..show(context);
                               } else {
                                 Voucher voucher = await VoucherService.saveVoucher(widget.user.id, promotion);
@@ -123,7 +124,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   duration: Duration(milliseconds: 2000),
                                   flushbarPosition: FlushbarPosition.BOTTOM,
                                   backgroundColor: Colors.green,
-                                  message: "Voucher code ${voucher.couponCode} succesfully acquired",
+                                  message: "${MyLocalization.of(context).voucherCode} ${voucher.couponCode} ${MyLocalization.of(context).successfullyAcquired}",
                                 )..show(context);
                                 promoCodeController.text = '';
                               }
@@ -132,7 +133,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 duration: Duration(milliseconds: 2000),
                                 flushbarPosition: FlushbarPosition.BOTTOM,
                                 backgroundColor: Colors.red,
-                                message: "Voucher code ${promoCodeController.text} is expired to be acquired",
+                                message: "${MyLocalization.of(context).voucherCode} ${promoCodeController.text} ${MyLocalization.of(context).expiredAcquired}",
                               )..show(context);
                             }
                           }
@@ -145,7 +146,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                   ),
                 ),
             SizedBox(height: 30),
-            Text('Active Promo', style: darkTextFont.copyWith(fontSize: 16)),
+            Text(MyLocalization.of(context).activePromo, style: darkTextFont.copyWith(fontSize: 16)),
             SizedBox(height: 20),
             FutureBuilder(
               future: PromoService.getPromotions(),

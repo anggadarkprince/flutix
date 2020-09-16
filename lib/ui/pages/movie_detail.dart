@@ -177,7 +177,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           )
         : Shimmer.fromColors(
             highlightColor: Colors.white,
-            baseColor: Colors.blueGrey[100],
+            baseColor: Colors.blueGrey[50],
             period: Duration(milliseconds: 1000),
             child: Column(
               children: [

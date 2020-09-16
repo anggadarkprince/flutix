@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/ui/pages/login.dart';
@@ -75,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Sign Up",
+                      MyLocalization.of(context).signUp,
                       style: darkTextFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w600
@@ -83,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 25),
                     Text(
-                      "Explore thousands movies",
+                      MyLocalization.of(context).exploreThousandsMovies,
                       style: greyTextFont.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w400
@@ -164,8 +165,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Full Name",
-            hintText: "Your Name",
+            labelText: MyLocalization.of(context).fullName,
+            hintText: MyLocalization.of(context).fullName,
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),        
@@ -181,8 +182,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Email Address",
-            hintText: "Valid Email Address",
+            labelText: MyLocalization.of(context).emailAddress,
+            hintText: MyLocalization.of(context).emailAddress,
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
@@ -199,8 +200,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Password",
-            hintText: "Secret Password",
+            labelText: MyLocalization.of(context).password,
+            hintText: MyLocalization.of(context).password,
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
@@ -212,8 +213,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Confirm Password",
-            hintText: "Repeat The Password",
+            labelText: MyLocalization.of(context).confirmPassword,
+            hintText: MyLocalization.of(context).confirmPassword,
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 5)
           ),
         ),
@@ -254,7 +255,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         duration: Duration(milliseconds: 1500),
         flushbarPosition: FlushbarPosition.TOP,
         backgroundColor: Color(0xFFFF5C83),
-        message: "Confirm password mismatch",
+        message: MyLocalization.of(context).confirmPasswordMismatch,
       )..show(context);
     }
   }
@@ -264,7 +265,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Already have an account? ", 
+          MyLocalization.of(context).alreadyHaveAnAccount, 
           style: greyTextFont.copyWith(
             fontWeight: FontWeight.w400,
             fontSize: 14
@@ -272,7 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         GestureDetector(
           child: Text(
-            'Sign In', 
+            MyLocalization.of(context).signIn, 
             style: purpleTextFont.copyWith(
               fontWeight: FontWeight.w600,
               fontSize: 14

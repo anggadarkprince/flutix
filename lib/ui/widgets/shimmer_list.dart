@@ -37,7 +37,7 @@ class ShimmerList extends StatelessWidget {
 
             return Shimmer.fromColors(
               highlightColor: Colors.white,
-              baseColor: Colors.blueGrey[100],
+              baseColor: Colors.blueGrey[50],
               child: ShimmerLayout(template, index, itemCount),
               period: Duration(milliseconds: time),
             );
@@ -73,7 +73,7 @@ class ShimmerLayout extends StatelessWidget {
                 margin: EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.blueGrey[100],
+                  color: Colors.blueGrey[50],
                 ),
               ),
               Expanded(
@@ -84,7 +84,7 @@ class ShimmerLayout extends StatelessWidget {
                       height: 17,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
-                        color: Colors.blueGrey[100],
+                        color: Colors.blueGrey[50],
                       ),
                     ),
                     SizedBox(height: 7),
@@ -122,7 +122,7 @@ class ShimmerLayout extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.blueGrey[100],
+            color: Colors.blueGrey[50],
           ),
         );
       case ShimmerListTemplate.Wallet:
@@ -131,7 +131,7 @@ class ShimmerLayout extends StatelessWidget {
           height: 180,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.blueGrey[100],
+            color: Colors.blueGrey[50],
           ),
         );
       case ShimmerListTemplate.MovieCard:
@@ -146,7 +146,7 @@ class ShimmerLayout extends StatelessWidget {
             width: 210,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.blueGrey[100],
+              color: Colors.blueGrey[50],
             ),
           )
         );
@@ -161,7 +161,7 @@ class ShimmerLayout extends StatelessWidget {
             width: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.blueGrey[100],
+              color: Colors.blueGrey[50],
             ),
           )
         );

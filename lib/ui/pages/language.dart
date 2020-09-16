@@ -27,7 +27,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
-        title: Text('Language'),
+        title: Text(MyLocalization.of(context).menuChangeLanguage),
         backgroundColor: mainColor,
         centerTitle: true,
         leading: new IconButton(

@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -62,7 +63,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
           ),
           Center(
             child: Text(
-              "Take a Seat",
+              MyLocalization.of(context).takeSeat,
               style: darkTextFont.copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.w600

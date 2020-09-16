@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/shared/theme.dart';
@@ -28,29 +29,32 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     user = widget.user;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     menu = [
       {
         "type": "title",
-        "title": "Account",
+        "title": MyLocalization.of(context).menuAccount,
       },
       {
         "type": "menu",
-        "title": "Edit Account",
+        "title": MyLocalization.of(context).menuEditAccount,
         "icon": Image.asset("assets/user_pic.png"),
         "onTap": (BuildContext context, User currentUser) async {
           final updatedUser = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(currentUser)));
           if (updatedUser != null) {
             setState(() {
               user = updatedUser;
-              print(updatedUser);
-              print(user.name);
             });
           }
         }
       },
       {
         "type": "menu",
-        "title": "Transaction Histories",
+        "title": MyLocalization.of(context).menuTransactionHistories,
         "icon": Image.asset("assets/my_wallet.png"),
         "onTap": (BuildContext context, User user) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
@@ -58,7 +62,7 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       {
         "type": "menu",
-        "title": "Enter Promo Code",
+        "title": MyLocalization.of(context).menuEnterPromoCode,
         "icon": Image.asset("assets/bg_topup.png"),
         "onTap": (BuildContext context, User user) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => PromoCodeScreen(user)));
@@ -66,7 +70,7 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       {
         "type": "menu",
-        "title": "My Voucher",
+        "title": MyLocalization.of(context).menuMyVoucher,
         "icon": Image.asset("assets/ic_tickets.png"),
         "onTap": (BuildContext context, User user) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => VoucherScreen(user)));
@@ -74,7 +78,7 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       {
         "type": "menu",
-        "title": "Change Language",
+        "title": MyLocalization.of(context).menuChangeLanguage,
         "icon": Image.asset("assets/language.png"),
         "onTap": (BuildContext context, User user) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => LanguageScreen()));
@@ -82,27 +86,27 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       {
         "type": "title",
-        "title": "General",
+        "title": MyLocalization.of(context).menuGeneral,
       },
       {
         "type": "menu",
-        "title": "Privacy Policy",
+        "title": MyLocalization.of(context).menuPrivacyPolicy,
         "icon": Image.asset("assets/help_centre.png"),
         "onTap": (BuildContext context, User user) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("Privacy", "assets/static/privacy.html")));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen(MyLocalization.of(context).menuPrivacyPolicy, "assets/static/privacy.html")));
         }
       },
       {
         "type": "menu",
-        "title": "Terms of Service",
+        "title": MyLocalization.of(context).menuTermsOfService,
         "icon": Image.asset("assets/ic_movie.png"),
         "onTap": (BuildContext context, User user) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen("Terms of Service", "assets/static/term.html")));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LegalScreen(MyLocalization.of(context).menuTermsOfService, "assets/static/term.html")));
         }
       },
       {
         "type": "menu",
-        "title": "Rate App",
+        "title": MyLocalization.of(context).menuRateApp,
         "icon": Image.asset("assets/rate.png"),
         "onTap": (BuildContext context, User user) async {
           const url = 'https://angga-ari.com';
@@ -119,11 +123,6 @@ class _AccountScreenState extends State<AccountScreen> {
         }
       },
     ];
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: _buildListMenu(context),
     );
@@ -190,18 +189,18 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Widget _buildSignOut(context) {
     AlertDialog confirmSignOut = AlertDialog(
-      title: Text("Sign Out"),
+      title: Text(MyLocalization.of(context).signOut),
       content: Container(
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
         height: 35,
         child: Stack(
           children: [
-            Text("Are you sure want to sign out?"),
+            Text(MyLocalization.of(context).signOutConfirmMessage),
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Your personal preferences will be kept.",
+                MyLocalization.of(context).signOutSubtitleMessage,
                 style: greyTextFont.copyWith(fontSize: 12)
               ),
             )
@@ -210,7 +209,7 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
       actions: [
         FlatButton(
-          child: Text("SIGN OUT", style: TextStyle(color: Colors.red[500])),
+          child: Text(MyLocalization.of(context).signOut.toUpperCase(), style: TextStyle(color: Colors.red[500])),
           onPressed: () {
             AuthServices.signOut();
             Navigator.pushAndRemoveUntil(
@@ -221,7 +220,7 @@ class _AccountScreenState extends State<AccountScreen> {
           },
         ),
         FlatButton(
-          child: Text("CANCEL"),
+          child: Text(MyLocalization.of(context).cancel.toUpperCase()),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -238,7 +237,7 @@ class _AccountScreenState extends State<AccountScreen> {
           borderSide: BorderSide(color: Colors.red[500], width: 1, style: BorderStyle.solid),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           child: Text(
-            "Sign Out",
+            MyLocalization.of(context).signOut,
             style: whiteTextFont.copyWith(fontSize: 16, color: Colors.red[500]),
           ),
           onPressed: () {

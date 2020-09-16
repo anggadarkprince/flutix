@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/models/transaction.dart';
@@ -83,7 +84,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           ),
           Center(
             child: Text(
-              "Checkout",
+              MyLocalization.of(context).checkout,
               style: darkTextFont.copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.w600
@@ -160,7 +161,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text("Order ID", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).orderId, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 ticket.bookingCode,
                 style: whiteNumberFont.copyWith(
@@ -179,7 +180,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Cinema", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).cinema, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 ticket.theater.name,
                 style: whiteNumberFont.copyWith(
@@ -198,7 +199,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Date", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).date, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 DateFormat('EEE, dd MMM yyyy').format(ticket.time).toUpperCase(),
                 style: whiteNumberFont.copyWith(
@@ -217,7 +218,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Time", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).time, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 DateFormat('H:mm').format(ticket.time).toUpperCase(),
                 style: whiteNumberFont.copyWith(
@@ -236,7 +237,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Seat Numbers", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).seatNumbers, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 ticket.seatsInString,
                 style: whiteNumberFont.copyWith(
@@ -254,7 +255,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Price", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).price, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(ticketPrice) + " x $totalTicket",
                 style: whiteNumberFont.copyWith(
@@ -272,7 +273,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Fee", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).fee, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 "IDR 1.500 x $totalTicket",
                 style: whiteNumberFont.copyWith(
@@ -290,7 +291,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Total", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).total, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               Text(
                 NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(total),
                 style: whiteNumberFont.copyWith(
@@ -312,7 +313,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text("Your Wallet", style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+              Text(MyLocalization.of(context).yourWallet, style: greyTextFont.copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
               (user != null) 
                 ? Text(NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(user.balance),
                     style: whiteNumberFont.copyWith(
@@ -346,7 +347,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             color: user.balance >= total ? mainColor : Colors.red,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             child: Text(
-              user.balance >= total ? "Checkout Now" : "Top Up My Wallet",
+              user.balance >= total ? MyLocalization.of(context).checkoutNow : MyLocalization.of(context).topUpMyWallet,
               style: whiteTextFont.copyWith(fontSize: 16),
             ),
             onPressed: () {

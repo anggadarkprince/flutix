@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/ui/pages/login.dart';
 import 'package:flutix/ui/pages/register.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               SizedBox(height: 50),
               Text(
-                'New Experience',
+                MyLocalization.of(context).newExperience,
                 textAlign: TextAlign.center,
                 style: blackTextFont.copyWith(
                   fontSize: 26,
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               SizedBox(height: 10),
               Text(
-                'Watch a new movie much\neasier than any before',
+                MyLocalization.of(context).watchNewMovie,
                 textAlign: TextAlign.center,
                 style: greyTextFont.copyWith(
                   fontSize: 16,
@@ -54,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    "Get Started",
+                    MyLocalization.of(context).getStarted,
                     style: whiteTextFont.copyWith(fontSize: 16),
                   ),
                   color: mainColor,
@@ -68,11 +69,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Already have an account? ",
+                    MyLocalization.of(context).alreadyHaveAnAccount,
                     style: greyTextFont.copyWith(fontWeight: FontWeight.w400)
                   ),
                   GestureDetector(
-                    child: Text("Sign In", style: purpleTextFont.copyWith(fontWeight: FontWeight.w600)),
+                    child: Text(MyLocalization.of(context).signIn, style: purpleTextFont.copyWith(fontWeight: FontWeight.w600)),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },

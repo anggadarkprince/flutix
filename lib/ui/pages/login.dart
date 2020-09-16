@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/pages/register.dart';
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Image.asset("assets/logo.png"),
         ),
         SizedBox(height: 50),
-        Text("Welcome Back,\nExplorer!",
+        Text(MyLocalization.of(context).welcomeBackExplorer,
           style: blackTextFont.copyWith(
             fontSize: 26, fontWeight: FontWeight.w600
           )
@@ -83,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Email Address",
-            hintText: "Email Address"
+            labelText: MyLocalization.of(context).emailAddress,
+            hintText: MyLocalization.of(context).emailAddress
           ),
         ),
         SizedBox(height: 15),
@@ -100,22 +101,22 @@ class _LoginScreenState extends State<LoginScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: "Password",
-            hintText: "Password"
+            labelText: MyLocalization.of(context).password,
+            hintText: MyLocalization.of(context).password
           ),
         ),
         SizedBox(height: 15),
         Row(
           children: <Widget>[
             Text(
-              "Forgot Password? ",
+              MyLocalization.of(context).forgotPassword,
               style: greyTextFont.copyWith(
                 fontSize: 12, fontWeight: FontWeight.w400
               ),
             ),
             GestureDetector(
               child: Text(
-                "Reset Here",
+                MyLocalization.of(context).resetHere,
                 style: purpleTextFont.copyWith(
                   fontSize: 12, fontWeight: FontWeight.w600
                 ),
@@ -196,14 +197,15 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Start fresh now? ",
+          MyLocalization.of(context).startFreshNow,
           style: greyTextFont.copyWith(
             fontWeight: FontWeight.w400,
             fontSize: 14
           )
         ),
         GestureDetector(
-          child: Text('Sign Up',
+          child: Text(
+            MyLocalization.of(context).signUp,
             style: purpleTextFont.copyWith(
               fontWeight: FontWeight.w600,
               fontSize: 14

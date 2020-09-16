@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/services/ticket_service.dart';
 import 'package:flutix/shared/prefs.dart';
@@ -89,7 +90,7 @@ class _TicketScreenState extends State<TicketScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              "Active",
+                              MyLocalization.of(context).active,
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -125,7 +126,7 @@ class _TicketScreenState extends State<TicketScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              "Histories",
+                              MyLocalization.of(context).history,
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -186,7 +187,7 @@ class TicketViewer extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-              'No ticket available', 
+              MyLocalization.of(context).noTicketMessage, 
               style: greyTextFont.copyWith(fontSize: 16)
             )
           ]

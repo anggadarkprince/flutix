@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/services/user_service.dart';
@@ -50,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
-        title: Text('Edit Profile'),
+        title: Text(MyLocalization.of(context).menuEditAccount),
         backgroundColor: mainColor,
         centerTitle: true,
         leading: new IconButton(
@@ -124,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: whiteNumberFont.copyWith(color: accentColor3),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  labelText: "User ID",
+                  labelText: MyLocalization.of(context).userId,
                 ),
               ),
             ),
@@ -135,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: greyTextFont,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  labelText: "Email Address",
+                  labelText: MyLocalization.of(context).emailAddress,
                 ),
               ),
             ),
@@ -150,8 +151,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: blackTextFont,
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                labelText: "Full Name",
-                hintText: "Full Name"
+                labelText: MyLocalization.of(context).fullName,
+                hintText: MyLocalization.of(context).fullName
               ),
             ),
             SizedBox(height: 30),
@@ -162,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 child: Text(
-                  "Change Password",
+                  MyLocalization.of(context).changePassword,
                   style: whiteTextFont.copyWith(
                     fontSize: 16,
                     color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white
@@ -179,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         duration: Duration(milliseconds: 2000),
                         flushbarPosition: FlushbarPosition.BOTTOM,
                         backgroundColor: Color(0xFFFF5C83),
-                        message: "The link to change your password has been sent to your email.",
+                        message: MyLocalization.of(context).resetLinkMessage,
                       )..show(context);
                     }
               ),
@@ -200,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     elevation: 4,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "Update My Profile",
+                      MyLocalization.of(context).updateMyProfile,
                       style: whiteTextFont.copyWith(
                         fontSize: 16,
                         color: Colors.white
@@ -225,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             duration: Duration(milliseconds: 2000),
                             flushbarPosition: FlushbarPosition.BOTTOM,
                             backgroundColor: Colors.green,
-                            message: "Profile succesfully updated",
+                            message: MyLocalization.of(context).updateProfileMessage,
                           )..show(context);
 
                           setState(() {

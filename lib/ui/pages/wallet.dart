@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/transaction.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/transaction_service.dart';
@@ -75,7 +76,7 @@ class WalletScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 color: mainColor,
                 child: Text(
-                  "Top Up My Wallet",
+                  MyLocalization.of(context).topUpMyWallet,
                   style: whiteTextFont.copyWith(fontSize: 16),
                 ),
                 onPressed: () {
@@ -112,7 +113,7 @@ class WalletScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "My Wallet",
+                  MyLocalization.of(context).myWallet,
                   style: darkTextFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w600
@@ -205,7 +206,7 @@ class WalletScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Card Holder", style: whiteTextFont.copyWith(fontSize: 10, fontWeight: FontWeight.w300)),
+                            Text(MyLocalization.of(context).cardHolder, style: whiteTextFont.copyWith(fontSize: 10, fontWeight: FontWeight.w300)),
                             SizedBox(height: 2),
                             Row(
                               children: <Widget>[
@@ -220,7 +221,7 @@ class WalletScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Card ID", style: whiteTextFont.copyWith(fontSize: 10, fontWeight: FontWeight.w300)),
+                            Text(MyLocalization.of(context).cardId, style: whiteTextFont.copyWith(fontSize: 10, fontWeight: FontWeight.w300)),
                             SizedBox(height: 2),
                             Row(
                               children: <Widget>[
@@ -241,7 +242,7 @@ class WalletScreen extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.topLeft,
-          child: Text("Recent Transaction", style: darkTextFont.copyWith(fontWeight: FontWeight.w600))
+          child: Text(MyLocalization.of(context).recentTransaction, style: darkTextFont.copyWith(fontWeight: FontWeight.w600))
         ),
         SizedBox(height: 15),
         FutureBuilder(

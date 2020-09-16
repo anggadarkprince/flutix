@@ -1,4 +1,5 @@
 import 'package:flutix/extensions/extensions.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/transaction.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/services/user_service.dart';
@@ -58,14 +59,14 @@ class _TopUpScreenState extends State<TopUpScreen> {
                   decoration: InputDecoration(
                     labelStyle: greyTextFont,
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                    labelText: "Amount",
+                    labelText: MyLocalization.of(context).amount,
                   ),
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
                     margin: EdgeInsets.only(top: 20, bottom: 14),
-                    child: Text("Choose by Template", style: darkTextFont),
+                    child: Text(MyLocalization.of(context).chooseByTemplate, style: darkTextFont),
                   ),
                 ),
                 Wrap(
@@ -96,7 +97,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                           elevation: 0,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           child: Text(
-                            "Top Up My Wallet",
+                            MyLocalization.of(context).topUpMyWallet,
                             style: whiteTextFont.copyWith(
                               fontSize: 16,
                               color: (selectedAmount > 0) ? Colors.white : Color(0xFFBEBEBE)
@@ -163,7 +164,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Top Up",
+                  MyLocalization.of(context).topUp,
                   style: darkTextFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w600

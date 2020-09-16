@@ -1,3 +1,4 @@
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/models/voucher.dart';
 import 'package:flutix/services/voucher_service.dart';
@@ -23,7 +24,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
-        title: Text('My Vouchers'),
+        title: Text(MyLocalization.of(context).menuMyVoucher),
         backgroundColor: mainColor,
         centerTitle: true,
         leading: new IconButton(

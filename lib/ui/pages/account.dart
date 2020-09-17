@@ -193,16 +193,14 @@ class _AccountScreenState extends State<AccountScreen> {
       content: Container(
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
-        height: 35,
-        child: Stack(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(MyLocalization.of(context).signOutConfirmMessage),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                MyLocalization.of(context).signOutSubtitleMessage,
-                style: greyTextFont.copyWith(fontSize: 12)
-              ),
+            Text(
+              MyLocalization.of(context).signOutSubtitleMessage,
+              style: greyTextFont.copyWith(fontSize: 12)
             )
           ]
         )

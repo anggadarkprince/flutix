@@ -69,7 +69,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
             );
           } else {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+              margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 0),
               child: ShimmerList(ShimmerListTemplate.Ticket)
             );
           }

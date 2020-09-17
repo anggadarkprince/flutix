@@ -19,6 +19,7 @@ class TransactionCard extends StatelessWidget {
           width: 70,
           margin: EdgeInsets.only(right: 15),
           decoration: BoxDecoration(
+            color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
               image: (transaction.picture != null)

@@ -21,58 +21,62 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Set<String> favoriteIsDeleting = new Set();
 
   @override
+  void initState() {
+    super.initState();
+    refreshData();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: FutureBuilder(
-          future: FavoriteService.getFavorites(auth.FirebaseAuth.instance.currentUser.uid),
-          builder: (_, snapshot) {
-            if (snapshot.hasData) {
-              favorites = snapshot.data;
-              if (favorites.length == 0) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 85,
-                        width: 85,
-                        child: Image(image: AssetImage('assets/ic_movie_grey.png'))
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        MyLocalization.of(context).noFavoriteMessage, 
-                        style: greyTextFont.copyWith(fontSize: 16)
-                      )
-                    ]
-                  ),
-                );
-              }
-
-              return _buildFavoriteList(favorites, context);
-            } else if (snapshot.hasError) {
-              return Container(
-                padding: EdgeInsets.all(defaultMargin),
-                child: Center(child: Text("${snapshot.error}")),
-              );
-            } else {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
-                child: ShimmerList(ShimmerListTemplate.Movie)
-              );
-            }
-          }
-        )
-      ),
+      body: RefreshIndicator(
+        onRefresh: refreshData,
+        child: _buildFavoriteList(favorites, context)
+      )
     );
   }
 
+  Future refreshData() {
+    return FavoriteService.getFavorites(auth.FirebaseAuth.instance.currentUser.uid)
+      .then((value) {
+        setState(() {
+          favorites = value;
+        });
+      });
+  }
+
   Widget _buildFavoriteList(List<Favorite> favorites, context) {
+    if (favorites == null) {
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+        child: ShimmerList(ShimmerListTemplate.Movie)
+      );
+    }
+    else if (favorites.length == 0) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 85,
+              width: 85,
+              child: Image(image: AssetImage('assets/ic_movie_grey.png'))
+            ),
+            SizedBox(height: 5),
+            Text(
+              MyLocalization.of(context).noFavoriteMessage, 
+              style: greyTextFont.copyWith(fontSize: 16)
+            )
+          ]
+        ),
+      );
+    }
+
     return Container(
       child: ListView.builder(
         itemCount: favorites.length,
-        physics: BouncingScrollPhysics(),
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         itemBuilder: (_, index) => Container(
           margin: EdgeInsets.only(
             top: index == 0 ? 20 : 0,

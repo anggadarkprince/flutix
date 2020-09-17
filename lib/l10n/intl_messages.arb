@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-17T10:06:55.741567",
+  "@@last_modified": "2020-09-17T14:02:41.918531",
   "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "Hello World",
@@ -193,6 +193,11 @@
   },
   "selectGenreMessage": "Please select 4 genres",
   "@selectGenreMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "genre": "Genre",
+  "@genre": {
     "type": "text",
     "placeholders": {}
   },

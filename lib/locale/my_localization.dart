@@ -69,6 +69,7 @@ class MyLocalization {
   String get yourFavoriteGenre => Intl.message('Your Favorite Genre',  name: 'yourFavoriteGenre');
   String get languageYourPrefer => Intl.message('Language You Prefer',  name: 'languageYourPrefer');
   String get selectGenreMessage => Intl.message('Please select 4 genres',  name: 'selectGenreMessage');
+  String get genre => Intl.message('Genre',  name: 'genre');
 
   String get emailAddress => Intl.message('Email Address',  name: 'emailAddress');
   String get registeredEmail => Intl.message('Registered Email',  name: 'registeredEmail');

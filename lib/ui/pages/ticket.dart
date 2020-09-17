@@ -44,6 +44,8 @@ class _TicketScreenState extends State<TicketScreen> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: refreshData,
+        color: Colors.white,
+        backgroundColor: mainColor,
         child: Stack(
           children: <Widget>[
             TicketViewer(tickets, isExpiredTickets),

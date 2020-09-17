@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPassword" : MessageLookupByLibrary.simpleMessage("Lupa Sandi? "),
     "fullName" : MessageLookupByLibrary.simpleMessage("Nama Lengkap"),
     "furtherInformation" : MessageLookupByLibrary.simpleMessage("Informasi Lanjut"),
+    "genre" : MessageLookupByLibrary.simpleMessage("Aliran Film"),
     "getStarted" : MessageLookupByLibrary.simpleMessage("Mulai"),
     "getVoucher" : MessageLookupByLibrary.simpleMessage("Dapatkan Voucher"),
     "happyWatching" : MessageLookupByLibrary.simpleMessage("Selamat Menonton!"),

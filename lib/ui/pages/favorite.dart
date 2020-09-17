@@ -31,6 +31,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: refreshData,
+        color: Colors.white,
+        backgroundColor: mainColor,
         child: _buildFavoriteList(favorites, context)
       )
     );

@@ -5,6 +5,7 @@ import 'package:flutix/models/user.dart';
 import 'package:flutix/services/movie_service.dart';
 import 'package:flutix/services/promo_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/genre.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/wallet.dart';
@@ -195,13 +196,20 @@ class _MovieScreenState extends State<MovieScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
-                    widget.user.selectedGenres.length,
-                    (index) => BrowseButton(widget.user.selectedGenres[index], onTap: (genre) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text(genre),
-                        duration: Duration(milliseconds: 1000)
-                      ));
-                    })
+                    widget.user.selectedGenres.length + 1,
+                    (index) {
+                      if (index == widget.user.selectedGenres.length) {
+                        return BrowseButton('More', onTap: (genre) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => GenreScreen()));
+                        });
+                      }
+                      return BrowseButton(widget.user.selectedGenres[index], onTap: (genre) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text(genre),
+                          duration: Duration(milliseconds: 1000)
+                        ));
+                      });
+                    }
                   ),
                 ),
               )

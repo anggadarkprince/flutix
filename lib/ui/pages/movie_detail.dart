@@ -1,4 +1,5 @@
 import 'package:flushbar/flushbar.dart';
+import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
 import 'package:flutix/models/credit.dart';
 import 'package:flutix/models/movie.dart';
@@ -209,7 +210,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           alignment: Alignment.topLeft,
           child: Container(
             margin: EdgeInsets.only(left: defaultMargin, bottom: 15),
-            child: Text("Cast & Crew", style: darkTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w600))
+            child: Text(MyLocalization.of(context).castAndCrew, style: darkTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w600))
           ),
         ),
         FutureBuilder(
@@ -286,7 +287,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Storyline",
+              MyLocalization.of(context).storyline,
               style: darkTextFont.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
@@ -315,7 +316,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: mainColor,
-                child: Text("Continue to Book", style: whiteTextFont.copyWith(fontSize: 16)),
+                child: Text(MyLocalization.of(context).continueToBook, style: whiteTextFont.copyWith(fontSize: 16)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(movieDetail)));
                 }
@@ -356,7 +357,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         duration: Duration(milliseconds: 1000),
                         flushbarPosition: FlushbarPosition.TOP,
                         backgroundColor: Color(0xFFFF5C83),
-                        message: movie.title + ' removed from your favorite list',
+                        message: "${movie.title} ${MyLocalization.of(context).removeFavoriteMessage}",
                       )..show(context);
                     } else {
                       result = await FavoriteService.saveMovie(auth.FirebaseAuth.instance.currentUser.uid, movieDetail);
@@ -364,7 +365,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         duration: Duration(milliseconds: 1000),
                         flushbarPosition: FlushbarPosition.TOP,
                         backgroundColor: Colors.green[400],
-                        message: movie.title + ' added to your favorite list',
+                        message: "${movie.title} ${MyLocalization.of(context).addedFavoriteMessage}",
                       )..show(context);
                     }
                     

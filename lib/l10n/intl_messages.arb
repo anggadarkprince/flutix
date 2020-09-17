@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-16T11:31:40.903657",
+  "@@last_modified": "2020-09-17T10:06:55.741567",
   "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "Hello World",
@@ -276,6 +276,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "castAndCrew": "Cast & Crew",
+  "@castAndCrew": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "storyline": "Storyline",
+  "@storyline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueToBook": "Continue to Book",
+  "@continueToBook": {
+    "type": "text",
+    "placeholders": {}
+  },
   "backToHome": "Back to Home",
   "@backToHome": {
     "type": "text",
@@ -473,6 +488,11 @@
   },
   "remove": "Remove",
   "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addedFavoriteMessage": "added to your favorite list",
+  "@addedFavoriteMessage": {
     "type": "text",
     "placeholders": {}
   },

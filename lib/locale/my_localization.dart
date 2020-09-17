@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 // Extract dart to arb:
 //  flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/locale/my_localization.dart
 // Convert arb to dart:
-//  flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/intl_messages.arb lib/l10n/intl_en.arb lib/l10n/intl_id.arb lib/locale/my_localization.dart
+//  flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/intl_en.arb lib/l10n/intl_id.arb lib/locale/my_localization.dart
 class MyLocalization {
   static Future<MyLocalization> load(Locale locale) {
     final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
@@ -88,6 +88,10 @@ class MyLocalization {
   String get myWallet => Intl.message('My Wallet',  name: 'myWallet');
   String get myTickets => Intl.message('My Tickets',  name: 'myTickets');
   String get discoverNewMovie => Intl.message('Discover new movie? ',  name: 'discoverNewMovie');
+
+  String get castAndCrew => Intl.message('Cast & Crew',  name: 'castAndCrew');
+  String get storyline => Intl.message('Storyline',  name: 'storyline');
+  String get continueToBook => Intl.message('Continue to Book',  name: 'continueToBook');
   String get backToHome => Intl.message('Back to Home',  name: 'backToHome');
   String get seatNumbers => Intl.message('Seat Numbers',  name: 'seatNumbers');
   String get checkout => Intl.message('Checkout',  name: 'checkout');
@@ -130,6 +134,7 @@ class MyLocalization {
   String get signOutSubtitleMessage => Intl.message('Your personal preferences will be kept.',  name: 'signOutSubtitleMessage');
 
   String get remove => Intl.message('Remove',  name: 'remove');
+  String get addedFavoriteMessage => Intl.message('added to your favorite list',  name: 'addedFavoriteMessage');
   String get removeFavoriteMessage => Intl.message('removed from your favorite list',  name: 'removeFavoriteMessage');
   String get noFavoriteMessage => Intl.message('No favorite available',  name: 'noFavoriteMessage');
 

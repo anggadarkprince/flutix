@@ -13,6 +13,7 @@ class TicketService {
       'movieID': ticket.movieDetail.id ?? "",
       'userID': id ?? "",
       'theaterName': ticket.theater.name ?? 0,
+      'location': ticket.theater.location ?? '',
       'time': ticket.time.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
       'bookingCode': ticket.bookingCode,
       'seats': ticket.seatsInString,
@@ -30,7 +31,7 @@ class TicketService {
       MovieDetail movieDetail = await MovieServices.getDetails(null, movieID: document.data()['movieID']);
       tickets.add(Ticket(
           movieDetail,
-          Theater(document.data()['theaterName']),
+          Theater(document.data()['theaterName'], document.data().containsKey('location') ? document.data()['location'] : ''),
           DateTime.fromMillisecondsSinceEpoch(document.data()['time']),
           document.data()['bookingCode'],
           document.data()['seats'].toString().split(','),

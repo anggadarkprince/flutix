@@ -277,6 +277,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "castAndCrew": "Pemain & Tim",
+  "@castAndCrew": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "storyline": "Jalan Cerita",
+  "@storyline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueToBook": "Lanjut Pesan",
+  "@continueToBook": {
+    "type": "text",
+    "placeholders": {}
+  },
   "backToHome": "Kembali Ke Depan",
   "@backToHome": {
     "type": "text",
@@ -474,6 +489,11 @@
   },
   "remove": "Hapus",
   "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addedFavoriteMessage": "ditambahkan ke daftar kesukaan",
+  "@addedFavoriteMessage": {
     "type": "text",
     "placeholders": {}
   },

@@ -2,16 +2,10 @@ import 'package:equatable/equatable.dart';
 
 class Theater extends Equatable {
   final String name;
+  final String location;
 
-  Theater(this.name);
+  Theater(this.name, this.location);
 
   @override
-  List<Object> get props => [name];
+  List<Object> get props => [name, location];
 }
-
-List<Theater> dummyTheaters = [
-  Theater("CGV BG Junction"),
-  Theater("CGV Paris Van Java"),
-  Theater("XXI Cihampelas Walk"),
-  Theater("XXI Bandung Trade Center")
-];

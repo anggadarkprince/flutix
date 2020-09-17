@@ -2,6 +2,7 @@ import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/theater.dart';
 import 'package:flutix/models/ticket.dart';
+import 'package:flutix/services/theater_service.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/select_seat.dart';
@@ -23,6 +24,7 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
+  List<Theater> theaters;
   List<DateTime> dates;
   DateTime selectedDate;
   int selectedTime;
@@ -36,6 +38,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
     dates = List.generate(7, (index) => DateTime.now().add(Duration(days: index)));
     selectedDate = dates[0];
+    
+    TheaterService.getTheaters().then((value) {
+      setState(() {
+        theaters = value;
+      });
+    });
   }
 
   @override
@@ -131,15 +139,27 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     );
   }
 
-  Column _buildTimeTable() {
+  Widget _buildTimeTable() {
+    if (theaters == null) {
+      return Center(
+        child: SpinKitFadingCircle(
+          color: accentColor2,
+          size: 60,
+        )
+      );
+    }
+
     List<int> schedule = List.generate(7, (index) => 10 + index * 2);
     List<Widget> widgets = [];
 
-    for (var theater in dummyTheaters) {
+    for (var theater in theaters) {
       widgets.add(
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 5),
-          child: Text(MyLocalization.of(context).theater, style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w300))
+          child: Text(
+            MyLocalization.of(context).theater + ' - ' + theater.location, 
+            style: greyTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w300)
+          )
         )
       );
       widgets.add(
@@ -190,6 +210,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   Widget _buildNextButton() {
+    if (theaters == null) {
+      return Container();
+    }
+
     return Container(
       margin: EdgeInsets.only(top: 10, bottom: 40),
       child: (isNext)

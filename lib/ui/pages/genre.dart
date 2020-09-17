@@ -2,6 +2,7 @@ import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/genre.dart';
 import 'package:flutix/services/genre_service.dart';
 import 'package:flutix/shared/theme.dart';
+import 'package:flutix/ui/pages/discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -68,7 +69,7 @@ class _GenreScreenState extends State<GenreScreen> {
             ),
             SizedBox(height: 5),
             Text(
-              MyLocalization.of(context).noFavoriteMessage, 
+              MyLocalization.of(context).yourFavoriteGenre, 
               style: greyTextFont.copyWith(fontSize: 16)
             )
           ]
@@ -97,7 +98,7 @@ class _GenreScreenState extends State<GenreScreen> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoveryScreen(genres[index].genre, genre: genres[index].id)));
                     },
                   )
                 )

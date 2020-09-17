@@ -33,7 +33,7 @@ class BrowseButton extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => onTap(genre),
+              onTap: () => onTap(getIdFromGenre(genre), genre),
             )
           )
         )
@@ -66,6 +66,31 @@ class BrowseButton extends StatelessWidget {
         break;
       default:
         return "";
+    }
+  }
+
+  int getIdFromGenre(String genre) {
+    switch (genre) {
+      case "Horror":
+        return 27;
+        break;
+      case "Music":
+        return 10402;
+        break;
+      case "Action":
+        return 28;
+        break;
+      case "Drama":
+        return 18;
+        break;
+      case "War":
+        return 10752;
+        break;
+      case "Crime":
+        return 80;
+        break;
+      default:
+        return 0;
     }
   }
 }

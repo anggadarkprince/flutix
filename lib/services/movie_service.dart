@@ -23,8 +23,6 @@ class MovieServices {
       url += '&with_genres=$genre';
     }
 
-    print(url);
-
     client ??= http.Client();
 
     var response = await client.get(url);

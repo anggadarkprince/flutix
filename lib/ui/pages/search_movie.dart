@@ -11,9 +11,9 @@ class SearchMovie extends SearchDelegate {
 
   SearchMovie({genre}) {
     this.genre = genre;
-    SharedPreferencesBuilder.getData(recentKey, [])
+    SharedPreferencesBuilder.getData(recentKey, suggestions)
       .then((value) {
-        suggestions = value;
+        suggestions = List.from(value);
       });
   }
 

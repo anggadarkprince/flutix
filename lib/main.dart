@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart' as _auth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/locale/my_localization_delegate.dart';
@@ -37,10 +38,40 @@ class App extends StatelessWidget {
               const Locale('en', 'US'),
               const Locale('id', 'ID'),
             ],
-            home: MyApp(),
+            home: LandingPage(),
           );
         },
       ),
+    );
+  }
+}
+
+class LandingPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<_auth.User>(
+      stream: _auth.FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          _auth.User user = snapshot.data;
+          if (user == null) {
+            return SplashScreen();
+          }
+          return HomeScreen();
+        } else {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: Container(
+                height: 140,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage("assets/logo.png"))
+                ),
+              ),
+            )
+          );
+        }
+      },
     );
   }
 }

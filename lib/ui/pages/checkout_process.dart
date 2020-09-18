@@ -64,7 +64,7 @@ class CheckoutProcessScreen extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => WalletScreen()),
-                          (Route<dynamic> route) => false,
+                          (Route<dynamic> route) => route.isFirst,
                         );
                       } else {
                         Navigator.pushAndRemoveUntil(

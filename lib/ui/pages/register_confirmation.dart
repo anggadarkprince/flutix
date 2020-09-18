@@ -194,8 +194,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                 )..show(context);
               } else {
                 Provider.of<ProviderUser>(context, listen: false).setUser(result.user);
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)), (Route<dynamic> route) => false);
               }
             }
         )

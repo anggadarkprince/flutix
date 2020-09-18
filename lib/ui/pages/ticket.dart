@@ -233,18 +233,12 @@ class TicketViewer extends StatelessWidget {
                             style: darkTextFont.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                sortedTickets[index].theater.name,
-                                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                DateFormat('EEE, dd MMM yyyy').format(sortedTickets[index].time),
-                                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                              ),                              
-                            ],
-                          )
+                          Text(
+                            sortedTickets[index].theater.name + '\n' + DateFormat('EEE, dd MMM yyyy').format(sortedTickets[index].time),
+                            style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ],
                       )
                     )

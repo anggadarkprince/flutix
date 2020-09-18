@@ -7,12 +7,23 @@ import 'package:flutix/shared/prefs.dart';
 import 'package:http/http.dart' as http;
 
 class MovieServices {
-  static Future<List<Movie>> getMovies(int page, {int genre, http.Client client}) async {
-    String url = "https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page";
+  static Future<List<Movie>> getMovies(int page, {int genre, String query, http.Client client}) async {
+    String url = "https://api.themoviedb.org/3/discover/movie";
+    if (query != null) {
+      url = "https://api.themoviedb.org/3/search/movie";
+    }
 
+    url += "?api_key=$apiKey&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page";
+
+    if (query != null) {
+      url += '&query=${Uri.encodeQueryComponent(query.trim())}';
+    }
+    
     if (genre != null) {
       url += '&with_genres=$genre';
     }
+
+    print(url);
 
     client ??= http.Client();
 

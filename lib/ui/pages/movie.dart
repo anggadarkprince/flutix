@@ -9,6 +9,7 @@ import 'package:flutix/ui/pages/discovery.dart';
 import 'package:flutix/ui/pages/genre.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/pages/profile.dart';
+import 'package:flutix/ui/pages/search_movie.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
@@ -62,6 +63,7 @@ class _MovieScreenState extends State<MovieScreen> {
     return ListView(
       children: <Widget>[
         _buildProfileInfo(),
+        _buildSearchBar(),
         _buildNowPlaying(),
         _buildBrowseMovie(),
         _buildComingSoon(),
@@ -149,6 +151,45 @@ class _MovieScreenState extends State<MovieScreen> {
             ],
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildSearchBar() {
+    return GestureDetector(
+      onTap: () {
+        showSearch(context: context, delegate: SearchMovie());
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 20),
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(left: 20),
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[100],
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.search, 
+                      color: Colors.blueGrey[200],
+                      size: 20,
+                    ),
+                    SizedBox(width: 5),
+                    Text(MyLocalization.of(context).exploreThousandsMovies + '...', style: greyTextFont)
+                  ],
+                ),
+              )
+            ),     
+          ],
+        ),
       ),
     );
   }

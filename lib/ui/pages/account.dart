@@ -1,5 +1,6 @@
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
+import 'package:flutix/provider_user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/language.dart';
@@ -11,6 +12,7 @@ import 'package:flutix/ui/pages/voucher.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -46,6 +48,7 @@ class _AccountScreenState extends State<AccountScreen> {
         "onTap": (BuildContext context, User currentUser) async {
           final updatedUser = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(currentUser)));
           if (updatedUser != null) {
+            Provider.of<ProviderUser>(context, listen: false).setUser(updatedUser);
             setState(() {
               user = updatedUser;
             });

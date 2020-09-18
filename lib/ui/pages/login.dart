@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
+import 'package:flutix/provider_user.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/pages/register.dart';
 import 'package:flutix/ui/pages/reset_password.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutix/services/auth_services.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -183,6 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
         message: result.message,
       )..show(context);
     } else {
+      Provider.of<ProviderUser>(context, listen: false).setUser(result.user);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

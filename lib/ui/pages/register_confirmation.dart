@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/registration.dart';
+import 'package:flutix/provider_user.dart';
 import 'package:flutix/shared/helpers.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/home.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutix/services/auth_services.dart';
+import 'package:provider/provider.dart';
 
 class RegisterConfirmationScreen extends StatefulWidget {
   
@@ -191,6 +193,7 @@ class _RegisterConfirmationState extends State<RegisterConfirmationScreen> {
                   message: result.message,
                 )..show(context);
               } else {
+                Provider.of<ProviderUser>(context, listen: false).setUser(result.user);
                 Navigator.of(context).popUntil((route) => route.isFirst);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: result.user)));
               }

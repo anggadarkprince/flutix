@@ -249,7 +249,7 @@ class WalletScreen extends StatelessWidget {
           future: TransactionService.getTransaction(user.id),
           builder: (_, snapshot) {
             if (snapshot.hasData) {
-              return _buildTransactionList(snapshot.data, MediaQuery.of(context).size.width - 2 * defaultMargin);
+              return _buildTransactionList(snapshot.data, context);
             } else {
               return ShimmerList(ShimmerListTemplate.Ticket, itemCount: 3);
             }
@@ -260,8 +260,31 @@ class WalletScreen extends StatelessWidget {
     );
   }
 
-  Column _buildTransactionList(List<Transaction> transactions, double width) {
+  Widget _buildTransactionList(List<Transaction> transactions, BuildContext context) {
+    double width = MediaQuery.of(context).size.width - 2 * defaultMargin;
     transactions.sort((transaction1, transaction2) => transaction2.time.compareTo(transaction1.time));
+
+    if (transactions.length == 0) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 15),
+            SizedBox(
+              height: 85,
+              width: 85,
+              child: Image(image: AssetImage('assets/ic_tickets_grey.png'))
+            ),
+            SizedBox(height: 5),
+            Text(
+              MyLocalization.of(context).noTicketMessage, 
+              style: greyTextFont.copyWith(fontSize: 16)
+            )
+          ]
+        ),
+      );
+    }
 
     return Column(
       children: transactions.map((transaction) => Padding(

@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart' as _auth;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/locale/my_localization_delegate.dart';
 import 'package:flutix/provider_localization.dart';
+import 'package:flutix/provider_user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/widgets/preference_builder.dart';
@@ -22,35 +24,63 @@ class App extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProviderLocalization()),
+        ChangeNotifierProvider(create: (context) => ProviderUser()),
+        Provider<FirebaseAuth>(create: (_) => FirebaseAuth.instance)
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          _myLocalizationDelegate,
+        ],
+        supportedLocales: [
+          const Locale('en', 'US'),
+          const Locale('id', 'ID'),
+        ],
+        home: LandingPage(),
+      ),
+    );
+    
+    /*
     return ChangeNotifierProvider(
       create: (context) => ProviderLocalization(),
       child: Consumer<ProviderLocalization>(
         builder: (context, localization, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              _myLocalizationDelegate,
-            ],
-            supportedLocales: [
-              const Locale('en', 'US'),
-              const Locale('id', 'ID'),
-            ],
-            home: LandingPage(),
-          );
+          return Provider<FirebaseAuth>(
+            create: (_) => FirebaseAuth.instance,
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                  _myLocalizationDelegate,
+                ],
+                supportedLocales: [
+                  const Locale('en', 'US'),
+                  const Locale('id', 'ID'),
+                ],
+                home: LandingPage(),
+              )
+            );
         },
       ),
     );
+    */
   }
 }
 
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final firebaseAuth = Provider.of<FirebaseAuth>(context);
     return StreamBuilder<_auth.User>(
-      stream: _auth.FirebaseAuth.instance.authStateChanges(),
+      stream: firebaseAuth.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           _auth.User user = snapshot.data;

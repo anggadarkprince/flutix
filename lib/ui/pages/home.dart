@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
+import 'package:flutix/provider_user.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/account.dart';
@@ -10,6 +11,7 @@ import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -53,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    user = Provider.of<ProviderUser>(context).user ?? user;
+    
     return Scaffold(
       body: Stack(
         children: <Widget>[

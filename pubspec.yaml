@@ -46,6 +46,8 @@ dependencies:
   shimmer: ^1.1.1
   shared_preferences: ^0.5.10
   intl_translation: ^0.17.10+1
+  google_maps_flutter: ^0.5.32
+  location: ^3.0.2
 
 dev_dependencies:
   flutter_test:

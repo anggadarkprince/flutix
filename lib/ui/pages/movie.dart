@@ -7,6 +7,7 @@ import 'package:flutix/services/promo_service.dart';
 import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/discovery.dart';
 import 'package:flutix/ui/pages/genre.dart';
+import 'package:flutix/ui/pages/map.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/search_movie.dart';
@@ -19,6 +20,7 @@ import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
+import 'package:location/location.dart';
 
 class MovieScreen extends StatefulWidget {  
   final User user;
@@ -156,41 +158,90 @@ class _MovieScreenState extends State<MovieScreen> {
   }
 
   Widget _buildSearchBar() {
-    return GestureDetector(
-      onTap: () {
-        showSearch(context: context, delegate: SearchMovie());
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-        child: Stack(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(left: 20),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey[100],
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search, 
-                      color: Colors.blueGrey[200],
-                      size: 20,
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                showSearch(context: context, delegate: SearchMovie());
+              },
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(left: 20),
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey[100],
+                      borderRadius: BorderRadius.circular(22),
                     ),
-                    SizedBox(width: 5),
-                    Text(MyLocalization.of(context).exploreThousandsMovies + '...', style: greyTextFont)
-                  ],
-                ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.search, 
+                            color: Colors.blueGrey[200],
+                            size: 20,
+                          ),
+                          SizedBox(width: 5),
+                          Text(MyLocalization.of(context).exploreThousandsMovies + '...', style: greyTextFont)
+                        ],
+                      ),
+                    )
+                  ),     
+                ],
               )
-            ),     
-          ],
-        ),
-      ),
+            )
+          ),
+          SizedBox(width: 10),
+          InkWell(
+            onTap: () async {
+              Location location = new Location();
+
+              bool _serviceEnabled;
+              PermissionStatus _permissionGranted;
+              LocationData _locationData;
+
+              _serviceEnabled = await location.serviceEnabled();
+              if (!_serviceEnabled) {
+                _serviceEnabled = await location.requestService();
+                if (!_serviceEnabled) {
+                  return;
+                }
+              }
+
+              _permissionGranted = await location.hasPermission();
+              if (_permissionGranted == PermissionStatus.denied) {
+                _permissionGranted = await location.requestPermission();
+                if (_permissionGranted != PermissionStatus.granted) {
+                  return;
+                }
+              }
+
+              _locationData = await location.getLocation();
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen(currentLocation: _locationData)));
+            },
+            child: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: mainColor,
+                borderRadius: BorderRadius.circular(22),
+              ),
+              child: Icon(
+                Icons.room, 
+                color: Colors.white,
+                size: 25,
+              ),
+            )
+          )
+        ],
+      )
     );
   }
 

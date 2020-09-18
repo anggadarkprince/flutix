@@ -10,7 +10,12 @@ class TheaterService {
     List<Theater> theaters = [];
     for (var document in snapshot.docs) {
       theaters.add(
-        Theater(document.data()['cinema'], document.data()['location'])
+        Theater(
+          document.data()['cinema'], 
+          document.data()['location'],
+          lat: document.data()['lat'] ?? 0,
+          lng: document.data()['lng'] ?? 0,
+        )
       );
     }
 

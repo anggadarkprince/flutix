@@ -24,25 +24,30 @@ class App extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProviderLocalization()),
         ChangeNotifierProvider(create: (context) => ProviderUser()),
         Provider<FirebaseAuth>(create: (_) => FirebaseAuth.instance)
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          _myLocalizationDelegate,
-        ],
-        supportedLocales: [
-          const Locale('en', 'US'),
-          const Locale('id', 'ID'),
-        ],
-        home: LandingPage(),
+      child: Consumer<ProviderLocalization>(
+        builder: (context, localization, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              _myLocalizationDelegate,
+            ],
+            supportedLocales: [
+              const Locale('en', 'US'),
+              const Locale('id', 'ID'),
+            ],
+            home: LandingPage(),
+          );
+        }
       ),
     );
     
@@ -51,27 +56,36 @@ class App extends StatelessWidget {
       create: (context) => ProviderLocalization(),
       child: Consumer<ProviderLocalization>(
         builder: (context, localization, child) {
-          return Provider<FirebaseAuth>(
-            create: (_) => FirebaseAuth.instance,
-              child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  _myLocalizationDelegate,
-                ],
-                supportedLocales: [
-                  const Locale('en', 'US'),
-                  const Locale('id', 'ID'),
-                ],
-                home: LandingPage(),
-              )
-            );
+          return ChangeNotifierProvider(
+            create: (context) => ProviderUser(),
+            child: Consumer<ProviderUser>(
+              builder: (context, user, child) {
+                return Provider<FirebaseAuth>(
+                  create: (_) => FirebaseAuth.instance,
+                  child: MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    localizationsDelegates: [
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                      _myLocalizationDelegate,
+                    ],
+                    supportedLocales: [
+                      const Locale('en', 'US'),
+                      const Locale('id', 'ID'),
+                    ],
+                    home: LandingPage(),
+                  )
+                );
+              }
+            )
+          );
+          
         },
       ),
     );
     */
+    
   }
 }
 

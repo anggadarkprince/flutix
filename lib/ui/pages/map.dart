@@ -93,9 +93,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void setInitialLocation() async {
     currentLocation = await location.getLocation();
-    print('-------------------');
     setState(() {});
-    print(currentLocation);
   }
 
   void setIcons() async {

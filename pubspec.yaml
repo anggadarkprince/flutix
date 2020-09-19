@@ -48,6 +48,7 @@ dependencies:
   intl_translation: ^0.17.10+1
   google_maps_flutter: ^0.5.32
   location: ^3.0.2
+  flutter_polyline_points: ^0.2.3
 
 dev_dependencies:
   flutter_test:

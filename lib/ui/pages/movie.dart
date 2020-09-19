@@ -204,7 +204,6 @@ class _MovieScreenState extends State<MovieScreen> {
 
               bool _serviceEnabled;
               PermissionStatus _permissionGranted;
-              LocationData _locationData;
 
               _serviceEnabled = await location.serviceEnabled();
               if (!_serviceEnabled) {
@@ -222,9 +221,7 @@ class _MovieScreenState extends State<MovieScreen> {
                 }
               }
 
-              _locationData = await location.getLocation();
-
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen(currentLocation: _locationData)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen()));
             },
             child: Container(
               width: 44,

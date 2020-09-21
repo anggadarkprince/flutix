@@ -92,6 +92,11 @@ class App extends StatelessWidget {
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Future.wait([SharedPreferencesBuilder.getData('language', 'en'), SharedPreferencesBuilder.getData('countryCode', 'US')]).then((value) {
+      String lang = value[0] ?? 'en';
+      String code = value[1] ?? 'US';
+      MyLocalization.load(Locale(lang, code));
+    });
     final firebaseAuth = Provider.of<FirebaseAuth>(context);
     return StreamBuilder<_auth.User>(
       stream: firebaseAuth.authStateChanges(),

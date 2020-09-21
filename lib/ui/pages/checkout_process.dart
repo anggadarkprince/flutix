@@ -9,14 +9,57 @@ import 'package:flutix/shared/theme.dart';
 import 'package:flutix/ui/pages/home.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
 
-class CheckoutProcessScreen extends StatelessWidget {
+class CheckoutProcessScreen extends StatefulWidget {
   final User user;
   final Ticket ticket;
   final Transaction transaction;
 
   CheckoutProcessScreen(this.user, this.transaction, this.ticket);
+
+  @override
+  _CheckoutProcessScreenState createState() => _CheckoutProcessScreenState();
+}
+
+class _CheckoutProcessScreenState extends State<CheckoutProcessScreen> {
+  User user;
+  Ticket ticket;
+  Transaction transaction;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  void initState() {
+    super.initState();
+    user = widget.user;
+    ticket = widget.ticket;
+    transaction = widget.transaction;
+
+    var initializationSettingsAndroid = AndroidInitializationSettings('mipmap/ic_launcher');
+    var initializationSettingsIOs = IOSInitializationSettings();
+    var initSetttings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOs);
+
+    flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) {
+    if (ticket == null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => WalletScreen()),
+        (Route<dynamic> route) => route.isFirst,
+      );
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 2)),
+        (Route<dynamic> route) => false,
+      );
+    }
+    
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +153,32 @@ class CheckoutProcessScreen extends StatelessWidget {
     await UserService.purchaseTicket(this.user, ticket.totalPrice);
     await TicketService.saveTicket(transaction.userID, ticket);
     await TransactionService.saveTransaction(transaction);
+
+    var android = AndroidNotificationDetails('100', 'ticket ', 'Bought Ticket Message', priority: Priority.High, importance: Importance.Max);
+    var iOS = IOSNotificationDetails();
+    var platform = new NotificationDetails(android, iOS);
+    await flutterLocalNotificationsPlugin.show(
+      100, 
+      'Flutix Ticket', 
+      MyLocalization.of(context).successBoughtTicketMessage + ' ' + ticket.movieDetail.title, platform,
+      payload: MyLocalization.of(context).successBoughtTicketMessage
+    ); 
   }
+  
 
   Future<void> processingTopUp() async {
     await UserService.depositTicket(this.user, transaction.amount);
     await TransactionService.saveTransaction(transaction);
+    String totalTopUp = NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ').format(transaction.amount);
+
+    var android = AndroidNotificationDetails('100', 'ticket ', 'Top Up Message', priority: Priority.High, importance: Importance.Max);
+    var iOS = IOSNotificationDetails();
+    var platform = new NotificationDetails(android, iOS);
+    await flutterLocalNotificationsPlugin.show(
+      100, 
+      'Flutix Top Up', 
+      MyLocalization.of(context).successTopUpMessage + ' ' + totalTopUp, platform,
+      payload: MyLocalization.of(context).successTopUpMessage
+    ); 
   }
 }

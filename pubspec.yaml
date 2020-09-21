@@ -49,6 +49,8 @@ dependencies:
   google_maps_flutter: ^0.5.32
   location: ^3.0.2
   flutter_polyline_points: ^0.2.3
+  firebase_messaging: ^7.0.0
+  flutter_local_notifications: ^1.4.4+4
 
 dev_dependencies:
   flutter_test:

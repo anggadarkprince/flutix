@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/user.dart';
 import 'package:flutix/provider_user.dart';
@@ -30,8 +33,47 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController pageController;
   User user;
 
+  final firebaseMessaging = FirebaseMessaging();
+  bool isSubscribed = false;
+  String token = '';
+
+  static Future<dynamic> onBackgroundMessage(Map<String, dynamic> message) {
+    debugPrint('onBackgroundMessage: $message');
+    if (message.containsKey('data')) {
+      if (Platform.isIOS) {
+      } else if (Platform.isAndroid) {
+        message = message['data'];
+      }
+    }
+    return null;
+  }
+
   @override
   void initState() {
+    firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        debugPrint('onMessage: $message');
+        getDataFcm(message);
+      },
+      onBackgroundMessage: onBackgroundMessage,
+      onResume: (Map<String, dynamic> message) async {
+        debugPrint('onResume: $message');
+        getDataFcm(message);
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        debugPrint('onLaunch: $message');
+        getDataFcm(message);
+      },
+    );
+    firebaseMessaging.requestNotificationPermissions(
+      const IosNotificationSettings(sound: true, badge: true, alert: true, provisional: true),
+    );
+    firebaseMessaging.onIosSettingsRegistered.listen((settings) {
+      debugPrint('Settings registered: $settings');
+    });
+    firebaseMessaging.getToken().then((token) => setState(() {
+      this.token = token;
+    }));
     super.initState();
 
     bottomNavBarIndex = widget.tabIndex;
@@ -54,8 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void getDataFcm(Map<String, dynamic> message) {
+    if (Platform.isIOS) {
+    } else if (Platform.isAndroid) {
+      message = message['data'];
+    }
+    debugPrint('getDataFcm: name: $message');
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint('token: $token');
+    
     user = Provider.of<ProviderUser>(context).user ?? user;
     
     return Scaffold(

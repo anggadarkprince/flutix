@@ -211,6 +211,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: mainColor,
                     onPressed: (isDataEdited)
                       ? () async {
+                          FocusScope.of(context).unfocus();
+
                           setState(() {
                             isUpdating = true;
                           });

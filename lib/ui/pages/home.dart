@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (widget.user == null) {
       auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
       UserService.getUser(_auth.currentUser.uid).then((value) {
-        Provider.of<ProviderUser>(context, listen: false).setUser(user);
+        //Provider.of<ProviderUser>(context, listen: false).setUser(user);
         if (this.mounted) {
           setState(() {
             user = value;

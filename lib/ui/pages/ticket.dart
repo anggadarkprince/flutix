@@ -197,10 +197,10 @@ class TicketViewer extends StatelessWidget {
             top: index == 0 ? 20 : 0,
             bottom: index == sortedTickets.length - 1 ? 200 : 0
           ),
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
           child: Stack(
             children: <Widget>[
               Container(
+                padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
                 child: Row(
                   children: <Widget>[
                     Container(

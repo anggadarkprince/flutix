@@ -165,6 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   onSignIn() async {
+    FocusScope.of(context).unfocus();
+    
     setState(() {
       isSigningIn = true;
     });

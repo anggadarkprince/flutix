@@ -41,9 +41,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Future refreshData() {
     return FavoriteService.getFavorites(auth.FirebaseAuth.instance.currentUser.uid)
       .then((value) {
-        setState(() {
+        if (mounted) {
+          setState(() {
+            favorites = value;
+          });
+        } else {
           favorites = value;
-        });
+        }
       });
   }
 
@@ -107,7 +111,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             ),
             onDismissed: (direction) async {
               await FavoriteService.deleteMovie(favorites[index].id);
-              //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Removed from your favorite")));
               Flushbar(
                 duration: Duration(milliseconds: 1000),
                 flushbarPosition: FlushbarPosition.TOP,
@@ -177,6 +180,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailScreen(favorites[index].movie)));
                       },
+                      onLongPress: () {
+                        _showBottomSheetModal(context, favorites[index]);
+                      },
                     )
                   )
                 ),
@@ -188,21 +194,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     width: 40,
                     height: 40,
                     child: InkWell(
-                      onTap: () async {
-                        setState(() {
-                          favoriteIsDeleting.add(favorites[index].id);
-                        });
-                        await FavoriteService.deleteMovie(favorites[index].id);
-                        Flushbar(
-                          duration: Duration(milliseconds: 1000),
-                          flushbarPosition: FlushbarPosition.TOP,
-                          backgroundColor: Color(0xFFFF5C83),
-                          message: favorites[index].movie.title + ' ' + MyLocalization.of(context).removeFavoriteMessage,
-                        )..show(context);
-                        setState(() {
-                          favorites.removeWhere((data) => data.id == favorites[index].id);
-                          favoriteIsDeleting.remove(favorites[index].id);
-                        });
+                      onTap: () {
+                        removeFromFavorite(context, favorites[index]);
                       },
                     ),
                   )
@@ -212,6 +205,77 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           )
         )
       )
+    );
+  }
+
+  void removeFromFavorite(BuildContext context, Favorite favorite) async {
+    setState(() {
+      favoriteIsDeleting.add(favorite.id);
+    });
+    Flushbar(
+      duration: Duration(milliseconds: 1000),
+      flushbarPosition: FlushbarPosition.TOP,
+      backgroundColor: Color(0xFFFF5C83),
+      message: favorite.movie.title + ' ' + MyLocalization.of(context).removeFavoriteMessage,
+    )..show(context);
+    await FavoriteService.deleteMovie(favorite.id);
+    setState(() {
+      favorites.removeWhere((data) => data.id == favorite.id);
+      favoriteIsDeleting.remove(favorite.id);
+    });
+  }
+
+  void _showBottomSheetModal(BuildContext context, Favorite favorite){
+    showModalBottomSheet(
+      context: context,
+      elevation: 4,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20)
+        ),
+      ),
+      builder: (BuildContext _){
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 15),
+          child: new Wrap(
+            children: <Widget>[
+              ListTile(
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.movie_creation_outlined)
+                ),
+                title: Text('Show Movie'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailScreen(favorite.movie)));
+                }
+              ),
+              ListTile(
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.delete_outline)
+                ),
+                title: Text('Remove From Favorite'),
+                onTap: () {
+                  Navigator.pop(context);
+                  removeFromFavorite(context, favorite);
+                },          
+              ),
+              ListTile(
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.close)
+                ),
+                title: Text('Cancel'),
+                onTap: () {
+                  Navigator.pop(context);
+                },          
+              ),
+            ],
+            ),
+        );
+      }
     );
   }
 }

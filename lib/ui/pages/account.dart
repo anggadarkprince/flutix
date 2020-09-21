@@ -136,6 +136,7 @@ class _AccountScreenState extends State<AccountScreen> {
       onTap: () async {
         final updatedUser = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(user)));
         if (updatedUser != null) {
+          Provider.of<ProviderUser>(context, listen: false).setUser(updatedUser);
           setState(() {
             user = updatedUser;
           });

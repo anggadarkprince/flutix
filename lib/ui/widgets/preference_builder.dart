@@ -33,8 +33,6 @@ class SharedPreferencesBuilder<T> extends StatelessWidget {
 	}
 
 	static Future getData(pref, prefDefault) async {
-    var result = (await SharedPreferences.getInstance()).get(pref);
-    print(result);
 		return (await SharedPreferences.getInstance()).get(pref) ?? prefDefault;
 	}
 

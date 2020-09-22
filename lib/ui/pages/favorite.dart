@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
@@ -139,7 +140,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blueGrey[100],
                             image: DecorationImage(
-                              image: NetworkImage(imageBaseURL + 'w500' + favorites[index].movieDetail.posterPath),
+                              image: CachedNetworkImageProvider(imageBaseURL + 'w500' + favorites[index].movieDetail.posterPath),
                               fit: BoxFit.cover
                             )
                           ),

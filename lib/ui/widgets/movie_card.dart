@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -30,7 +31,7 @@ class MovieCard extends StatelessWidget {
               color: Colors.blueGrey[100],
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
-                image: NetworkImage(imageBaseURL + "w780" + movie.backdropPath),
+                image: CachedNetworkImageProvider(imageBaseURL + "w780" + movie.backdropPath),
                 fit: BoxFit.cover
               ),
               boxShadow: [

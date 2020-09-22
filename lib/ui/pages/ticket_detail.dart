@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/shared/prefs.dart';
@@ -88,7 +89,7 @@ class TicketDetailScreen extends StatelessWidget {
       height: 170,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(imageBaseURL + "w500" + ticket.movieDetail.backdropPath),
+          image: CachedNetworkImageProvider(imageBaseURL + "w500" + ticket.movieDetail.backdropPath),
           fit: BoxFit.cover
         ),
         borderRadius: BorderRadius.only(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/models/credit.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -19,7 +20,7 @@ class CreditCard extends StatelessWidget {
             color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(8),
             image: (credit.profilePath == null) ? null : DecorationImage(
-              image: NetworkImage(imageBaseURL + "w185" + credit.profilePath),
+              image: CachedNetworkImageProvider(imageBaseURL + "w185" + credit.profilePath),
               fit: BoxFit.cover
             )
           ),

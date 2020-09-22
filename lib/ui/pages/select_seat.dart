@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/shared/prefs.dart';
@@ -78,7 +79,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: NetworkImage(imageBaseURL + 'w154' + widget.ticket.movieDetail.posterPath),
+                  image: CachedNetworkImageProvider(imageBaseURL + 'w154' + widget.ticket.movieDetail.posterPath),
                   fit: BoxFit.cover
                 )
               ),

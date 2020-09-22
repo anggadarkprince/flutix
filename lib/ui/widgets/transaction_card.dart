@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/models/transaction.dart';
 import 'package:flutix/shared/prefs.dart';
 import 'package:flutix/shared/theme.dart';
@@ -23,7 +24,7 @@ class TransactionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
               image: (transaction.picture != null)
-                ? NetworkImage(imageBaseURL + 'w500' + transaction.picture)
+                ? CachedNetworkImageProvider(imageBaseURL + 'w500' + transaction.picture)
                 : AssetImage('assets/bg_topup.png'),
               fit: BoxFit.cover
             )

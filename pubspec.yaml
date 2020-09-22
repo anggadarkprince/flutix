@@ -53,6 +53,7 @@ dependencies:
   flutter_local_notifications: ^1.4.4+4
   share: ^0.6.5+1
   path_provider: ^1.6.16
+  cached_network_image: ^2.3.2+1
 
 dev_dependencies:
   flutter_test:

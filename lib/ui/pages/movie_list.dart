@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie.dart';
 import 'package:flutix/services/movie_service.dart';
@@ -133,7 +134,7 @@ class _MovieListState extends State<MovieList> {
                             image: DecorationImage(
                               image: movies[index].posterPath.isEmpty 
                                 ? AssetImage('assets/bg_topup.png') 
-                                : NetworkImage(imageBaseURL + 'w500' + movies[index].posterPath),
+                                : CachedNetworkImageProvider(imageBaseURL + 'w500' + movies[index].posterPath),
                               fit: BoxFit.cover
                             )
                           ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/movie_detail.dart';
 import 'package:flutix/models/ticket.dart';
@@ -109,7 +110,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: NetworkImage(imageBaseURL + 'w342' + movieDetail.posterPath),
+                image: CachedNetworkImageProvider(imageBaseURL + 'w342' + movieDetail.posterPath),
                 fit: BoxFit.cover
               )
             ),

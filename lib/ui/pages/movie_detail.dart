@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
@@ -106,7 +107,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 height: 270,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(imageBaseURL + "w1280" + movie.backdropPath ?? movie.posterPath),
+                    image: CachedNetworkImageProvider(imageBaseURL + "w1280" + movie.backdropPath ?? movie.posterPath),
                     fit: BoxFit.cover
                   )
                 ),

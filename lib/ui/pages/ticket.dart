@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/ticket.dart';
 import 'package:flutix/services/ticket_service.dart';
@@ -210,7 +211,7 @@ class TicketViewer extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.blueGrey[100],
                         image: DecorationImage(
-                          image: NetworkImage(imageBaseURL + 'w500' + sortedTickets[index].movieDetail.posterPath),
+                          image: CachedNetworkImageProvider(imageBaseURL + 'w500' + sortedTickets[index].movieDetail.posterPath),
                           fit: BoxFit.cover
                         )
                       ),

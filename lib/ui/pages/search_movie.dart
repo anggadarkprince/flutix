@@ -44,7 +44,8 @@ class SearchMovie extends SearchDelegate {
     if (query.isNotEmpty) {
       SharedPreferencesBuilder.getData(recentKey, [])
         .then((value) {
-          List<String> recents = value is String ? [value] : (value as List<String>);
+          List<String> recents = value == null || value.length == 0 ? [] : (value as List<String>);
+          
           if (!recents.contains(query)) {
             recents.add(query);
             if (recents.length > 5) {
@@ -88,6 +89,7 @@ class SearchMovie extends SearchDelegate {
       : suggestionList.addAll(
           suggestions.where((element) => element.toLowerCase().contains(query.toLowerCase()))
         );
+    print(suggestionList);
 
     return ListView.builder(
       itemCount: suggestionList.length,

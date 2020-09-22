@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-17T14:02:41.918531",
+  "@@last_modified": "2020-09-22T14:20:46.224939",
   "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "Hello World",
@@ -508,6 +508,21 @@
   },
   "noFavoriteMessage": "No favorite available",
   "@noFavoriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showMovie": "Show Movie",
+  "@showMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMovie": "Share Movie",
+  "@shareMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFavorite": "Remove Favorite",
+  "@removeFavorite": {
     "type": "text",
     "placeholders": {}
   },

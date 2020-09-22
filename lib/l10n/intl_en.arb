@@ -512,6 +512,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "showMovie": "Show Movie",
+  "@showMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMovie": "Share Movie",
+  "@shareMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFavorite": "Remove Favorite",
+  "@removeFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
   "nowPlaying": "Now Playing",
   "@nowPlaying": {
     "type": "text",

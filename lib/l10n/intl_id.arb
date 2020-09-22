@@ -512,6 +512,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "showMovie": "Tampilkan Film",
+  "@showMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMovie": "Bagi Film",
+  "@shareMovie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFavorite": "Hapus Favorit",
+  "@removeFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
   "nowPlaying": "Main Sekarang",
   "@nowPlaying": {
     "type": "text",

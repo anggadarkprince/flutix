@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
@@ -15,6 +17,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailScreen extends StatefulWidget {
@@ -141,6 +146,35 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             },
           ),
         ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Container(
+            margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 20, right: defaultMargin),
+            padding: EdgeInsets.all(1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.black.withOpacity(0.04)
+            ),
+            child: GestureDetector(
+              child: Icon(
+                Icons.share_outlined,
+                color: Colors.white,
+              ),
+              onTap: () async {
+                if (Platform.isAndroid) {
+                  var response = await http.get(imageBaseURL + 'w500' + (movie.posterPath ?? movie.posterPath));
+                  final documentDirectory = (await getExternalStorageDirectory()).path;
+                  File imgFile = new File('$documentDirectory/shared-movie.png');
+                  imgFile.writeAsBytesSync(response.bodyBytes);
+                  Share.shareFiles(['$documentDirectory/shared-movie.png'], text: movie.title);
+                } else {
+                  Share.share('Check out my recommendation movie: ${movie.title}', subject: 'Favorite Movie');
+                }
+              },
+            ),
+          ),
+        ),
+        
       ],
     );
   }

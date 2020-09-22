@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/models/favorite.dart';
@@ -10,6 +12,9 @@ import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
@@ -246,7 +251,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   padding: EdgeInsets.only(left: 10),
                   child: Icon(Icons.movie_creation_outlined)
                 ),
-                title: Text('Show Movie'),
+                title: Text(MyLocalization.of(context).showMovie),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailScreen(favorite.movie)));
                 }
@@ -254,9 +259,27 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               ListTile(
                 leading: Padding(
                   padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.share_outlined)
+                ),
+                title: Text(MyLocalization.of(context).shareMovie),
+                onTap: () async {
+                  if (Platform.isAndroid) {
+                    var response = await http.get(imageBaseURL + 'w500' + (favorite.movie.posterPath ?? favorite.movie.posterPath));
+                    final documentDirectory = (await getExternalStorageDirectory()).path;
+                    File imgFile = new File('$documentDirectory/shared-movie.png');
+                    imgFile.writeAsBytesSync(response.bodyBytes);
+                    Share.shareFiles(['$documentDirectory/shared-movie.png'], text: favorite.movie.title);
+                  } else {
+                    Share.share('Check out my favorite movie: ${favorite.movie.title}', subject: 'Favorite Movie');
+                  }
+                }
+              ),
+              ListTile(
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 10),
                   child: Icon(Icons.delete_outline)
                 ),
-                title: Text('Remove From Favorite'),
+                title: Text(MyLocalization.of(context).removeFavorite),
                 onTap: () {
                   Navigator.pop(context);
                   removeFromFavorite(context, favorite);
@@ -267,7 +290,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   padding: EdgeInsets.only(left: 10),
                   child: Icon(Icons.close)
                 ),
-                title: Text('Cancel'),
+                title: Text(MyLocalization.of(context).cancel),
                 onTap: () {
                   Navigator.pop(context);
                 },          

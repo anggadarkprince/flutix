@@ -138,6 +138,9 @@ class MyLocalization {
   String get addedFavoriteMessage => Intl.message('added to your favorite list',  name: 'addedFavoriteMessage');
   String get removeFavoriteMessage => Intl.message('removed from your favorite list',  name: 'removeFavoriteMessage');
   String get noFavoriteMessage => Intl.message('No favorite available',  name: 'noFavoriteMessage');
+  String get showMovie => Intl.message('Show Movie',  name: 'showMovie');
+  String get shareMovie => Intl.message('Share Movie',  name: 'shareMovie');
+  String get removeFavorite => Intl.message('Remove Favorite',  name: 'removeFavorite');
 
   String get nowPlaying => Intl.message('Now Playing',  name: 'nowPlaying');
   String get browseMovie => Intl.message('Browse Movie',  name: 'browseMovie');

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart' as _auth;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/locale/my_localization_delegate.dart';
@@ -7,6 +6,8 @@ import 'package:flutix/provider_localization.dart';
 import 'package:flutix/provider_user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/ui/pages/home.dart';
+import 'package:flutix/ui/pages/topup.dart';
+import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/preference_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,7 +30,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProviderLocalization()),
         ChangeNotifierProvider(create: (context) => ProviderUser()),
-        Provider<FirebaseAuth>(create: (_) => FirebaseAuth.instance)
+        Provider<_auth.FirebaseAuth>(create: (_) => _auth.FirebaseAuth.instance)
       ],
       child: Consumer<ProviderLocalization>(
         builder: (context, localization, child) {
@@ -49,6 +50,15 @@ class App extends StatelessWidget {
               scaffoldBackgroundColor: Colors.white,
             ),
             home: LandingPage(), // use stateless widget make hot reload refresh the home screen
+            routes: <String, WidgetBuilder> {
+              '/splash': (BuildContext context) => SplashScreen(),
+              '/movie': (BuildContext context) => HomeScreen(tabIndex: 0),
+              '/favorite': (BuildContext context) => HomeScreen(tabIndex: 1),
+              '/ticket': (BuildContext context) => HomeScreen(tabIndex: 2),
+              '/account': (BuildContext context) => HomeScreen(tabIndex: 3),
+              '/wallet': (BuildContext context) => WalletScreen(),
+              '/top-up': (BuildContext context) => TopUpScreen(),
+            },
           );
         }
       ),
@@ -100,7 +110,7 @@ class LandingPage extends StatelessWidget {
       String code = value[1] ?? 'US';
       MyLocalization.load(Locale(lang, code));
     });
-    final firebaseAuth = Provider.of<FirebaseAuth>(context);
+    final firebaseAuth = Provider.of<_auth.FirebaseAuth>(context);
     return StreamBuilder<_auth.User>(
       stream: firebaseAuth.authStateChanges(),
       builder: (context, snapshot) {

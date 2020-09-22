@@ -11,7 +11,6 @@ import 'package:flutix/ui/pages/map.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
 import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/search_movie.dart';
-import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
 import 'package:flutix/ui/widgets/movie_card.dart';
@@ -143,7 +142,7 @@ class _MovieScreenState extends State<MovieScreen> {
               SizedBox(height: 5),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                  Navigator.pushNamed(context, '/wallet');
                 },
                 child: Text(
                   NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: "IDR ").format((widget.user != null ? widget.user.balance : 0)),

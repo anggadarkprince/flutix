@@ -4,7 +4,6 @@ import 'package:flutix/models/user.dart';
 import 'package:flutix/services/transaction_service.dart';
 import 'package:flutix/services/user_service.dart';
 import 'package:flutix/shared/theme.dart';
-import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutix/ui/widgets/shimmer_list.dart';
 import 'package:flutix/ui/widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +79,7 @@ class WalletScreen extends StatelessWidget {
                   style: whiteTextFont.copyWith(fontSize: 16),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpScreen()));
+                  Navigator.pushNamed(context, '/top-up');
                 }
               ),
             ),

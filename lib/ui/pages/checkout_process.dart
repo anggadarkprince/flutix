@@ -40,25 +40,7 @@ class _CheckoutProcessScreenState extends State<CheckoutProcessScreen> {
     var initializationSettingsIOs = IOSInitializationSettings();
     var initSetttings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOs);
 
-    flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
-  }
-
-  Future onSelectNotification(String payload) {
-    if (ticket == null) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => WalletScreen()),
-        (Route<dynamic> route) => route.isFirst,
-      );
-    } else {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 2)),
-        (Route<dynamic> route) => false,
-      );
-    }
-    
-    return null;
+    flutterLocalNotificationsPlugin.initialize(initSetttings);
   }
 
   @override
@@ -112,7 +94,7 @@ class _CheckoutProcessScreenState extends State<CheckoutProcessScreen> {
                       } else {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 2)),
+                          MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 3)),
                           (Route<dynamic> route) => false,
                         );
                       }
@@ -161,7 +143,7 @@ class _CheckoutProcessScreenState extends State<CheckoutProcessScreen> {
       100, 
       'Flutix Ticket', 
       MyLocalization.of(context).successBoughtTicketMessage + ' ' + ticket.movieDetail.title, platform,
-      payload: MyLocalization.of(context).successBoughtTicketMessage
+      payload: 'ticket'
     ); 
   }
   
@@ -178,7 +160,7 @@ class _CheckoutProcessScreenState extends State<CheckoutProcessScreen> {
       100, 
       'Flutix Top Up', 
       MyLocalization.of(context).successTopUpMessage + ' ' + totalTopUp, platform,
-      payload: MyLocalization.of(context).successTopUpMessage
+      payload: 'wallet'
     ); 
   }
 }

@@ -12,6 +12,7 @@ import 'package:flutix/ui/pages/favorite.dart';
 import 'package:flutix/ui/pages/movie.dart';
 import 'package:flutix/ui/pages/ticket.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int bottomNavBarIndex;
   PageController pageController;
   User user;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   final firebaseMessaging = FirebaseMessaging();
   bool isSubscribed = false;
@@ -93,6 +95,33 @@ class _HomeScreenState extends State<HomeScreen> {
     } else {
       user = widget.user;
     }
+
+    var initializationSettingsAndroid = AndroidInitializationSettings('mipmap/ic_launcher');
+    var initializationSettingsIOs = IOSInitializationSettings();
+    var initSetttings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOs);
+
+    flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) {
+    switch (payload) {
+      case 'wallet':
+        Navigator.pushNamed(context, '/wallet');
+      break;
+      case 'ticket':
+        if (pageController == null) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen(tabIndex: 3)),
+            (Route<dynamic> route) => false,
+          );
+        } else {
+          pageController.jumpToPage(3);
+        }
+      break;
+    }
+    
+    return null;
   }
 
   void getDataFcm(Map<String, dynamic> message) {
@@ -124,6 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               MovieScreen(user),
               FavoriteScreen(),
+              Container(),
               TicketScreen(),
               AccountScreen(user),
             ],
@@ -178,11 +208,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 BottomNavigationBarItem(
                   title: Container(
-                    margin: EdgeInsets.only(right: 40),
                     child: Text(MyLocalization.of(context).menuLikes, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6, right: 40),
+                    margin: EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 1)
                       ? "assets/ic_rate.png"
@@ -191,14 +220,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ),
                 BottomNavigationBarItem(
+                  title: Text(''),
+                  icon: Container(),
+                ),
+                BottomNavigationBarItem(
                   title: Container(
-                    margin: EdgeInsets.only(left: 40),
                     child: Text(MyLocalization.of(context).menuTickets, style: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600))
                   ),
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6, left: 40),
+                    margin: EdgeInsets.only(bottom: 6),
                     height: 20,
-                    child: Image.asset((bottomNavBarIndex == 2)
+                    child: Image.asset((bottomNavBarIndex == 3)
                       ? "assets/ic_tickets.png"
                       : "assets/ic_tickets_grey.png"
                     ),
@@ -209,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 6),
                     height: 20,
-                    child: Image.asset((bottomNavBarIndex == 3)
+                    child: Image.asset((bottomNavBarIndex == 4)
                       ? "assets/ic_profile.png"
                       : "assets/ic_profile_grey.png"
                     ),

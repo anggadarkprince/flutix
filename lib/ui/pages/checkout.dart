@@ -372,12 +372,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             }
           ),
         )
-      : SizedBox(
-          height: 50,
-          width: 50,
-          child: SpinKitFadingCircle(
-            color: accentColor1,
-          ),
+      : Container(
+          margin: EdgeInsets.only(top: 30, bottom: 30),
+          child: SizedBox(
+            height: 50,
+            width: 50,
+            child: SpinKitFadingCircle(
+              color: accentColor1,
+            ),
+          )
         );
   }
 }

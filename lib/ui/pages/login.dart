@@ -87,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: MyLocalization.of(context).emailAddress,
-            hintText: MyLocalization.of(context).emailAddress
+            hintText: MyLocalization.of(context).emailAddress,
+            errorText: emailController.text.trim().length > 0 && !isEmailValid ? 'Email address is invalid' : null,
           ),
         ),
         SizedBox(height: 15),
@@ -104,7 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: MyLocalization.of(context).password,
-            hintText: MyLocalization.of(context).password
+            hintText: MyLocalization.of(context).password,
+            errorText: passwordController.text.trim().length > 0 && !isPasswordValid ? 'Password length is invalid' : null,
           ),
         ),
         SizedBox(height: 15),

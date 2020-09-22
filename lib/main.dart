@@ -45,6 +45,9 @@ class App extends StatelessWidget {
               const Locale('en', 'US'),
               const Locale('id', 'ID'),
             ],
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
+            ),
             home: LandingPage(), // use stateless widget make hot reload refresh the home screen
           );
         }

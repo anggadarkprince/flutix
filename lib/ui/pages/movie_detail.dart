@@ -100,13 +100,16 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       children: <Widget>[
         Stack(
           children: <Widget>[
-            Container(
-              height: 270,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imageBaseURL + "w1280" + movie.backdropPath ?? movie.posterPath),
-                  fit: BoxFit.cover
-                )
+            Hero(
+              tag: 'poster-' + movie.id.toString(),
+              child: Container(
+                height: 270,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imageBaseURL + "w1280" + movie.backdropPath ?? movie.posterPath),
+                    fit: BoxFit.cover
+                  )
+                ),
               ),
             ),
             Container(

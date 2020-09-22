@@ -130,18 +130,21 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   padding: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
                   child: Row(
                     children: <Widget>[
-                      Container(
-                        width: 70,
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.blueGrey[100],
-                          image: DecorationImage(
-                            image: NetworkImage(imageBaseURL + 'w500' + favorites[index].movieDetail.posterPath),
-                            fit: BoxFit.cover
-                          )
+                      Hero(
+                        tag: 'poster-' + favorites[index].movie.id.toString(),
+                        child: Container(
+                          width: 70,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.blueGrey[100],
+                            image: DecorationImage(
+                              image: NetworkImage(imageBaseURL + 'w500' + favorites[index].movieDetail.posterPath),
+                              fit: BoxFit.cover
+                            )
+                          ),
                         ),
-                      ),
+                      ),                      
                       SizedBox(width: 15),
                       Expanded(
                         child: Column(

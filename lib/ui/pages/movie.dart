@@ -9,7 +9,6 @@ import 'package:flutix/ui/pages/discovery.dart';
 import 'package:flutix/ui/pages/genre.dart';
 import 'package:flutix/ui/pages/map.dart';
 import 'package:flutix/ui/pages/movie_detail.dart';
-import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/search_movie.dart';
 import 'package:flutix/ui/widgets/browse_button.dart';
 import 'package:flutix/ui/widgets/coming_soon_dart.dart';
@@ -91,7 +90,7 @@ class _MovieScreenState extends State<MovieScreen> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(widget.user)));
+              Navigator.pushNamed(context, '/profile', arguments: widget.user);
             },
             child: Container(
               padding: EdgeInsets.only(left: 5, right: 5),
@@ -128,7 +127,7 @@ class _MovieScreenState extends State<MovieScreen> {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(widget.user)));
+                  Navigator.pushNamed(context, '/profile', arguments: widget.user);
                 },
                 child: SizedBox(
                   child: Text(

@@ -286,9 +286,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           margin: EdgeInsets.fromLTRB(defaultMargin, 24, defaultMargin, 8),
           child: Align(
             alignment: Alignment.topLeft,
-            child: Text(
+            child: SelectableText(
               MyLocalization.of(context).storyline,
               style: darkTextFont.copyWith(fontWeight: FontWeight.w600),
+              showCursor: true,
+              toolbarOptions: ToolbarOptions(copy: true, selectAll: true)
             ),
           ),
         ),

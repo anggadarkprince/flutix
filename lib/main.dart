@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart' as _auth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutix/locale/my_localization.dart';
 import 'package:flutix/locale/my_localization_delegate.dart';
+import 'package:flutix/models/user.dart';
 import 'package:flutix/provider_localization.dart';
 import 'package:flutix/provider_user.dart';
 import 'package:flutix/services/auth_services.dart';
 import 'package:flutix/ui/pages/home.dart';
+import 'package:flutix/ui/pages/profile.dart';
 import 'package:flutix/ui/pages/topup.dart';
 import 'package:flutix/ui/pages/wallet.dart';
 import 'package:flutix/ui/widgets/preference_builder.dart';
@@ -59,6 +61,17 @@ class App extends StatelessWidget {
               '/wallet': (BuildContext context) => WalletScreen(),
               '/top-up': (BuildContext context) => TopUpScreen(),
             },
+            onGenerateRoute: (settings) {
+              if (settings.name == '/profile') {
+                final User user = settings.arguments;
+                return MaterialPageRoute(
+                  builder: (context) {
+                    return ProfileScreen(user);
+                  },
+                );
+              }
+              return null;
+            }
           );
         }
       ),

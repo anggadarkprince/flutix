@@ -44,13 +44,14 @@ class SearchMovie extends SearchDelegate {
     if (query.isNotEmpty) {
       SharedPreferencesBuilder.getData(recentKey, [])
         .then((value) {
-          List<String> recents = value == null || value.length == 0 ? [] : (value as List<String>);
+          List<String> recents = value == null || value.length == 0 ? [] : (value.cast<String>().toList());
           
           if (!recents.contains(query)) {
             recents.add(query);
             if (recents.length > 5) {
               recents.removeAt(0);
             }
+            print(recents);
             SharedPreferencesBuilder.setData(recentKey, recents);
           }
         });

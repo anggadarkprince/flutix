@@ -147,13 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
             controller: pageController,
             onPageChanged: (index) {
               setState(() {
-                bottomNavBarIndex = index;
+                bottomNavBarIndex = index > 1 ? index + 1 : index;
               });
             },
             children: <Widget>[
               MovieScreen(user),
               FavoriteScreen(),
-              Container(),
               TicketScreen(),
               AccountScreen(user),
             ],
@@ -192,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (index) {
                 setState(() {
                   bottomNavBarIndex = index;
-                  pageController.jumpToPage(index);
+                  pageController.jumpToPage(index > 1 ? index - 1 : index);
                 });
               },
               items: [
